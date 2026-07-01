@@ -378,7 +378,7 @@
 <div class="modal">
 <h3><svg fill="currentColor" height="18" style="vertical-align:-3px;margin-right:6px;" viewbox="0 0 640 640" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM225.5 233.9C213.3 228.7 199.2 234.3 194 246.5C188.8 258.7 194.4 272.8 206.6 278L218.5 283.1C235.8 290.5 253.7 296 272.1 299.4L272.1 349.5C272.1 353.8 271.4 358.1 270 362.1L241.3 448.2C237.1 460.8 243.9 474.4 256.5 478.6C269.1 482.8 282.7 476 286.9 463.4L311.3 390.2C312.6 386.4 316.1 383.8 320.1 383.8C324.1 383.8 327.7 386.4 328.9 390.2L353.3 463.4C357.5 476 371.1 482.8 383.7 478.6C396.3 474.4 403 461 398.8 448.4L370.1 362.3C368.7 358.2 368 354 368 349.7L368 299.6C386.4 296.1 404.3 290.7 421.6 283.3L433.5 278.2C445.7 273 451.3 258.9 446.1 246.7C440.9 234.5 426.8 228.9 414.6 234.1L402.7 239C376.6 250.2 348.5 256 320 256C291.5 256 263.5 250.2 237.3 239L225.4 233.9zM320 224C342.1 224 360 206.1 360 184C360 161.9 342.1 144 320 144C297.9 144 280 161.9 280 184C280 206.1 297.9 224 320 224z"></path></svg>Admin Access</h3>
 <p>Sign in with your admin account to edit the guidelines.</p>
-<input id="pwd-email-input" onkeydown="if(event.key==='Enter')document.getElementById('pwd-input').focus()" placeholder="Admin Email" type="email" autocomplete="email" style="margin-bottom:9px;">
+<input id="pwd-email-input" onkeydown="if(event.key==='Enter')document.getElementById('pwd-input').focus()" placeholder="Email" type="email" autocomplete="email" style="margin-bottom:9px;">
 <input id="pwd-input" onkeydown="if(event.key==='Enter')checkPwd()" placeholder="Password" type="password" autocomplete="current-password">
 <div class="modal-error" id="pwd-error"></div>
 <div class="modal-btns">
@@ -407,8 +407,8 @@
       </div>
       <!-- Login form (shown after session check) -->
       <div id="ap-login-form" style="display:none;width:100%;flex-direction:column;align-items:center;gap:11px;">
-        <p>Admin Sign In</p>
-        <input type="email" id="ap-email" placeholder="Admin Email" autocomplete="email" style="width:100%;border:1.5px solid #dde;border-radius:8px;padding:10px 14px;font-size:0.9rem;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('ap-pwd').focus()"/>
+        <p>Developer Access</p>
+        <input type="email" id="ap-email" placeholder="Email" autocomplete="email" style="width:100%;border:1.5px solid #dde;border-radius:8px;padding:10px 14px;font-size:0.9rem;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('ap-pwd').focus()"/>
         <input type="password" id="ap-pwd" placeholder="Password" autocomplete="current-password" style="width:100%;border:1.5px solid #dde;border-radius:8px;padding:10px 14px;font-size:0.9rem;outline:none;letter-spacing:2px;" onkeydown="if(event.key==='Enter')apLogin()"/>
         <div class="ap-pwd-err" id="ap-pwd-err"></div>
         <button class="ap-login-btn" onclick="apLogin()">Login</button>
@@ -806,7 +806,7 @@ async function checkPwd() {
     if(saveEn)saveEn.style.display=lang==='en'?'':'none';
     renderRules();
   } else {
-    errEl.textContent = '❌ ' + (result.error || 'Incorrect credentials. Try again.');
+    errEl.textContent = '✘ ' + (result.error || 'Incorrect credentials. Try again.');
     errEl.style.display='block';
     document.getElementById('pwd-input').value='';
     document.getElementById('pwd-input').focus();
@@ -934,7 +934,7 @@ async function apLogin() {
   const result = await authSignIn(email, pwd);
   if (btn) { btn.disabled = false; btn.textContent = 'Login'; }
   if (!result.ok) {
-    errEl.textContent = '❌ ' + (result.error || 'Incorrect credentials. Try again.');
+    errEl.textContent = '✘ ' + (result.error || 'Incorrect credentials. Try again.');
     errEl.style.display = 'block';
     document.getElementById('ap-pwd').value = '';
     document.getElementById('ap-pwd').focus();
@@ -989,7 +989,7 @@ function apRenderList() {
         <div class="ap-link-sub">${escH(l.subtitle)}</div>
       </div>
       <button class="ap-row-edit-btn" onclick="apShowEdit(${idx})" title="Edit">✏️</button>
-      <button class="ap-row-del-btn" onclick="apDeleteLink('${escH(l.id)}')" title="Delete">🗑️</button>
+      <button class="ap-row-del-btn" onclick="apDeleteLink('${escH(l.id)}')" title="Delete">🗑</button>
     </div>`).join('');
 }
 
@@ -1106,9 +1106,9 @@ async function apSaveLink() {
   l.icon_size = parseInt(document.getElementById('ap-f-icon-size').value, 10) || 22;
   const errEl = document.getElementById('ap-f-save-err');
   if (!l.url || !/^https?:\/\//i.test(l.url)) {
-    errEl.textContent='❌ Valid URL தேவை (https:// தொடங்க வேண்டும்).'; errEl.style.display='block'; return;
+    errEl.textContent='✘ Valid URL தேவை (https:// தொடங்க வேண்டும்).'; errEl.style.display='block'; return;
   }
-  if (!l.title) { errEl.textContent='❌ Platform பெயர் கொடுக்கவும்.'; errEl.style.display='block'; return; }
+  if (!l.title) { errEl.textContent='✘ Platform பெயர் கொடுக்கவும்.'; errEl.style.display='block'; return; }
   errEl.style.display = 'none';
   AP.saving = true;
   const btn = document.getElementById('ap-save-btn');
@@ -1131,11 +1131,11 @@ async function apSaveLink() {
       renderSocialLinks();
       apShowList();
     } else {
-      errEl.textContent = '❌ ' + (data.error||'Save failed');
+      errEl.textContent = '✘ ' + (data.error||'Save failed');
       errEl.style.display = 'block';
     }
   } catch(e) {
-    errEl.textContent = '❌ Network error. மீண்டும் முயற்சிக்கவும்.';
+    errEl.textContent = '✘ Network error. மீண்டும் முயற்சிக்கவும்.';
     errEl.style.display = 'block';
   } finally {
     AP.saving = false;
@@ -1157,8 +1157,8 @@ async function apDeleteLink(id) {
       SL[gid] = (SL[gid]||[]).filter(l=>l.id!==id);
       renderSocialLinks();
       apRenderList();
-    } else { alert('❌ '+(data.error||'Delete failed')); }
-  } catch(e) { alert('❌ Network error'); }
+    } else { alert('✘ '+(data.error||'Delete failed')); }
+  } catch(e) { alert('✘ Network error'); }
 }
 
 // ═══════════════════════════════════════════════
