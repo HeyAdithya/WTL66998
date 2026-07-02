@@ -935,6 +935,21 @@ function apShowView(v) {
   });
 }
 
+  function apTogglePwd() {
+  const pwd = document.getElementById('ap-pwd');
+  const eyeShow = document.getElementById('ap-pwd-eye-show');
+  const eyeHide = document.getElementById('ap-pwd-eye-hide');
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    eyeShow.style.display = 'none';
+    eyeHide.style.display = '';
+  } else {
+    pwd.type = 'password';
+    eyeShow.style.display = '';
+    eyeHide.style.display = 'none';
+  }
+  }
+  
 async function apLogin() {
   const email = document.getElementById('ap-email').value.trim();
   const pwd = document.getElementById('ap-pwd').value;
