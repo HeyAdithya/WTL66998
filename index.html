@@ -375,7 +375,8 @@
       </div>
       <!-- Login form (shown after session check) -->
       <div id="ap-login-form" style="display:none;width:100%;flex-direction:column;align-items:center;gap:11px;">
-        <p style="color:#1B2E7A;">Developer Access</p>
+       <p style="color:#1B2E7A;">Developer Access</p>
+        <div style="height:20px;"></div>
         <div style="position:relative;width:100%;">
           <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9aa3b8;pointer-events:none;" fill="currentColor" viewBox="0 0 640 640"><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
           <input type="email" id="ap-email" placeholder="Email" autocomplete="email" style="width:100%;border:1.5px solid #dde;border-radius:8px;padding:10px 14px 10px 36px;font-size:0.9rem;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('ap-pwd').focus()"/>
@@ -613,7 +614,7 @@ const RULES_TA = [
   "<b>குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.</b>",
   "<b>இந்தக் குழுவில் விளம்பரம் செய்வதற்கு அனுமதி இல்லை. விளம்பரங்கள் பதிவிடப்பட்டால், அவை அனைத்தும் நீக்கப்படும். மேலும், ஒரு வருடத்திற்கு எந்த கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>நமது குழுவில் யாராவது நமது கட்சிக்கு எதிராகவோ, நமது குழுவிற்கு எதிராகவோ அல்லது ஏதேனும் ஒரு மதத்தை இழிவுபடுத்தியோ பதிவு செய்திருந்தால், @owner அல்லது @admin-ஐ டேக் செய்து புகாரளிக்கவும்.</b>",
-  "<h1>பெண்களுக்கான அறிவிப்பு:</h1><p><b>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</b></p>",
+  "<h4>பெண்களுக்கான அறிவிப்பு:</h4><p><b>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</b></p>",
   "<b>நமது குழுவில் உள்ள உறுப்பினர்கள், கஷ்டப்படும் மக்களுக்கு உதவுவதற்காக நிதி உதவி கோரினால், அதற்கும் குழு நிர்வாகத்திற்கும் எந்தத் தொடர்பும் இல்லை.</b>",
   "<b>நமது குழுவில் உள்ள நண்பர்களின் பாதுகாப்பைக் கருத்தில் கொண்டு, போலி இணைப்புகள் அல்லது கிரிப்டோகரன்சி தொடர்பான சந்தேகத்திற்குரிய இணைப்புகளை பதிவிடக் கூடாது. விதிமுறைகளை மீறினால், ஒரு வருடத்திற்கு எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>குழுவின் உறுப்பினர்கள் தாங்கள் பதிவிடும் தகவல்களின் உண்மைத் தன்மையையும் தரத்தையும் உறுதி செய்து கொள்ள வேண்டும். அவை தொடர்பாக ஏற்படும் சட்டப் பிரச்சினைகளுக்கு குழு நிர்வாகம் பொறுப்பேற்காது.</b>",
@@ -631,7 +632,7 @@ const RULES_EN = [
   "<b>If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.</b>",
   "<b>Advertising is not permitted in this group. Any advertisements posted will be removed, and the member will be prohibited from posting any files in the group for one year.</b>",
   "<b>If anyone posts content against our party, against our group, or insults any religion, please report it by tagging @owner or @admin.</b>",
-  "<h1>Notice for Women Members:</h1><p><b>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p></b>",
+  "<h4>Notice for Women Members:</h4><p><b>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p></b>",
   "<b>If any member requests financial assistance to help people in need, such requests are made solely by that individual. The group administration bears no responsibility or involvement in such requests.</b>",
   "<b>For the safety of all members, posting fake links or suspicious cryptocurrency-related links is strictly prohibited. Members who violate this rule will be prohibited from posting any messages or files in the group for one year.</b>",
   "<b>Members are responsible for verifying the authenticity and quality of the information they post. The group administration shall not be held responsible for any legal issues arising from members' posts.</b>",
