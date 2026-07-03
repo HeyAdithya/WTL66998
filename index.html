@@ -1001,7 +1001,7 @@ function apRenderList() {
 function apShowRulesEditor() {
   apShowView('rules');
   document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள்' : 'Guidelines';
-  document.getElementById('ap-rules-add-btn').textContent = lang==='ta' ? '+ Add' : '+ Add';
+  document.getElementById('ap-rules-add-btn').textContent = '+ Add';
   document.getElementById('ap-rules-err').style.display = 'none';
   apRenderRulesEditor();
   const container = document.getElementById('ap-rules-container');
