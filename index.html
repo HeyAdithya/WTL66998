@@ -1000,45 +1000,27 @@ function apRenderList() {
 // ═══════════════════════════════════════════════
 function apShowRulesEditor() {
   apShowView('rules');
-  document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள்' : 'Guidelines';
-  document.getElementById('ap-rules-add-btn').textContent = '+ Add';
+  document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள் திருத்து' : 'Edit Guidelines';
+  document.getElementById('ap-rules-add-btn').textContent = lang==='ta' ? '+ சேர்' : '+ Add';
+  document.getElementById('ap-rules-save-btn').textContent = lang==='ta' ? 'சேமி' : 'Save Changes';
   document.getElementById('ap-rules-err').style.display = 'none';
   apRenderRulesEditor();
-  const container = document.getElementById('ap-rules-container');
-  if (!container.dataset.scrollBound) {
-    container.addEventListener('scroll', apUpdateRulesScrollHint);
-    container.dataset.scrollBound = '1';
-  }
 }
 
 function apRenderRulesEditor() {
   const arr = lang==='ta' ? RULES_TA : RULES_EN;
-  const countEl = document.getElementById('ap-rules-count');
-  countEl.textContent = lang==='ta'
-    ? `மொத்தம் ${arr.length} விதிமுறைகள்`
-    : `Total ${arr.length} rules`;
   const el = document.getElementById('ap-rules-container');
   el.innerHTML = arr.map((r,i) => `
-    <div class="ap-rule-card" data-idx="${i}">
+    <div class="ap-link-row" style="cursor:default;align-items:flex-start;">
       <div class="ap-rule-num">${i+1}</div>
-      <div class="ap-rule-body">
-        <textarea class="ap-rule-textarea" data-idx="${i}">${escH(r)}</textarea>
-        <div class="ap-rule-counter"><span class="ap-rule-count-val">${r.length}</span> / 2000</div>
+      <div class="ap-link-info">
+        <textarea class="ap-rule-textarea" data-idx="${i}" rows="2">${escH(r)}</textarea>
       </div>
-      <div class="ap-rule-actions">
-        <button class="ap-rule-del-btn" onclick="apDeleteRuleRow(${i})" title="Delete">🗑</button>
-      </div>
+      <button class="ap-row-del-btn" onclick="apDeleteRuleRow(${i})" title="Delete">🗑</button>
     </div>`).join('');
   el.querySelectorAll('.ap-rule-textarea').forEach(t => {
-    apAutoGrowTextarea(t);
-    t.addEventListener('input', () => {
-      (lang==='ta'?RULES_TA:RULES_EN)[+t.dataset.idx] = t.value;
-      apAutoGrowTextarea(t);
-      const counter = t.closest('.ap-rule-body').querySelector('.ap-rule-count-val');
-      if (counter) counter.textContent = t.value.length;
-    });
+    t.addEventListener('input', () => { (lang==='ta'?RULES_TA:RULES_EN)[+t.dataset.idx] = t.value; });
   });
-  apUpdateRulesScrollHint();
 }
 
 // Grows the textarea to fit its full content so no text is ever clipped or hidden
