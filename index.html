@@ -213,6 +213,9 @@
     display:flex; flex-direction:column;
     max-height:calc(100vh - 24px); overflow:hidden;
   }
+  #ap-view-login, #ap-view-list, #ap-view-edit, #ap-view-rules {
+    flex-direction:column; flex:1; min-height:0;
+  }
 
   /* Login */
   .ap-login-toprow { display:flex; justify-content:flex-end; padding:10px 12px 0; }
@@ -333,9 +336,30 @@
   .ap-form-err { color:#e74c3c;font-size:0.76rem;padding:6px 0;display:none; }
 
   /* Rules editor (inside Developer Panel) */
-  .ap-rule-num { width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;flex-shrink:0;margin-top:2px; }
-  .ap-rule-textarea { width:100%;border:1.5px solid #dde;border-radius:8px;padding:7px 9px;font-size:0.8rem;line-height:1.5;outline:none;resize:vertical;min-height:40px;font-family:inherit; }
+  #ap-rules-container { padding:12px 14px; }
+  .ap-rule-card {
+    display:flex; gap:10px; align-items:flex-start;
+    background:#fff; border:1px solid #e5e7ef; border-radius:10px;
+    padding:12px; margin-bottom:12px; box-shadow:var(--shadow);
+  }
+  .ap-rule-card:last-child { margin-bottom:0; }
+  .ap-rule-num { width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;margin-top:2px; }
+  .ap-rule-body { flex:1;min-width:0; }
+  .ap-rule-textarea {
+    width:100%;border:1.5px solid #dde;border-radius:8px;
+    padding:9px 11px;font-size:0.85rem;line-height:1.5;color:var(--text);
+    outline:none;resize:none;overflow:hidden;font-family:inherit;
+  }
   .ap-rule-textarea:focus { border-color:var(--blue); }
+  .ap-rule-counter { text-align:right;font-size:0.7rem;color:var(--muted);margin-top:4px; }
+  .ap-rule-actions { display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;padding-top:2px; }
+  .ap-rule-del-btn { background:none;border:none;cursor:pointer;color:#9ca3af;font-size:1rem;padding:2px;display:flex;align-items:center;justify-content:center; }
+  .ap-rule-del-btn:hover { color:#e74c3c; }
+  .ap-scroll-hint {
+    text-align:center;font-size:0.72rem;color:var(--muted);
+    padding:7px 0;flex-shrink:0;display:none;
+    background:#fff;border-top:1px solid #eef0f8;
+  }
 </style>
 </head>
 <body>
@@ -375,7 +399,7 @@
       </div>
       <!-- Login form (shown after session check) -->
       <div id="ap-login-form" style="display:none;width:100%;flex-direction:column;align-items:center;gap:11px;">
-       <p style="color:#1B2E7A;">Developer Access</p>
+        <p style="color:#1B2E7A;">Developer Access</p>
         <div style="position:relative;width:100%;">
           <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9aa3b8;pointer-events:none;" fill="currentColor" viewBox="0 0 640 640"><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
           <input type="email" id="ap-email" placeholder="Email" autocomplete="email" style="width:100%;border:1.5px solid #dde;border-radius:8px;padding:10px 14px 10px 36px;font-size:0.9rem;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('ap-pwd').focus()"/>
@@ -493,15 +517,19 @@
 
   <!-- RULES EDIT VIEW -->
   <div id="ap-view-rules" style="display:none">
-    <div class="ap-panel-header">
-      <button class="ap-back-btn" onclick="apClose()" title="Close">
+    <div class="ap-panel-header" style="align-items:flex-start;">
+      <button class="ap-back-btn" onclick="apClose()" title="Close" style="margin-top:2px;">
         <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M447.1 96L195.3 320L447.1 544L384 544L128 320L384 96L447.1 96z"/></svg>
       </button>
-      <span class="ap-panel-header-title" id="ap-rules-title">Edit Guidelines</span>
+      <div style="flex:1;min-width:0;">
+        <div class="ap-panel-header-title" id="ap-rules-title" style="white-space:normal;">Guidelines</div>
+        <div id="ap-rules-count" style="font-size:0.7rem;color:rgba(255,255,255,0.75);margin-top:2px;"></div>
+      </div>
       <button class="ap-add-btn" onclick="apAddRuleRow()" id="ap-rules-add-btn">+ Add</button>
-      <button class="ap-save-btn" id="ap-rules-save-btn" onclick="apSaveRules()">Save Changes</button>
+      <button class="ap-save-btn" id="ap-rules-save-btn" onclick="apSaveRules()">💾 Save</button>
     </div>
     <div class="ap-links-container" id="ap-rules-container"></div>
+    <div class="ap-scroll-hint" id="ap-rules-scroll-hint">Scroll செய்யவும் ⌄</div>
     <div class="ap-form-err" id="ap-rules-err" style="padding:0 14px 10px;"></div>
   </div>
 
@@ -613,7 +641,7 @@ const RULES_TA = [
   "<b>குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.</b>",
   "<b>இந்தக் குழுவில் விளம்பரம் செய்வதற்கு அனுமதி இல்லை. விளம்பரங்கள் பதிவிடப்பட்டால், அவை அனைத்தும் நீக்கப்படும். மேலும், ஒரு வருடத்திற்கு எந்த கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>நமது குழுவில் யாராவது நமது கட்சிக்கு எதிராகவோ, நமது குழுவிற்கு எதிராகவோ அல்லது ஏதேனும் ஒரு மதத்தை இழிவுபடுத்தியோ பதிவு செய்திருந்தால், @owner அல்லது @admin-ஐ டேக் செய்து புகாரளிக்கவும்.</b>",
-  "<h4>பெண்களுக்கான அறிவிப்பு:</h4><p><b>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</b></p>",
+  "<h1>பெண்களுக்கான அறிவிப்பு:</h1><p><b>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</b></p>",
   "<b>நமது குழுவில் உள்ள உறுப்பினர்கள், கஷ்டப்படும் மக்களுக்கு உதவுவதற்காக நிதி உதவி கோரினால், அதற்கும் குழு நிர்வாகத்திற்கும் எந்தத் தொடர்பும் இல்லை.</b>",
   "<b>நமது குழுவில் உள்ள நண்பர்களின் பாதுகாப்பைக் கருத்தில் கொண்டு, போலி இணைப்புகள் அல்லது கிரிப்டோகரன்சி தொடர்பான சந்தேகத்திற்குரிய இணைப்புகளை பதிவிடக் கூடாது. விதிமுறைகளை மீறினால், ஒரு வருடத்திற்கு எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>குழுவின் உறுப்பினர்கள் தாங்கள் பதிவிடும் தகவல்களின் உண்மைத் தன்மையையும் தரத்தையும் உறுதி செய்து கொள்ள வேண்டும். அவை தொடர்பாக ஏற்படும் சட்டப் பிரச்சினைகளுக்கு குழு நிர்வாகம் பொறுப்பேற்காது.</b>",
@@ -631,7 +659,7 @@ const RULES_EN = [
   "<b>If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.</b>",
   "<b>Advertising is not permitted in this group. Any advertisements posted will be removed, and the member will be prohibited from posting any files in the group for one year.</b>",
   "<b>If anyone posts content against our party, against our group, or insults any religion, please report it by tagging @owner or @admin.</b>",
-  "<h4>Notice for Women Members:</h4><p><b>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p></b>",
+  "<h1>Notice for Women Members:</h1><p><b>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p></b>",
   "<b>If any member requests financial assistance to help people in need, such requests are made solely by that individual. The group administration bears no responsibility or involvement in such requests.</b>",
   "<b>For the safety of all members, posting fake links or suspicious cryptocurrency-related links is strictly prohibited. Members who violate this rule will be prohibited from posting any messages or files in the group for one year.</b>",
   "<b>Members are responsible for verifying the authenticity and quality of the information they post. The group administration shall not be held responsible for any legal issues arising from members' posts.</b>",
@@ -851,7 +879,7 @@ function apClose() {
 
 function apShowView(v) {
   ['login','list','edit','rules'].forEach(n => {
-    document.getElementById('ap-view-'+n).style.display = (n===v) ? '' : 'none';
+    document.getElementById('ap-view-'+n).style.display = (n===v) ? 'flex' : 'none';
   });
 }
 
@@ -940,27 +968,60 @@ function apRenderList() {
 // ═══════════════════════════════════════════════
 function apShowRulesEditor() {
   apShowView('rules');
-  document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள் திருத்து' : 'Edit Guidelines';
-  document.getElementById('ap-rules-add-btn').textContent = lang==='ta' ? '+ சேர்' : '+ Add';
-  document.getElementById('ap-rules-save-btn').textContent = lang==='ta' ? 'சேமி' : 'Save Changes';
+  document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள்' : 'Guidelines';
+  document.getElementById('ap-rules-add-btn').textContent = lang==='ta' ? '+ சேர்க்க' : '+ Add';
+  document.getElementById('ap-rules-save-btn').innerHTML = lang==='ta' ? '💾 சேமி' : '💾 Save';
   document.getElementById('ap-rules-err').style.display = 'none';
   apRenderRulesEditor();
+  const container = document.getElementById('ap-rules-container');
+  if (!container.dataset.scrollBound) {
+    container.addEventListener('scroll', apUpdateRulesScrollHint);
+    container.dataset.scrollBound = '1';
+  }
 }
 
 function apRenderRulesEditor() {
   const arr = lang==='ta' ? RULES_TA : RULES_EN;
+  const countEl = document.getElementById('ap-rules-count');
+  countEl.textContent = lang==='ta'
+    ? `மொத்தம் ${arr.length} விதிமுறைகள்`
+    : `Total ${arr.length} rules`;
   const el = document.getElementById('ap-rules-container');
   el.innerHTML = arr.map((r,i) => `
-    <div class="ap-link-row" style="cursor:default;align-items:flex-start;">
+    <div class="ap-rule-card" data-idx="${i}">
       <div class="ap-rule-num">${i+1}</div>
-      <div class="ap-link-info">
-        <textarea class="ap-rule-textarea" data-idx="${i}" rows="2">${escH(r)}</textarea>
+      <div class="ap-rule-body">
+        <textarea class="ap-rule-textarea" data-idx="${i}">${escH(r)}</textarea>
+        <div class="ap-rule-counter"><span class="ap-rule-count-val">${r.length}</span> / 2000</div>
       </div>
-      <button class="ap-row-del-btn" onclick="apDeleteRuleRow(${i})" title="Delete">🗑</button>
+      <div class="ap-rule-actions">
+        <button class="ap-rule-del-btn" onclick="apDeleteRuleRow(${i})" title="Delete">🗑</button>
+      </div>
     </div>`).join('');
   el.querySelectorAll('.ap-rule-textarea').forEach(t => {
-    t.addEventListener('input', () => { (lang==='ta'?RULES_TA:RULES_EN)[+t.dataset.idx] = t.value; });
+    apAutoGrowTextarea(t);
+    t.addEventListener('input', () => {
+      (lang==='ta'?RULES_TA:RULES_EN)[+t.dataset.idx] = t.value;
+      apAutoGrowTextarea(t);
+      const counter = t.closest('.ap-rule-body').querySelector('.ap-rule-count-val');
+      if (counter) counter.textContent = t.value.length;
+    });
   });
+  apUpdateRulesScrollHint();
+}
+
+// Grows the textarea to fit its full content so no text is ever clipped or hidden
+function apAutoGrowTextarea(t) {
+  t.style.height = 'auto';
+  t.style.height = (t.scrollHeight + 2) + 'px';
+}
+
+function apUpdateRulesScrollHint() {
+  const container = document.getElementById('ap-rules-container');
+  const hint = document.getElementById('ap-rules-scroll-hint');
+  if (!container || !hint) return;
+  const hasMore = container.scrollHeight - container.scrollTop - container.clientHeight > 8;
+  hint.style.display = hasMore ? 'block' : 'none';
 }
 
 function apAddRuleRow() {
@@ -988,7 +1049,7 @@ async function apSaveRules() {
   const btn = document.getElementById('ap-rules-save-btn');
   const errEl = document.getElementById('ap-rules-err');
   errEl.style.display = 'none';
-  if (btn) { btn.disabled = true; btn.textContent = lang==='ta'?'சேமிக்கிறது...':'Saving...'; }
+  if (btn) { btn.disabled = true; btn.innerHTML = lang==='ta'?'சேமிக்கிறது...':'Saving...'; }
   try {
     const res = await fetch(EDGE_SAVE_RULES, {
       method:'POST', headers: authHeaders(),
