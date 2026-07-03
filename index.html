@@ -1018,8 +1018,8 @@ function apRenderList() {
 function apShowRulesEditor() {
   apShowView('rules');
   document.getElementById('ap-rules-title').textContent = lang==='ta' ? 'விதிமுறைகள்' : 'Guidelines';
-  document.getElementById('ap-rules-add-label').textContent = lang==='ta' ? 'சேர்க்க' : 'Add';
-  document.getElementById('ap-rules-save-label').textContent = lang==='ta' ? 'சேமி' : 'Save';
+  document.getElementById('ap-rules-add-label').textContent = 'Add';
+  document.getElementById('ap-rules-save-label').textContent = 'Save';
   document.getElementById('ap-rules-err').style.display = 'none';
   apRenderRulesEditor();
   const container = document.getElementById('ap-rules-container');
@@ -1121,7 +1121,7 @@ async function apSaveRules() {
     errEl.style.display = 'block';
   } finally {
     if (btn) { btn.disabled = false; }
-    if (labelEl) { labelEl.textContent = lang==='ta'?'சேமி':'Save'; }
+    if (labelEl) { labelEl.textContent = 'Save'; }
   }
 }
 
