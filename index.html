@@ -25,6 +25,7 @@
     color: var(--text);
     min-height: 100vh;
     padding-bottom: 80px;
+    padding-top: 58px; /* push content below fixed header */
   }
 
   /* ─── BANNER ─── */
@@ -53,11 +54,9 @@
     z-index: 300;
     box-shadow: 0 2px 10px rgba(0,0,0,0.35);
   }
-  /* push content below fixed header */
-  body { padding-top: 58px; }
   .brand-left { display: flex; flex-direction: column; align-items: center; line-height: 1.3; }
   .brand-name { font-size: 1.1rem; font-weight: 800; color: #fff; text-align: center; }
-  .brand-sub-top, .brand-sub-bot { font-size: 0.58rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
+  .brand-sub-top { font-size: 0.58rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
   .lang-toggle { display:flex; background:rgba(255,255,255,0.13); border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.28); }
   .lang-toggle button { background:none; border:none; color:rgba(255,255,255,0.65); padding:5px 12px; cursor:pointer; font-size:0.78rem; font-weight:600; transition:all .2s; }
   .lang-toggle button.active { background:var(--gold); color:var(--blue-dark); border-radius:20px; }
@@ -71,12 +70,6 @@
   .hero h1 { font-size:clamp(1.1rem,4vw,1.5rem); font-weight:800; margin-bottom:6px; line-height:1.3; }
   .hero .subtitle { font-size:0.88rem; color:var(--gold); font-weight:600; margin-bottom:10px; }
   .hero p { font-size:0.81rem; color:rgba(255,255,255,0.85); line-height:1.6; max-width:400px; margin:0 auto 14px; }
-  .hero-btns { display:flex; flex-direction:column; gap:10px; max-width:300px; margin:0 auto; }
-  .btn-primary { background:var(--gold); color:var(--blue-dark); border:none; border-radius:8px; padding:11px 18px; font-size:0.88rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; transition:transform .15s; }
-  .btn-primary:hover { transform:translateY(-1px); }
-  .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.5); border-radius:8px; padding:10px 18px; font-size:0.88rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; }
-  .btn-outline:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
-
   /* ─── RULES ─── */
   .section-card { margin:12px 14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
   .section-header { background:var(--blue); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
@@ -104,7 +97,6 @@
   .social-header h2 { font-size:1.05rem; font-weight:700; margin-bottom:3px; }
   .social-header p { font-size:0.8rem; color:rgba(255,255,255,0.8); }
   .social-group { margin:11px 14px 0; }
-  .social-group-title { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; background:linear-gradient(135deg,var(--blue-dark),var(--blue-light)); color:#fff; padding:10px 14px; border-radius:var(--radius) var(--radius) 0 0; box-shadow:var(--shadow); }
   .social-list { background:#fff; border-radius:0 0 var(--radius) var(--radius); box-shadow:var(--shadow); overflow:hidden; }
   .social-item { display:flex; align-items:center; gap:11px; padding:11px 13px; border-bottom:1px solid #eef0f8; text-decoration:none; color:var(--text); transition:background .15s; }
   .social-item:last-child { border-bottom:none; }
@@ -116,15 +108,6 @@
   .social-item .info .sub { font-size:0.72rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .social-join-btn { padding:5px 11px; border-radius:6px; font-size:0.74rem; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; display:inline-block; flex-shrink:0; }
 
-  /* ─── CONTACT ─── */
-  .contact-card { margin:11px 14px; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .contact-header { background:var(--blue); color:#fff; padding:10px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; gap:8px; }
-  .contact-item { display:flex; align-items:center; gap:11px; padding:11px 14px; border-bottom:1px solid #eef0f8; }
-  .contact-item:last-child { border-bottom:none; }
-  .contact-icon { width:33px; height:33px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0; }
-  .contact-item .info .label { font-size:0.68rem; color:var(--muted); }
-  .contact-item .info .val { font-size:0.84rem; font-weight:600; color:var(--blue); }
-  .copy-btn { margin-left:auto; background:none; border:1px solid #dde; border-radius:6px; padding:4px 8px; font-size:0.7rem; cursor:pointer; color:var(--muted); }
   .support-banner { margin:11px 14px 14px; background:linear-gradient(135deg,var(--blue-dark),var(--blue-light)); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
   .support-banner .msg p { font-size:0.8rem; color:rgba(255,255,255,0.85); }
@@ -158,24 +141,6 @@
     z-index:-1;
   }
 
-
-  /* ─── ANNAMALAI HEADER BOX ─── */
-  .annamalai-header {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 14px;
-    border-radius: var(--radius) var(--radius) 0 0;
-    margin-top: 0;
-    box-shadow: var(--shadow);
-  }
-  /* make the social-list that follows sit flush under header */
-  .annamalai-header + .social-list {
-    border-radius: 0 0 var(--radius) var(--radius);
-  }
 
   /* ─── SOCIAL GROUP TITLE WITH GEAR ─── */
   .social-group-header {
@@ -489,7 +454,7 @@
           <label>Platform Icon (SVG)</label>
           <div class="ap-icon-preview-row">
             <div class="ap-icon-preview-box" id="ap-icon-preview-box">
-              <svg id="ap-icon-svg-preview" style="width:28px;height:28px;fill:#fff" viewBox="0 0 640 640"></svg>
+              <svg style="width:28px;height:28px;fill:#fff" viewBox="0 0 640 640"></svg>
             </div>
             <div class="ap-icon-action-btns">
               <button onclick="apToggleSvgEditor()">Change Icon</button>
@@ -567,7 +532,7 @@
 
     <!-- Unified action bar (Add / Logout / Save) below all the rules -->
     <div class="ap-rules-footer-bar">
-      <button class="ap-rules-footer-btn ap-rfb-add" onclick="apAddRuleRow()" id="ap-rules-add-btn">
+      <button class="ap-rules-footer-btn ap-rfb-add" onclick="apAddRuleRow()">
         <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="42" width="16" height="16"><circle cx="320" cy="320" r="248"/><path d="M320 208L320 432M208 320L432 320" stroke-linecap="round"/></svg>
         <span id="ap-rules-add-label">சேர்க்க</span>
       </button>
@@ -833,8 +798,6 @@ function showPage(p) {
   const j=document.querySelector('.jai-hind'); if(j)j.style.display=home?'block':'none';
   window.scrollTo(0,0);
 }
-function scrollToRules() { document.getElementById('rules-card').scrollIntoView({behavior:'smooth'}); }
-
 // ═══════════════════════════════════════════════
 // SOCIAL LINKS — Supabase powered
 // ═══════════════════════════════════════════════
@@ -932,7 +895,7 @@ function apShowView(v) {
   });
 }
 
-  function apTogglePwd() {
+function apTogglePwd() {
   const pwd = document.getElementById('ap-pwd');
   const eyeShow = document.getElementById('ap-pwd-eye-show');
   const eyeHide = document.getElementById('ap-pwd-eye-hide');
@@ -945,8 +908,8 @@ function apShowView(v) {
     eyeShow.style.display = '';
     eyeHide.style.display = 'none';
   }
-  }
-  
+}
+
 async function apLogin() {
   const email = document.getElementById('ap-email').value.trim();
   const pwd = document.getElementById('ap-pwd').value;
