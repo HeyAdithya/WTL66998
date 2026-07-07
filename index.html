@@ -5,11 +5,18 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>WTL66998 – We The Leaders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
     --blue-light: #2348b5;
+    --wtl-master-bg:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px),
+      radial-gradient(900px 500px at 80% -10%, rgba(37,99,235,.38), transparent 55%),
+      linear-gradient(140deg, #0c1b3a 0%, #162d5a 55%, #1a3a6b 100%);
     --gold: #ffffff;
     --bg: #f0f4ff;
     --card: #ffffff;
@@ -20,7 +27,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Noto Sans Tamil', 'Plus Jakarta Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -42,7 +49,7 @@
   }
   /* ─── FIXED HEADER ─── */
   .top-bar {
-    background: var(--blue-dark);
+    background: var(--wtl-master-bg);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -54,9 +61,10 @@
     z-index: 300;
     box-shadow: 0 2px 10px rgba(0,0,0,0.35);
   }
-  .brand-left { display: flex; flex-direction: column; align-items: center; line-height: 1.3; }
-  .brand-name { font-size: 1.1rem; font-weight: 800; color: #fff; text-align: center; }
-  .brand-sub-top { font-size: 0.58rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
+  .brand-left { display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; }
+  .brand-name { font-family:'Plus Jakarta Sans', sans-serif; font-size: 1.1rem; font-weight: 800; color: #fff; text-align: center; }
+  .brand-sub-top { font-family:'Plus Jakarta Sans', sans-serif; font-size: 0.58rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
+  .lang-en-title { font-family:'Plus Jakarta Sans', sans-serif; }
   .lang-toggle { display:flex; background:rgba(255,255,255,0.13); border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.28); }
   .lang-toggle button { background:none; border:none; color:rgba(255,255,255,0.65); padding:5px 12px; cursor:pointer; font-size:0.78rem; font-weight:600; transition:all .2s; }
   .lang-toggle button.active { background:var(--gold); color:var(--blue-dark); border-radius:20px; }
@@ -66,13 +74,13 @@
   .page.active { display:block; }
 
   /* ─── HERO ─── */
-  .hero { background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-light) 100%); color:#fff; text-align:center; padding:18px 16px 16px; }
+  .hero { background:var(--wtl-master-bg); color:#fff; text-align:center; padding:18px 16px 16px; }
   .hero h1 { font-size:clamp(1.1rem,4vw,1.5rem); font-weight:800; margin-bottom:6px; line-height:1.3; }
   .hero .subtitle { font-size:0.88rem; color:var(--gold); font-weight:600; margin-bottom:10px; }
   .hero p { font-size:0.81rem; color:rgba(255,255,255,0.85); line-height:1.6; max-width:400px; margin:0 auto 14px; }
   /* ─── RULES ─── */
   .section-card { margin:12px 14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .section-header { background:var(--blue); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
+  .section-header { background:var(--wtl-master-bg); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
   .edit-btn { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); color:#fff; border-radius:6px; padding:4px 10px; font-size:0.73rem; cursor:pointer; display:flex; align-items:center; gap:4px; }
   .edit-btn:hover { background:rgba(255,255,255,0.3); }
   .edit-btn svg{
@@ -87,13 +95,13 @@
   .rule-text { font-size:0.82rem; line-height:1.6; color:var(--text); flex:1; }
   .rule-item { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #eef0f8; align-items:flex-start; }
 
-  .quote-box { margin:0 14px 14px; background:linear-gradient(135deg,var(--blue-dark),var(--blue-light)); color:#fff; border-radius:var(--radius); padding:14px; text-align:center; }
+  .quote-box { margin:0 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:14px; text-align:center; }
   .quote-box .quote-text { font-size:0.83rem; font-style:italic; line-height:1.6; margin-bottom:5px; }
   .quote-box .quote-author { font-size:0.76rem; color:var(--gold); font-weight:600; }
   .jai-hind { text-align:center; color:var(--blue); font-weight:800; font-size:0.95rem; padding:8px 0 12px; }
 
   /* ─── SOCIAL PAGE ─── */
-  .social-header { background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-light) 100%); color:#fff; text-align:center; padding:16px; }
+  .social-header { background:var(--wtl-master-bg); color:#fff; text-align:center; padding:16px; }
   .social-header h2 { font-size:1.05rem; font-weight:700; margin-bottom:3px; }
   .social-header p { font-size:0.8rem; color:rgba(255,255,255,0.8); }
   .social-group { margin:11px 14px 0; }
@@ -106,9 +114,9 @@
   .social-item .info { flex:1; min-width:0; }
   .social-item .info .name { font-size:0.86rem; font-weight:600; margin-bottom:2px; }
   .social-item .info .sub { font-size:0.72rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .social-join-btn { padding:5px 11px; border-radius:6px; font-size:0.74rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; vertical-align:middle; flex-shrink:0; }
+  .social-join-btn { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; height:32px; padding:0 15px; border-radius:8px; font-size:0.76rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; flex-shrink:0; }
 
-  .support-banner { margin:11px 14px 14px; background:linear-gradient(135deg,var(--blue-dark),var(--blue-light)); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
+  .support-banner { margin:11px 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
   .support-banner .msg p { font-size:0.8rem; color:rgba(255,255,255,0.85); }
 
@@ -145,7 +153,7 @@
   /* ─── SOCIAL GROUP TITLE WITH GEAR ─── */
   .social-group-header {
     display:flex; align-items:center; justify-content:space-between;
-    background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-light) 100%);
+    background:var(--wtl-master-bg);
     color:#fff; padding:10px 14px;
     border-radius:var(--radius) var(--radius) 0 0; box-shadow:var(--shadow);
   }
@@ -225,7 +233,7 @@
 
   /* Panel header bar */
   .ap-panel-header {
-    background:var(--blue);color:#fff;
+    background:var(--wtl-master-bg);color:#fff;
     display:flex;align-items:center;padding:12px 14px;gap:10px;
     flex-shrink:0;
   }
@@ -305,12 +313,12 @@
   .ap-form-err { color:#e74c3c;font-size:0.76rem;padding:6px 0;display:none; }
 
   /* ─── EDIT SOCIAL LINK VIEW (redesign) ─── */
-  .ap-drag-indicator.on-dark { background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-light) 100%); }
+  .ap-drag-indicator.on-dark { background:var(--wtl-master-bg); }
   .ap-drag-indicator.on-dark span { background:rgba(255,255,255,0.55); }
   #ap-view-edit { background:#fff; }
   .ap-edit-header {
     position:relative; flex-shrink:0;
-    background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-light) 100%);
+    background:var(--wtl-master-bg);
     color:#fff; padding:26px 24px 30px;
     display:flex; align-items:center; gap:20px;
   }
@@ -512,7 +520,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="top-bar">
 <div class="brand-left">
 <div class="brand-name">WTL66998</div>
-<div class="brand-sub-top">— We The Leaders —</div>
+<div class="brand-sub-top">We The Leaders</div>
 </div>
 <div class="lang-toggle">
 <button class="active" id="btn-ta" onclick="setLang('ta')">தமிழ்</button>
@@ -755,7 +763,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="page active" id="page-home">
 <div class="hero">
 <h1 id="hh-ta">வணக்கம்;<br/>WTL வருங்கால தலைவர்களே!</h1>
-<h1 id="hh-en" style="display:none">Greetings,<br/>Future WTL Leaders!</h1>
+<h1 id="hh-en" class="lang-en-title" style="display:none">Greetings,<br/>Future WTL Leaders!</h1>
 <div class="subtitle" id="hs-ta">Welcome Future WTL Leaders!</div>
 <div class="subtitle" id="hs-en" style="display:none">Welcome to We The Leaders</div>
 </div>
@@ -777,7 +785,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="page" id="page-social">
 <div class="social-header">
 <h2 id="sh-ta">எங்களுடன் இணையுங்கள்</h2>
-<h2 id="sh-en" style="display:none">Join Our Community</h2>
+<h2 id="sh-en" class="lang-en-title" style="display:none">Join Our Community</h2>
 <p id="ss-ta">அனைத்து தளங்களிலும் இணைந்திருங்கள்</p>
 <p id="ss-en" style="display:none">Stay connected on all platforms</p>
 </div>
@@ -786,7 +794,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="social-group-header">
   <div class="social-group-header-text">
     <span id="sg1-ta">WTL66998 சமூகம்</span>
-    <span id="sg1-en" style="display:none">WTL66998 Community</span>
+    <span id="sg1-en" class="lang-en-title" style="display:none">WTL66998 Community</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g1')" title="Admin Edit">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M565.2 329.9C567 320.1 568 310 568 300C568 290 567 279.9 565.2 270.1L627.4 221.4C633.2 216.7 634.8 208.3 631.3 201.8L572.4 99.8C568.8 93.2 561 90.7 554.3 93.2L481.3 122.4C466 110.6 449.2 100.7 430.9 93.4L420.2 15.7C419.1 8.5 412.9 3 405.6 3L287.6 3C280.2 3 274.1 8.5 273 15.7L262.3 93.4C244 100.7 227.2 110.7 211.9 122.4L138.9 93.2C132.2 90.6 124.4 93.2 120.8 99.8L61.9 201.8C58.2 208.3 59.9 216.7 65.8 221.4L128 270.1C126.2 279.9 125 290.1 125 300C125 309.9 126 320.1 127.8 329.9L65.6 378.6C59.8 383.3 58.2 391.7 61.7 398.2L120.6 500.2C124.2 506.8 132 509.3 138.7 506.8L211.7 477.6C227 489.4 243.8 499.3 262.1 506.6L272.8 584.3C274.1 591.5 280.2 597 287.6 597L405.6 597C412.9 597 419.1 591.5 420.2 584.3L430.9 506.6C449.2 499.3 466 489.3 481.3 477.6L554.3 506.8C561 509.4 568.8 506.8 572.4 500.2L631.3 398.2C634.8 391.7 633.2 383.3 627.4 378.6L565.2 329.9zM346.6 416C294.8 416 253.2 374.4 253.2 322.6C253.2 270.8 294.8 229.2 346.6 229.2C398.4 229.2 440 270.8 440 322.6C440 374.4 398.4 416 346.6 416z"/></svg>
@@ -799,7 +807,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="social-group-header">
   <div class="social-group-header-text">
     <span id="sg2-ta">We The Leaders அதிகாரப்பூர்வம்</span>
-    <span id="sg2-en" style="display:none">We The Leaders Official</span>
+    <span id="sg2-en" class="lang-en-title" style="display:none">We The Leaders Official</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g2')" title="Admin Edit">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M565.2 329.9C567 320.1 568 310 568 300C568 290 567 279.9 565.2 270.1L627.4 221.4C633.2 216.7 634.8 208.3 631.3 201.8L572.4 99.8C568.8 93.2 561 90.7 554.3 93.2L481.3 122.4C466 110.6 449.2 100.7 430.9 93.4L420.2 15.7C419.1 8.5 412.9 3 405.6 3L287.6 3C280.2 3 274.1 8.5 273 15.7L262.3 93.4C244 100.7 227.2 110.7 211.9 122.4L138.9 93.2C132.2 90.6 124.4 93.2 120.8 99.8L61.9 201.8C58.2 208.3 59.9 216.7 65.8 221.4L128 270.1C126.2 279.9 125 290.1 125 300C125 309.9 126 320.1 127.8 329.9L65.6 378.6C59.8 383.3 58.2 391.7 61.7 398.2L120.6 500.2C124.2 506.8 132 509.3 138.7 506.8L211.7 477.6C227 489.4 243.8 499.3 262.1 506.6L272.8 584.3C274.1 591.5 280.2 597 287.6 597L405.6 597C412.9 597 419.1 591.5 420.2 584.3L430.9 506.6C449.2 499.3 466 489.3 481.3 477.6L554.3 506.8C561 509.4 568.8 506.8 572.4 500.2L631.3 398.2C634.8 391.7 633.2 383.3 627.4 378.6L565.2 329.9zM346.6 416C294.8 416 253.2 374.4 253.2 322.6C253.2 270.8 294.8 229.2 346.6 229.2C398.4 229.2 440 270.8 440 322.6C440 374.4 398.4 416 346.6 416z"/></svg>
@@ -812,7 +820,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="social-group-header">
   <div class="social-group-header-text">
     <span id="sg3-ta">அண்ணாமலை அதிகாரப்பூர்வம்</span>
-    <span id="sg3-en" style="display:none">Annamalai Official</span>
+    <span id="sg3-en" class="lang-en-title" style="display:none">Annamalai Official</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g3')" title="Admin Edit">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M565.2 329.9C567 320.1 568 310 568 300C568 290 567 279.9 565.2 270.1L627.4 221.4C633.2 216.7 634.8 208.3 631.3 201.8L572.4 99.8C568.8 93.2 561 90.7 554.3 93.2L481.3 122.4C466 110.6 449.2 100.7 430.9 93.4L420.2 15.7C419.1 8.5 412.9 3 405.6 3L287.6 3C280.2 3 274.1 8.5 273 15.7L262.3 93.4C244 100.7 227.2 110.7 211.9 122.4L138.9 93.2C132.2 90.6 124.4 93.2 120.8 99.8L61.9 201.8C58.2 208.3 59.9 216.7 65.8 221.4L128 270.1C126.2 279.9 125 290.1 125 300C125 309.9 126 320.1 127.8 329.9L65.6 378.6C59.8 383.3 58.2 391.7 61.7 398.2L120.6 500.2C124.2 506.8 132 509.3 138.7 506.8L211.7 477.6C227 489.4 243.8 499.3 262.1 506.6L272.8 584.3C274.1 591.5 280.2 597 287.6 597L405.6 597C412.9 597 419.1 591.5 420.2 584.3L430.9 506.6C449.2 499.3 466 489.3 481.3 477.6L554.3 506.8C561 509.4 568.8 506.8 572.4 500.2L631.3 398.2C634.8 391.7 633.2 383.3 627.4 378.6L565.2 329.9zM346.6 416C294.8 416 253.2 374.4 253.2 322.6C253.2 270.8 294.8 229.2 346.6 229.2C398.4 229.2 440 270.8 440 322.6C440 374.4 398.4 416 346.6 416z"/></svg>
