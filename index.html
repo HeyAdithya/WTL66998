@@ -106,18 +106,35 @@
   .social-header p { font-size:0.8rem; color:rgba(255,255,255,0.8); }
   .social-group { margin:11px 14px 0; }
   .social-list { background:#fff; border-radius:0 0 var(--radius) var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .social-item { display:flex; align-items:flex-start; gap:11px; padding:11px 13px; border-bottom:1px solid #eef0f8; text-decoration:none; color:var(--text); transition:background .15s; }
+  /* Strict horizontal grid: fixed-width icon | flexible content | fixed click-count | fixed button.
+     Every row shares the exact same column widths, so nothing can drift up/down or curve. */
+  .social-item {
+    display:grid;
+    grid-template-columns: 40px minmax(0,1fr) 58px 88px;
+    align-items:center;
+    column-gap:10px;
+    min-height:60px;
+    padding:10px 13px;
+    box-sizing:border-box;
+    border-bottom:1px solid #eef0f8;
+    text-decoration:none; color:var(--text); transition:background .15s;
+  }
   .social-item:last-child { border-bottom:none; }
   .social-item:hover { background:#f5f7ff; }
-  .social-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; overflow:hidden; align-self:center; }
-  .social-icon img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-  .social-item .info { flex:0 1 auto; min-width:0; }
-  .social-item .info .name { font-size:0.86rem; font-weight:600; margin-bottom:2px; }
-  .social-item .info .sub { font-size:0.72rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .social-center { flex:1 1 0%; display:flex; justify-content:center; min-width:8px; }
-  .social-join-btn { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; height:32px; padding:0 15px; border-radius:8px; font-size:0.76rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; flex-shrink:0; align-self:center; }
-  .social-click-count { display:inline-flex; align-items:center; gap:4px; color:var(--muted); font-size:0.82rem; font-weight:600; flex-shrink:0; white-space:nowrap; }
-  .social-click-count svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  /* Icon column: fixed box, icon always centered inside it regardless of icon_size */
+  .social-icon { width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .social-icon > svg, .social-icon > img { border-radius:50%; max-width:100%; max-height:100%; }
+  .social-icon img { width:100%; height:100%; object-fit:cover; }
+  /* Content column: left-aligned name + members, truncates instead of pushing other columns */
+  .social-item .info { min-width:0; display:flex; flex-direction:column; justify-content:center; text-align:left; }
+  .social-item .info .name { font-size:0.86rem; font-weight:600; line-height:1.25; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .social-item .info .sub { font-size:0.72rem; color:var(--muted); line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  /* Click-count column: fixed width, centered */
+  .social-center { display:flex; align-items:center; justify-content:center; min-width:0; }
+  .social-click-count { display:inline-flex; align-items:center; gap:3px; color:var(--muted); font-size:0.78rem; font-weight:600; white-space:nowrap; }
+  .social-click-count svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+  /* Button column: fixed width, right-aligned, vertically centered */
+  .social-join-btn { display:flex; align-items:center; justify-content:center; box-sizing:border-box; width:100%; height:32px; padding:0 8px; border-radius:8px; font-size:0.74rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; justify-self:end; }
 
   .support-banner { margin:11px 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
@@ -679,7 +696,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
       <div class="ap-field">
         <label>Group Members</label>
         <div class="ap-input-wrap">
-          <input type="number" class="ap-no-icon" id="ap-f-subtitle" placeholder="e.g. 12548" min="0" step="1" inputmode="numeric" onchange="apPushHistory()"/>
+          <input type="text" class="ap-no-icon" id="ap-f-subtitle" placeholder="e.g. 1K+, 164K+, 20,000+" onchange="apPushHistory()"/>
         </div>
       </div>
 
@@ -1116,12 +1133,6 @@ function showSlError() {
   });
 }
 
-function formatMembers(val) {
-  const n = parseInt(String(val).replace(/[^0-9]/g,''), 10);
-  if (!n || n <= 0) return '';
-  return n.toLocaleString('en-US') + ' Members';
-}
-
 function renderSocialLinks() {
   ['g1','g2','g3'].forEach(gid => {
     const el = document.getElementById('sl-list-'+gid);
@@ -1133,12 +1144,12 @@ function renderSocialLinks() {
     }
     el.innerHTML = links.map(l => `
       <a class="social-item" data-link-id="${escH(l.id)}" href="${escH(l.url)}" target="_blank" rel="noopener noreferrer">
-        <div class="social-icon" style="width:${l.icon_size||22}px;height:${l.icon_size||22}px">
+        <div class="social-icon">
           <svg style="width:${l.icon_size||22}px;height:${l.icon_size||22}px;fill:${escH(l.icon_color)}" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">${l.icon_svg}</svg>
         </div>
         <div class="info">
           <div class="name">${escH(l.title)}</div>
-          <div class="sub">${escH(formatMembers(l.subtitle))}</div>
+          <div class="sub">${escH(l.subtitle ? l.subtitle + ' Members' : '')}</div>
         </div>
         <span class="social-center" title="Link Clicks">
           <span class="social-click-count">
@@ -1274,7 +1285,7 @@ function apRenderList() {
       </div>
       <div class="ap-link-info">
         <div class="ap-link-name">${escH(l.title)}</div>
-        <div class="ap-link-sub">${escH(formatMembers(l.subtitle))}</div>
+        <div class="ap-link-sub">${escH(l.subtitle ? l.subtitle + ' Members' : '')}</div>
       </div>
       <button class="ap-row-edit-btn" onclick="apShowEdit(${idx})" title="Edit">
   <svg xmlns="http://www.w3.org/2000/svg"
