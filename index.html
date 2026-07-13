@@ -106,15 +106,18 @@
   .social-header p { font-size:0.8rem; color:rgba(255,255,255,0.8); }
   .social-group { margin:11px 14px 0; }
   .social-list { background:#fff; border-radius:0 0 var(--radius) var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .social-item { display:flex; align-items:center; gap:11px; padding:11px 13px; border-bottom:1px solid #eef0f8; text-decoration:none; color:var(--text); transition:background .15s; }
+  .social-item { display:flex; align-items:flex-start; gap:11px; padding:11px 13px; border-bottom:1px solid #eef0f8; text-decoration:none; color:var(--text); transition:background .15s; }
   .social-item:last-child { border-bottom:none; }
   .social-item:hover { background:#f5f7ff; }
-  .social-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; overflow:hidden; }
+  .social-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; overflow:hidden; align-self:center; }
   .social-icon img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-  .social-item .info { flex:1; min-width:0; }
+  .social-item .info { flex:0 1 auto; min-width:0; }
   .social-item .info .name { font-size:0.86rem; font-weight:600; margin-bottom:2px; }
   .social-item .info .sub { font-size:0.72rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .social-join-btn { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; height:32px; padding:0 15px; border-radius:8px; font-size:0.76rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+  .social-center { flex:1 1 0%; display:flex; justify-content:center; min-width:8px; }
+  .social-join-btn { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; height:32px; padding:0 15px; border-radius:8px; font-size:0.76rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; flex-shrink:0; align-self:center; }
+  .social-click-count { display:inline-flex; align-items:center; gap:4px; color:var(--muted); font-size:0.82rem; font-weight:600; flex-shrink:0; white-space:nowrap; }
+  .social-click-count svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
 
   .support-banner { margin:11px 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
@@ -172,7 +175,7 @@
   @keyframes sl-spin { to { transform:rotate(360deg); } }
   .sl-error { padding:14px;text-align:center;color:#e74c3c;font-size:0.8rem; }
 
-  /* ─── ADMIN PANEL OVERLAY ─── */
+  /* ─── DEVELOPER PANEL OVERLAY ─── */
   .ap-overlay {
     display:none; position:fixed; inset:0;
     background:rgba(0,0,0,0.58); z-index:2000;
@@ -393,12 +396,15 @@
   .ap-field-row2 { display:flex; gap:12px; }
   .ap-field-row2 .ap-field { flex:1; min-width:0; }
   .ap-input-wrap { position:relative; display:flex; align-items:center; }
-  .ap-input-wrap input[type="text"], .ap-input-wrap input[type="url"] {
+  .ap-input-wrap input[type="text"], .ap-input-wrap input[type="url"], .ap-input-wrap input[type="number"] {
     width:100%; border:1.5px solid #e7e9f2; border-radius:14px;
     padding:11px 12px 11px 42px; font-size:0.85rem; outline:none; color:#1a1a2e;
     background:#fbfbfe;
   }
-  .ap-input-wrap input[type="text"].ap-no-icon, .ap-input-wrap input[type="url"].ap-no-icon { padding-left:12px; }
+  .ap-input-wrap input[type="text"].ap-no-icon, .ap-input-wrap input[type="url"].ap-no-icon, .ap-input-wrap input[type="number"].ap-no-icon { padding-left:12px; }
+  .ap-input-wrap input[type="number"]::-webkit-outer-spin-button,
+  .ap-input-wrap input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+  .ap-input-wrap input[type="number"] { -moz-appearance:textfield; appearance:textfield; }
   .ap-input-wrap input:focus { border-color:var(--blue-light); background:#fff; }
   .ap-color-field { display:flex; gap:8px; align-items:center; }
   .ap-color-field .ap-input-wrap { flex:1; }
@@ -671,9 +677,9 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
       </div>
 
       <div class="ap-field">
-        <label>Username / Subtitle</label>
+        <label>Group Members</label>
         <div class="ap-input-wrap">
-          <input type="text" class="ap-no-icon" id="ap-f-subtitle" placeholder="e.g. @WTL66998" onchange="apPushHistory()"/>
+          <input type="number" class="ap-no-icon" id="ap-f-subtitle" placeholder="e.g. 12548" min="0" step="1" inputmode="numeric" onchange="apPushHistory()"/>
         </div>
       </div>
 
@@ -858,8 +864,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 const RULES_TA = [
   "<b>We The Leaders பற்றியோ தவறான தகவல்களை பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>வேறு குழுக்களின் இணைப்புகளையோ அல்லது வேறு சேனல்களின் இணைப்புகளையோ இந்தக் குழுவில் பகிரக் கூடாது.</b>",
-  "<b>எமோஜி கிளை பயன்படுத்தி குழுவில் எந்தச் செய்தியையும் பதிவிட வேண்டாம். அவ்வாறு பதிவிட்டாலும் அது பதிவு ஆகாது.</b>",
-  "<b>எந்த ஒரு பதிவிற்கும் எமோஜிகளை பயன்படுத்த விரும்பினால், அந்தப் பதிவின் வலது பக்கத்தில் ஒருமுறை கிளிக் செய்யவும்.<p>👍 - விரும்புகிறேன்<p></p>👎 - விரும்பவில்லை<p></p>🤔 - சிந்திக்கிறேன்<p></p>🤬 - வெறுக்கிறேன்<p></p>😢 - வருத்தமாக உள்ளது<p></p><i>உங்களுடைய உணர்வுகளுக்கு ஏற்ப எமோஜிகளை பயன்படுத்திக் கொள்ளுங்கள். பதிவுகளுக்கு ரிப்ளை செய்து லைக் போட முடியாது.</p></b></i>",
+  "<b><p>எமோஜி கிளை பயன்படுத்தி குழுவில் எந்தச் செய்தியையும் பதிவிட வேண்டாம். அவ்வாறு பதிவிட்டாலும் அது பதிவு ஆகாது.</p>எந்த ஒரு பதிவிற்கும் எமோஜிகளை பயன்படுத்த விரும்பினால், அந்தப் பதிவின் வலது பக்கத்தில் ஒருமுறை கிளிக் செய்யவும்.<p>👍 - விரும்புகிறேன்<p></p>👎 - விரும்பவில்லை<p></p>🤔 - சிந்திக்கிறேன்<p></p>🤬 - வெறுக்கிறேன்<p></p>😢 - வருத்தமாக உள்ளது<p></p><i>உங்களுடைய உணர்வுகளுக்கு ஏற்ப எமோஜிகளை பயன்படுத்திக் கொள்ளுங்கள். பதிவுகளுக்கு ரிப்ளை செய்து லைக் போட முடியாது.</p></b></i>",
   "<b>நமது குழுவில் எந்த மதத்தையோ அல்லது எந்த ஜாதியையோ இழிவுபடுத்தி பேசக் கூடாது.</b>",
   "<b> நமது குழுவில் அரசியல் தொடர்பான செய்திகள், புகைப்படங்கள், வீடியோக்கள் மற்றும் இணைப்புகளை மட்டுமே பதிவிட வேண்டும். விதிமுறைகளை மீறி பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
   "<b>குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.</b>",
@@ -876,8 +881,7 @@ const RULES_TA = [
 const RULES_EN = [
   "<b>If anyone posts false or misleading information about We The Leaders (WTL), disciplinary action will be taken, and the member will be prohibited from posting any messages or files in the group for one year.</b>",
   "<b>Sharing links to other groups or channels in this group is strictly prohibited.</b>",
-  "<b>Do not post any messages using the Emoji Branch. Messages posted through the Emoji Branch will not be accepted.</b>",
-  "<b>If you wish to react to any post using emojis, simply click once on the right side of the post and choose the appropriate reaction.<p>👍 - Like <p></p> 👎 - Dislike <p></p> 🤔 - Thinking <p></p> 🤬 - Strongly dislike<p></p>😢 - Sad. Replying with emojis is not permitted.</p><i> Use emojis that reflect your feelings. You cannot reply to or 'like' the posts.</b></i>",
+  "<b><p>Do not post any messages using the Emoji Branch. Messages posted through the Emoji Branch will not be accepted.</p>If you wish to react to any post using emojis, simply click once on the right side of the post and choose the appropriate reaction.<p>👍 - Like <p></p> 👎 - Dislike <p></p> 🤔 - Thinking <p></p> 🤬 - Strongly dislike<p></p>😢 - Sad. Replying with emojis is not permitted.</p><i> Use emojis that reflect your feelings. You cannot reply to or 'like' the posts.</b></i>",
   "<b>No member shall insult, demean, or speak disrespectfully about any religion or caste in this group.</b>",
   "<b>Only political news, photographs, videos, and links may be posted in this group. If any member posts content that violates this rule, they will be prohibited from posting any messages or files in the group for one year.</b>",
   "<b>If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.</b>",
@@ -1017,12 +1021,16 @@ const GROUP_META = {
   g3:'Annamalai Official',
 };
 let SL = { g1:[], g2:[], g3:[] };
+let CLICK_COUNTS = {}; // link_id -> unique click count
 
 function escH(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 async function loadSocialLinks() {
   try {
-    const res = await fetch(EDGE_SL, { signal: AbortSignal.timeout(9000) });
+    const [res] = await Promise.all([
+      fetch(EDGE_SL, { signal: AbortSignal.timeout(9000) }),
+      loadClickCounts()
+    ]);
     const data = await res.json();
     if (data.success && Array.isArray(data.links)) {
       SL = { g1:[], g2:[], g3:[] };
@@ -1032,12 +1040,86 @@ async function loadSocialLinks() {
   } catch(e) { showSlError(); }
 }
 
+// ═══════════════════════════════════════════════
+// UNIQUE LINK-CLICK COUNTER
+// Each device gets a persistent id (localStorage). A click is only ever
+// recorded once per device per link — enforced both locally (so we never
+// even fire a duplicate request) and permanently in the database via a
+// unique(link_id, device_id) constraint on wtl_social_clicks.
+// ═══════════════════════════════════════════════
+function getDeviceId() {
+  let id = localStorage.getItem('wtl_device_id');
+  if (!id) {
+    id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+      : 'dev-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    localStorage.setItem('wtl_device_id', id);
+  }
+  return id;
+}
+
+function formatClicks(n) {
+  n = parseInt(n, 10) || 0;
+  return n.toLocaleString('en-US');
+}
+
+async function loadClickCounts() {
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/get_click_counts', {
+      method: 'POST',
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type':'application/json' },
+      body: '{}',
+      signal: AbortSignal.timeout(8000),
+    });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      const counts = {};
+      data.forEach(r => { counts[r.link_id] = r.click_count; });
+      CLICK_COUNTS = counts;
+    }
+  } catch(e) { /* keep whatever counts we already have */ }
+}
+
+function recordClick(linkId) {
+  if (!linkId) return;
+  const seenKey = 'wtl_clicked_' + linkId;
+  if (localStorage.getItem(seenKey)) return; // already counted from this browser — never re-count
+  const deviceId = getDeviceId();
+  fetch(SUPABASE_URL + '/rest/v1/wtl_social_clicks', {
+    method: 'POST',
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({ link_id: String(linkId), device_id: deviceId }),
+  }).then(res => {
+    localStorage.setItem(seenKey, '1'); // mark as counted either way (new or already existed)
+    if (res.ok) {
+      CLICK_COUNTS[linkId] = (CLICK_COUNTS[linkId] || 0) + 1;
+      renderSocialLinks();
+    }
+  }).catch(()=>{ /* offline/network error — link still opens normally, just not counted this time */ });
+}
+
+// Delegated click listener so newly rendered/re-rendered social items are always covered.
+document.addEventListener('click', function(e){
+  const item = e.target.closest('.social-item');
+  if (item && item.dataset.linkId) recordClick(item.dataset.linkId);
+});
+
 function showSlError() {
   ['g1','g2','g3'].forEach(g => {
     const el = document.getElementById('sl-list-'+g);
     if (el && el.querySelector('.sl-loading'))
       el.innerHTML = '<div class="sl-error">⚠️ இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.</div>';
   });
+}
+
+function formatMembers(val) {
+  const n = parseInt(String(val).replace(/[^0-9]/g,''), 10);
+  if (!n || n <= 0) return '';
+  return n.toLocaleString('en-US') + ' Members';
 }
 
 function renderSocialLinks() {
@@ -1050,21 +1132,27 @@ function renderSocialLinks() {
       return;
     }
     el.innerHTML = links.map(l => `
-      <a class="social-item" href="${escH(l.url)}" target="_blank" rel="noopener noreferrer">
+      <a class="social-item" data-link-id="${escH(l.id)}" href="${escH(l.url)}" target="_blank" rel="noopener noreferrer">
         <div class="social-icon" style="width:${l.icon_size||22}px;height:${l.icon_size||22}px">
           <svg style="width:${l.icon_size||22}px;height:${l.icon_size||22}px;fill:${escH(l.icon_color)}" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">${l.icon_svg}</svg>
         </div>
         <div class="info">
           <div class="name">${escH(l.title)}</div>
-          <div class="sub">${escH(l.subtitle)}</div>
+          <div class="sub">${escH(formatMembers(l.subtitle))}</div>
         </div>
+        <span class="social-center" title="Link Clicks">
+          <span class="social-click-count">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            ${formatClicks(CLICK_COUNTS[l.id])}
+          </span>
+        </span>
         <span class="social-join-btn" style="background:${escH(l.bg_color)}">${escH(l.button_text)}</span>
       </a>`).join('');
   });
 }
 
 // ═══════════════════════════════════════════════
-// ADMIN PANEL
+// DEVELOPER PANEL
 // ═══════════════════════════════════════════════
 const AP = { mode:'social', currentGroup:'g1', editingLink:null, editingIdx:null, dragSrcIdx:null, saving:false, history:null, histIdx:-1 };
 
@@ -1186,7 +1274,7 @@ function apRenderList() {
       </div>
       <div class="ap-link-info">
         <div class="ap-link-name">${escH(l.title)}</div>
-        <div class="ap-link-sub">${escH(l.subtitle)}</div>
+        <div class="ap-link-sub">${escH(formatMembers(l.subtitle))}</div>
       </div>
       <button class="ap-row-edit-btn" onclick="apShowEdit(${idx})" title="Edit">
   <svg xmlns="http://www.w3.org/2000/svg"
