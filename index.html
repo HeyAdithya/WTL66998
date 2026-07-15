@@ -1018,7 +1018,7 @@ function renderRules() {
     </div>`).join('');
 }
 
-function showPage(p) {
+function showPage(p, push) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
@@ -1028,7 +1028,19 @@ function showPage(p) {
   const q=document.querySelector('.quote-box'); if(q)q.style.display=home?'block':'none';
   const j=document.querySelector('.jai-hind'); if(j)j.style.display=home?'block':'none';
   window.scrollTo(0,0);
+  if (push !== false) {
+    const url = home ? '/' : '/' + p;
+    if (location.pathname !== url) history.pushState({ page: p }, '', url);
+  }
 }
+
+function routeFromLocation() {
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  const page = (path === '/social') ? 'social' : 'home';
+  showPage(page, false);
+}
+
+window.addEventListener('popstate', routeFromLocation);
 // ═══════════════════════════════════════════════
 // SOCIAL LINKS — Supabase powered
 // ═══════════════════════════════════════════════
@@ -1664,6 +1676,7 @@ async function apDeleteLink(id) {
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
+routeFromLocation();
 renderRules();
 setLang('ta');
 authInit(); // pre-warm auth session silently
