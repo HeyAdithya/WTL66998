@@ -11,7 +11,8 @@
 <style>
   :root {
     --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', sans-serif;
-    --font-ta: 'Sama Tamil', 'Noto Sans Tamil', 'Mukta Malar' , sans-serif;
+    --font-ta-title: 'Noto Sans Tamil', sans-serif;
+    --font-ta-body: 'Sama Tamil', 'Mukta Malar', sans-serif;
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
     --blue-light: #2348b5;
@@ -29,8 +30,28 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-family: var(--font-en); }
-  html:lang(ta) { font-family: var(--font-ta); }
+  html:lang(ta) { font-family: var(--font-ta-body); }
   html:lang(en) { font-family: var(--font-en); }
+
+  /* ─── TAMIL TITLE TYPOGRAPHY (scoped to Tamil language only; English untouched) ─── */
+  html:lang(ta) h1:not(.lang-en-title),
+  html:lang(ta) h2:not(.lang-en-title),
+  html:lang(ta) h3:not(.lang-en-title),
+  html:lang(ta) h4:not(.lang-en-title),
+  html:lang(ta) .section-header,
+  html:lang(ta) .social-group-header-text,
+  html:lang(ta) .quote-box .quote-text,
+  html:lang(ta) .quote-box .quote-author,
+  html:lang(ta) .nav-item,
+  html:lang(ta) .ap-panel-header-title,
+  html:lang(ta) .ap-list-header-v2-title,
+  html:lang(ta) .ap-edit-title {
+    font-family: var(--font-ta-title);
+  }
+  /* Buttons remain body-text weight even inside a Tamil title container */
+  html:lang(ta) .section-header .edit-btn {
+    font-family: var(--font-ta-body);
+  }
   body {
     font-family: inherit;
     background: var(--bg);
