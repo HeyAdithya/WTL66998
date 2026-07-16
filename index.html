@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:ital@0;1&family=Mukta+Malar:wght@500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', sans-serif;
+    --font-en: "Geist", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
     --font-ta-title: 'Sama Tamil', 'Mukta Malar', sans-serif;
     --font-ta-body: 'Noto Sans Tamil', sans-serif;
     --blue: #1a2e7a;
@@ -34,19 +34,16 @@
   html:lang(en) { font-family: var(--font-en); }
 
   /* ─── TAMIL TITLE TYPOGRAPHY (scoped to Tamil language only; English untouched) ─── */
-  html:lang(ta) h1:not(.lang-en-title),
-  html:lang(ta) h2:not(.lang-en-title),
-  html:lang(ta) h3:not(.lang-en-title),
-  html:lang(ta) h4:not(.lang-en-title),
+  html:lang(ta) h1,
+  html:lang(ta) h2,
+  html:lang(ta) h3,
+  html:lang(ta) h4,
   html:lang(ta) .section-header,
   html:lang(ta) .social-group-header-text,
-  html:lang(ta) .quote-box .quote-text,
-  html:lang(ta) .quote-box .quote-author,
-  html:lang(ta) .nav-item,
-  html:lang(ta) .ap-panel-header-title,
-  html:lang(ta) .ap-list-header-v2-title,
-  html:lang(ta) .ap-edit-title {
+  html:lang(ta) .quote-text,
+  html:lang(ta) .quote-author {
     font-family: var(--font-ta-title);
+    font-weight: 700;
   }
   /* Buttons remain body-text weight even inside a Tamil title container */
   html:lang(ta) .section-header .edit-btn {
@@ -846,7 +843,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="social-group">
 <div class="social-group-header">
   <div class="social-group-header-text">
-    <span id="sg1-ta">WTL66998 Community<span>
+    <span id="sg1-ta">WTL66998 Community</span>
     <span id="sg1-en" class="lang-en-title" style="display:none">WTL66998 Community</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g1')" title="Admin Edit">
