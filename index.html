@@ -7,12 +7,11 @@
 <title>WTL66998 – We The Leaders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,wght@0,100..900;1,100..900&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'Geist', 'SF Pro Display', sans-serif;
-    --font-title-ta: 'Noto Sans Tamil', sans-serif;
-    --font-ta-body: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', sans-serif;
+    --font-en: 'Geist', 'Inter', 'Noto Sans Tamil', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Mono', 'SF Compact Rounded', 'SF Pro Rounded', sans-serif;
+    --font-ta: 'Noto Sans Tamil', 'Plus Jakarta Sans', 'Sama Tamil', 'Mukta Malar', -apple-system, BlinkMacSystemFont, 'Sama Tamil', sans-serif;
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
     --blue-light: #2348b5;
@@ -32,18 +31,6 @@
   html { font-family: var(--font-en); }
   html:lang(ta) { font-family: var(--font-ta); }
   html:lang(en) { font-family: var(--font-en); }
-  body {
-    font-family: inherit;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 80px;
-    padding-top: 58px; /* push content below fixed header */
-  }
-  /* Buttons remain body-text weight even inside a Tamil title container */
-  html:lang(ta) .section-header .edit-btn {
-    font-family: var(--font-ta-body);
-  }
   body {
     font-family: inherit;
     background: var(--bg);
@@ -92,13 +79,13 @@
   .page.active { display:block; }
 
   /* ─── HERO ─── */
-  .hero { background:var(--wtl-master-bg); color:#fff; text-align:center; padding:18px 16px 16px; }
+  .hero { background-image:var(--wtl-master-bg); color:#fff; text-align:center; padding:18px 16px 16px; }
   .hero h1 { font-size:clamp(1.1rem,4vw,1.5rem); font-weight:800; margin-bottom:6px; line-height:1.3; }
   .hero .subtitle { font-size:0.88rem; color:var(--gold); font-weight:600; margin-bottom:10px; }
   .hero p { font-size:0.81rem; color:rgba(255,255,255,0.85); line-height:1.6; max-width:400px; margin:0 auto 14px; }
   /* ─── RULES ─── */
   .section-card { margin:12px 14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-  .section-header { background:var(--wtl-master-bg); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
+  .section-header { background-image:var(--wtl-master-bg); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
   .edit-btn { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); color:#fff; border-radius:6px; padding:4px 10px; font-size:0.73rem; cursor:pointer; display:flex; align-items:center; gap:4px; }
   .edit-btn:hover { background:rgba(255,255,255,0.3); }
   .edit-btn svg{
@@ -110,16 +97,16 @@
   .rules-list { padding:8px 14px; }
   .rule-item:last-child { border-bottom:none; }
   .rule-num { background:var(--blue); color:#fff; width:23px; height:23px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; flex-shrink:0; margin-top:2px; }
-  .rule-text { font-size:0.82rem; line-height:1.6; color:var(--text); flex:1; }
+  .rule-text { font-size:15px; font-weight:500; line-height:1.65; color:var(--text); flex:1; }
   .rule-item { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #eef0f8; align-items:flex-start; }
 
-  .quote-box { margin:0 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:14px; text-align:center; }
+  .quote-box { margin:0 14px 14px; background-image:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:14px; text-align:center; }
   .quote-box .quote-text { font-size:0.83rem; font-style:italic; line-height:1.6; margin-bottom:5px; }
   .quote-box .quote-author { font-size:0.76rem; color:var(--gold); font-weight:600; }
   .jai-hind { text-align:center; color:var(--blue); font-weight:800; font-size:0.95rem; padding:8px 0 12px; }
 
   /* ─── SOCIAL PAGE ─── */
-  .social-header { background:var(--wtl-master-bg); color:#fff; text-align:center; padding:16px; }
+  .social-header { background-image:var(--wtl-master-bg); color:#fff; text-align:center; padding:16px; }
   .social-header h2 { font-size:1.05rem; font-weight:700; margin-bottom:3px; }
   .social-header p { font-size:0.8rem; color:rgba(255,255,255,0.8); }
   .social-group { margin:11px 14px 0; }
@@ -154,7 +141,7 @@
   /* Button column: fixed width, right-aligned, vertically centered */
   .social-join-btn { display:flex; align-items:center; justify-content:center; box-sizing:border-box; width:100%; height:32px; padding:0 8px; border-radius:8px; font-size:0.74rem; line-height:1; font-weight:700; border:none; cursor:pointer; color:#fff; text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; justify-self:end; }
 
-  .support-banner { margin:11px 14px 14px; background:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
+  .support-banner { margin:11px 14px 14px; background-image:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:18px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; }
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
   .support-banner .msg p { font-size:0.8rem; color:rgba(255,255,255,0.85); }
 
@@ -191,7 +178,7 @@
   /* ─── SOCIAL GROUP TITLE WITH GEAR ─── */
   .social-group-header {
     display:flex; align-items:center; justify-content:space-between;
-    background:var(--wtl-master-bg);
+    background-image:var(--wtl-master-bg);
     color:#fff; padding:10px 14px;
     border-radius:var(--radius) var(--radius) 0 0; box-shadow:var(--shadow);
   }
@@ -271,7 +258,7 @@
 
   /* Panel header bar */
   .ap-panel-header {
-    background:var(--wtl-master-bg);color:#fff;
+    background-image:var(--wtl-master-bg);color:#fff;
     display:flex;align-items:center;padding:12px 14px;gap:10px;
     flex-shrink:0;
   }
@@ -351,12 +338,12 @@
   .ap-form-err { color:#e74c3c;font-size:0.76rem;padding:6px 0;display:none; }
 
   /* ─── EDIT SOCIAL LINK VIEW (redesign) ─── */
-  .ap-drag-indicator.on-dark { background:var(--wtl-master-bg); }
+  .ap-drag-indicator.on-dark { background-image:var(--wtl-master-bg); }
   .ap-drag-indicator.on-dark span { background:rgba(255,255,255,0.55); }
   #ap-view-edit { background:#fff; }
   .ap-edit-header {
     position:relative; flex-shrink:0;
-    background:var(--wtl-master-bg);
+    background-image:var(--wtl-master-bg);
     color:#fff; padding:26px 24px 30px;
     display:flex; align-items:center; gap:20px;
   }
@@ -901,38 +888,38 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 const RULES_TA = [
-  "<b>We The Leaders பற்றியோ தவறான தகவல்களை பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
-  "<b>வேறு குழுக்களின் இணைப்புகளையோ அல்லது வேறு சேனல்களின் இணைப்புகளையோ இந்தக் குழுவில் பகிரக் கூடாது.</b>",
-  "<b><p>எமோஜி கிளை பயன்படுத்தி குழுவில் எந்தச் செய்தியையும் பதிவிட வேண்டாம். அவ்வாறு பதிவிட்டாலும் அது பதிவு ஆகாது.</p>எந்த ஒரு பதிவிற்கும் எமோஜிகளை பயன்படுத்த விரும்பினால், அந்தப் பதிவின் வலது பக்கத்தில் ஒருமுறை கிளிக் செய்யவும்.<p>👍 - விரும்புகிறேன்<p></p>👎 - விரும்பவில்லை<p></p>🤔 - சிந்திக்கிறேன்<p></p>🤬 - வெறுக்கிறேன்<p></p>😢 - வருத்தமாக உள்ளது<p></p><i>உங்களுடைய உணர்வுகளுக்கு ஏற்ப எமோஜிகளை பயன்படுத்திக் கொள்ளுங்கள். பதிவுகளுக்கு ரிப்ளை செய்து லைக் போட முடியாது.</p></b></i>",
-  "<b>நமது குழுவில் எந்த மதத்தையோ அல்லது எந்த ஜாதியையோ இழிவுபடுத்தி பேசக் கூடாது.</b>",
-  "<b> நமது குழுவில் அரசியல் தொடர்பான செய்திகள், புகைப்படங்கள், வீடியோக்கள் மற்றும் இணைப்புகளை மட்டுமே பதிவிட வேண்டும். விதிமுறைகளை மீறி பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
-  "<b>குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.</b>",
-  "<b>இந்தக் குழுவில் விளம்பரம் செய்வதற்கு அனுமதி இல்லை. விளம்பரங்கள் பதிவிடப்பட்டால், அவை அனைத்தும் நீக்கப்படும். மேலும், ஒரு வருடத்திற்கு எந்த கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
-  "<b>நமது குழுவில் யாராவது நமது கட்சிக்கு எதிராகவோ, நமது குழுவிற்கு எதிராகவோ அல்லது ஏதேனும் ஒரு மதத்தை இழிவுபடுத்தியோ பதிவு செய்திருந்தால், @owner அல்லது @admin-ஐ டேக் செய்து புகாரளிக்கவும்.</b>",
-  "<h3>பெண்களுக்கான அறிவிப்பு:</h3><p><b>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</b></p>",
-  "<b>நமது குழுவில் உள்ள உறுப்பினர்கள், கஷ்டப்படும் மக்களுக்கு உதவுவதற்காக நிதி உதவி கோரினால், அதற்கும் குழு நிர்வாகத்திற்கும் எந்தத் தொடர்பும் இல்லை.</b>",
-  "<b>நமது குழுவில் உள்ள நண்பர்களின் பாதுகாப்பைக் கருத்தில் கொண்டு, போலி இணைப்புகள் அல்லது கிரிப்டோகரன்சி தொடர்பான சந்தேகத்திற்குரிய இணைப்புகளை பதிவிடக் கூடாது. விதிமுறைகளை மீறினால், ஒரு வருடத்திற்கு எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.</b>",
-  "<b>குழுவின் உறுப்பினர்கள் தாங்கள் பதிவிடும் தகவல்களின் உண்மைத் தன்மையையும் தரத்தையும் உறுதி செய்து கொள்ள வேண்டும். அவை தொடர்பாக ஏற்படும் சட்டப் பிரச்சினைகளுக்கு குழு நிர்வாகம் பொறுப்பேற்காது.</b>",
-  "<b>தனிப்பட்ட தாக்குதல் தடை குழு உறுப்பினர்கள் ஒருவரை ஒருவர் தனிப்பட்ட முறையில் அவதூறு செய்வது, கேவலமாக பேசுவது அல்லது மிரட்டுவது அனுமதிக்கப்படாது.</b>",
-  "<b>நிர்வாகத்தின் முடிவு இறுதியானது குழுவின் ஒழுங்கு மற்றும் பாதுகாப்பிற்காக நிர்வாகிகள் எடுக்கும் முடிவுகள் இறுதியானதாகக் கருதப்படும்.</b>",
-  "<b>குழுவிலிருந்து நீக்கும் உரிமை விதிமுறைகளை தொடர்ந்து மீறும் உறுப்பினர்களை எந்த முன் அறிவிப்பும் இன்றி குழுவிலிருந்து நீக்க நிர்வாகத்திற்கு முழு உரிமை உண்டு.</b>"
+  "We The Leaders பற்றியோ தவறான தகவல்களை பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
+  "வேறு குழுக்களின் இணைப்புகளையோ அல்லது வேறு சேனல்களின் இணைப்புகளையோ இந்தக் குழுவில் பகிரக் கூடாது.",
+  "<p>எமோஜி கிளை பயன்படுத்தி குழுவில் எந்தச் செய்தியையும் பதிவிட வேண்டாம். அவ்வாறு பதிவிட்டாலும் அது பதிவு ஆகாது.</p>எந்த ஒரு பதிவிற்கும் எமோஜிகளை பயன்படுத்த விரும்பினால், அந்தப் பதிவின் வலது பக்கத்தில் ஒருமுறை கிளிக் செய்யவும்.<p>👍 - விரும்புகிறேன்<p></p>👎 - விரும்பவில்லை<p></p>🤔 - சிந்திக்கிறேன்<p></p>🤬 - வெறுக்கிறேன்<p></p>😢 - வருத்தமாக உள்ளது<p></p><i>உங்களுடைய உணர்வுகளுக்கு ஏற்ப எமோஜிகளை பயன்படுத்திக் கொள்ளுங்கள். பதிவுகளுக்கு ரிப்ளை செய்து லைக் போட முடியாது.</p></i>",
+  "நமது குழுவில் எந்த மதத்தையோ அல்லது எந்த ஜாதியையோ இழிவுபடுத்தி பேசக் கூடாது.",
+  " நமது குழுவில் அரசியல் தொடர்பான செய்திகள், புகைப்படங்கள், வீடியோக்கள் மற்றும் இணைப்புகளை மட்டுமே பதிவிட வேண்டும். விதிமுறைகளை மீறி பதிவிட்டால், ஒரு வருடத்திற்கு குழுவில் எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
+  "குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.",
+  "இந்தக் குழுவில் விளம்பரம் செய்வதற்கு அனுமதி இல்லை. விளம்பரங்கள் பதிவிடப்பட்டால், அவை அனைத்தும் நீக்கப்படும். மேலும், ஒரு வருடத்திற்கு எந்த கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
+  "நமது குழுவில் யாராவது நமது கட்சிக்கு எதிராகவோ, நமது குழுவிற்கு எதிராகவோ அல்லது ஏதேனும் ஒரு மதத்தை இழிவுபடுத்தியோ பதிவு செய்திருந்தால், @owner அல்லது @admin-ஐ டேக் செய்து புகாரளிக்கவும்.",
+  "<h3>பெண்களுக்கான அறிவிப்பு:</h3><p>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</p>",
+  "நமது குழுவில் உள்ள உறுப்பினர்கள், கஷ்டப்படும் மக்களுக்கு உதவுவதற்காக நிதி உதவி கோரினால், அதற்கும் குழு நிர்வாகத்திற்கும் எந்தத் தொடர்பும் இல்லை.",
+  "நமது குழுவில் உள்ள நண்பர்களின் பாதுகாப்பைக் கருத்தில் கொண்டு, போலி இணைப்புகள் அல்லது கிரிப்டோகரன்சி தொடர்பான சந்தேகத்திற்குரிய இணைப்புகளை பதிவிடக் கூடாது. விதிமுறைகளை மீறினால், ஒரு வருடத்திற்கு எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
+  "குழுவின் உறுப்பினர்கள் தாங்கள் பதிவிடும் தகவல்களின் உண்மைத் தன்மையையும் தரத்தையும் உறுதி செய்து கொள்ள வேண்டும். அவை தொடர்பாக ஏற்படும் சட்டப் பிரச்சினைகளுக்கு குழு நிர்வாகம் பொறுப்பேற்காது.",
+  "தனிப்பட்ட தாக்குதல் தடை குழு உறுப்பினர்கள் ஒருவரை ஒருவர் தனிப்பட்ட முறையில் அவதூறு செய்வது, கேவலமாக பேசுவது அல்லது மிரட்டுவது அனுமதிக்கப்படாது.",
+  "நிர்வாகத்தின் முடிவு இறுதியானது குழுவின் ஒழுங்கு மற்றும் பாதுகாப்பிற்காக நிர்வாகிகள் எடுக்கும் முடிவுகள் இறுதியானதாகக் கருதப்படும்.",
+  "குழுவிலிருந்து நீக்கும் உரிமை விதிமுறைகளை தொடர்ந்து மீறும் உறுப்பினர்களை எந்த முன் அறிவிப்பும் இன்றி குழுவிலிருந்து நீக்க நிர்வாகத்திற்கு முழு உரிமை உண்டு."
 ];
 const RULES_EN = [
-  "<b>If anyone posts false or misleading information about We The Leaders (WTL), disciplinary action will be taken, and the member will be prohibited from posting any messages or files in the group for one year.</b>",
-  "<b>Sharing links to other groups or channels in this group is strictly prohibited.</b>",
-  "<b><p>Do not post any messages using the Emoji Branch. Messages posted through the Emoji Branch will not be accepted.</p>If you wish to react to any post using emojis, simply click once on the right side of the post and choose the appropriate reaction.<p>👍 - Like <p></p> 👎 - Dislike <p></p> 🤔 - Thinking <p></p> 🤬 - Strongly dislike<p></p>😢 - Sad. Replying with emojis is not permitted.</p><i> Use emojis that reflect your feelings. You cannot reply to or 'like' the posts.</b></i>",
-  "<b>No member shall insult, demean, or speak disrespectfully about any religion or caste in this group.</b>",
-  "<b>Only political news, photographs, videos, and links may be posted in this group. If any member posts content that violates this rule, they will be prohibited from posting any messages or files in the group for one year.</b>",
-  "<b>If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.</b>",
-  "<b>Advertising is not permitted in this group. Any advertisements posted will be removed, and the member will be prohibited from posting any files in the group for one year.</b>",
-  "<b>If anyone posts content against our party, against our group, or insults any religion, please report it by tagging @owner or @admin.</b>",
-  "<h3>Notice for Women Members:</h3><p><b>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p></b>",
-  "<b>If any member requests financial assistance to help people in need, such requests are made solely by that individual. The group administration bears no responsibility or involvement in such requests.</b>",
-  "<b>For the safety of all members, posting fake links or suspicious cryptocurrency-related links is strictly prohibited. Members who violate this rule will be prohibited from posting any messages or files in the group for one year.</b>",
-  "<b>Members are responsible for verifying the authenticity and quality of the information they post. The group administration shall not be held responsible for any legal issues arising from members' posts.</b>",
-  "<b>Personal Attacks Are Prohibited Members must not personally insult, defame, abuse, or threaten one another under any circumstances.</b>",
-  "<b>The Administration's Decision Is Final All decisions made by the administrators for maintaining the order, discipline, and security of the group shall be considered final.</b>",
-  "<b>Right to Remove Members The administration reserves the full right to remove any member who repeatedly violates the group rules, without prior notice.</b>"
+  "If anyone posts false or misleading information about We The Leaders (WTL), disciplinary action will be taken, and the member will be prohibited from posting any messages or files in the group for one year.",
+  "Sharing links to other groups or channels in this group is strictly prohibited.",
+  "<p>Do not post any messages using the Emoji Branch. Messages posted through the Emoji Branch will not be accepted.</p>If you wish to react to any post using emojis, simply click once on the right side of the post and choose the appropriate reaction.<p>👍 - Like <p></p> 👎 - Dislike <p></p> 🤔 - Thinking <p></p> 🤬 - Strongly dislike<p></p>😢 - Sad. Replying with emojis is not permitted.</p><i> Use emojis that reflect your feelings. You cannot reply to or 'like' the posts.</i>",
+  "No member shall insult, demean, or speak disrespectfully about any religion or caste in this group.",
+  "Only political news, photographs, videos, and links may be posted in this group. If any member posts content that violates this rule, they will be prohibited from posting any messages or files in the group for one year.",
+  "If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.",
+  "Advertising is not permitted in this group. Any advertisements posted will be removed, and the member will be prohibited from posting any files in the group for one year.",
+  "If anyone posts content against our party, against our group, or insults any religion, please report it by tagging @owner or @admin.",
+  "<h3>Notice for Women Members:</h3><p>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p>",
+  "If any member requests financial assistance to help people in need, such requests are made solely by that individual. The group administration bears no responsibility or involvement in such requests.",
+  "For the safety of all members, posting fake links or suspicious cryptocurrency-related links is strictly prohibited. Members who violate this rule will be prohibited from posting any messages or files in the group for one year.",
+  "Members are responsible for verifying the authenticity and quality of the information they post. The group administration shall not be held responsible for any legal issues arising from members' posts.",
+  "Personal Attacks Are Prohibited Members must not personally insult, defame, abuse, or threaten one another under any circumstances.",
+  "The Administration's Decision Is Final All decisions made by the administrators for maintaining the order, discipline, and security of the group shall be considered final.",
+  "Right to Remove Members The administration reserves the full right to remove any member who repeatedly violates the group rules, without prior notice."
 ];
 
 let lang = 'ta';
