@@ -7,10 +7,10 @@
 <title>WTL66998 – We The Leaders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mukta+Malar:wght@200;300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,wght@0,100..900;1,100..900&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
+    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
     --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
@@ -31,6 +31,10 @@
   html { font-family: var(--font-en); }
   html:lang(ta) { font-family: var(--font-ta); }
   html:lang(en) { font-family: var(--font-en); }
+
+  /* ─── Per-run script fonts (auto-applied by JS on Tamil/Latin text runs) ─── */
+  .lang-ta { font-family: 'Sama Tamil', 'Mukta Malar', 'Noto Sans Tamil', sans-serif; font-size: 1.10em; }
+  .lang-en { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif; }
   body {
     font-family: inherit;
     background: var(--bg);
@@ -83,11 +87,6 @@
   .hero h1 { font-size:clamp(1.1rem,4vw,1.5rem); font-weight:800; margin-bottom:6px; line-height:1.3; }
   .hero .subtitle { font-size:0.88rem; color:var(--gold); font-weight:600; margin-bottom:10px; }
   .hero p { font-size:0.81rem; color:rgba(255,255,255,0.85); line-height:1.6; max-width:400px; margin:0 auto 14px; }
-  html:lang(ta) .hero h1 { font-size:clamp(0.95rem,3.5vw,1.32rem); }
-  html:lang(ta) .hero .subtitle { font-size:0.78rem; }
-  html:lang(ta) .hero p { font-size:0.72rem; }
-  html:lang(ta) .section-header { font-size:0.78rem; }
-  html:lang(ta) .edit-btn { font-size:0.65rem; }
   /* ─── RULES ─── */
   .section-card { margin:12px 14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
   .section-header { background-image:var(--wtl-master-bg); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
@@ -1697,6 +1696,114 @@ setLang('ta');
 authInit(); // pre-warm auth session silently
 loadRulesFromServer().then(updated=>{ if(updated) renderRules(); });
 loadSocialLinks();
+</script>
+
+<script>
+// ═══════════════════════════════════════════════
+// AUTO SCRIPT-AWARE FONT SPLITTER
+// Splits Tamil (U+0B80–U+0BFF) and Latin/number/symbol
+// text runs into separate <span class="lang-ta|lang-en">
+// tags automatically, so mixed sentences render each
+// piece in its correct font — no manual spans needed.
+// Runs once on load, then keeps watching via
+// MutationObserver so dynamically injected content
+// (rules, social links, admin panel, etc.) is covered.
+// ═══════════════════════════════════════════════
+(function () {
+  var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, INPUT: 1, NOSCRIPT: 1, SELECT: 1 };
+
+  function isTamilChar(ch) {
+    var code = ch.codePointAt(0);
+    return code >= 0x0B80 && code <= 0x0BFF;
+  }
+
+  function splitSegments(text) {
+    var segments = [];
+    var current = '';
+    var currentTamil = null;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      if (/\s/.test(ch)) { current += ch; continue; } // whitespace stays with current run
+      var chTamil = isTamilChar(ch);
+      if (currentTamil === null || chTamil === currentTamil) {
+        current += ch;
+        currentTamil = chTamil;
+      } else {
+        segments.push({ text: current, tamil: currentTamil });
+        current = ch;
+        currentTamil = chTamil;
+      }
+    }
+    if (current) segments.push({ text: current, tamil: currentTamil === null ? false : currentTamil });
+    return segments;
+  }
+
+  function alreadyWrapped(el) {
+    while (el) {
+      if (el.nodeType === 1) {
+        if (SKIP_TAGS[el.tagName]) return true;
+        if (el.classList && (el.classList.contains('lang-ta') || el.classList.contains('lang-en'))) return true;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  function wrapTextNode(textNode) {
+    var text = textNode.nodeValue;
+    if (!text || !/\S/.test(text)) return;
+    var segments = splitSegments(text);
+    if (segments.length < 2) {
+      // single-script run: still tag it so the right font stack is forced
+      var only = document.createElement('span');
+      only.className = segments[0] && segments[0].tamil ? 'lang-ta' : 'lang-en';
+      only.textContent = text;
+      textNode.parentNode.replaceChild(only, textNode);
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    segments.forEach(function (seg) {
+      var span = document.createElement('span');
+      span.className = seg.tamil ? 'lang-ta' : 'lang-en';
+      span.textContent = seg.text;
+      frag.appendChild(span);
+    });
+    textNode.parentNode.replaceChild(frag, textNode);
+  }
+
+  function walkAndSplit(root) {
+    if (root.nodeType === 3) {
+      if (!alreadyWrapped(root.parentElement)) wrapTextNode(root);
+      return;
+    }
+    if (root.nodeType !== 1) return;
+    if (alreadyWrapped(root)) return;
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        if (alreadyWrapped(node.parentElement)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(wrapTextNode);
+  }
+
+  // Initial pass over whatever is already in the DOM
+  walkAndSplit(document.body);
+
+  // Watch for anything rendered later (rules, social links, admin panel, etc.)
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (m) {
+      m.addedNodes.forEach(function (node) { walkAndSplit(node); });
+      if (m.type === 'characterData') walkAndSplit(m.target);
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+})();
 </script>
 </body>
 </html>
