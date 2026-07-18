@@ -10,13 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,wght@0,100..900;1,100..900&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
-    --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
+    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif;
+    --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'SF Pro Display', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
     --blue-light: #2348b5;
     --wtl-master-bg:
-      repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 2px, transparent 2px, transparent 6px),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.045) 0px, rgba(255,255,255,.045) 2px, transparent 2px, transparent 6.5px),
       radial-gradient(900px 500px at 80% -10%, rgba(37,99,235,.38), transparent 55%),
       linear-gradient(140deg, #0c1b3a 0%, #162d5a 55%, #1a3a6b 100%);
     --gold: #ffffff;
@@ -83,6 +83,11 @@
   .hero h1 { font-size:clamp(1.1rem,4vw,1.5rem); font-weight:800; margin-bottom:6px; line-height:1.3; }
   .hero .subtitle { font-size:0.88rem; color:var(--gold); font-weight:600; margin-bottom:10px; }
   .hero p { font-size:0.81rem; color:rgba(255,255,255,0.85); line-height:1.6; max-width:400px; margin:0 auto 14px; }
+  html:lang(ta) .hero h1 { font-size:clamp(0.95rem,3.5vw,1.32rem); }
+  html:lang(ta) .hero .subtitle { font-size:0.78rem; }
+  html:lang(ta) .hero p { font-size:0.72rem; }
+  html:lang(ta) .section-header { font-size:0.78rem; }
+  html:lang(ta) .edit-btn { font-size:0.65rem; }
   /* ─── RULES ─── */
   .section-card { margin:12px 14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
   .section-header { background-image:var(--wtl-master-bg); color:#fff; padding:11px 14px; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; }
@@ -896,7 +901,7 @@ const RULES_TA = [
   "குழுவில் ஒருவர் பதிவிட்ட தகவலை மீண்டும் பதிவிட்டால், அது காப்புரிமை (Copyright) மீறலாகக் கருதப்படும். அத்தகைய பதிவு நீக்கப்பட்டு, ஒரு மாதத்திற்கு உங்களால் எந்தப் பதிவும் செய்ய முடியாதபடி தடை விதிக்கப்படும்.",
   "இந்தக் குழுவில் விளம்பரம் செய்வதற்கு அனுமதி இல்லை. விளம்பரங்கள் பதிவிடப்பட்டால், அவை அனைத்தும் நீக்கப்படும். மேலும், ஒரு வருடத்திற்கு எந்த கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
   "நமது குழுவில் யாராவது நமது கட்சிக்கு எதிராகவோ, நமது குழுவிற்கு எதிராகவோ அல்லது ஏதேனும் ஒரு மதத்தை இழிவுபடுத்தியோ பதிவு செய்திருந்தால், @owner அல்லது @admin-ஐ டேக் செய்து புகாரளிக்கவும்.",
-  "<h4>பெண்களுக்கான அறிவிப்பு:</h4><p>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</p>",
+  "<h3>பெண்களுக்கான அறிவிப்பு:</h3><p>எந்த உறுப்பினர் உங்களை தனிப்பட்ட செய்தி மூலம் தொந்தரவு செய்தாலும், மகளிர் நிர்வாகியிடம் புகார் அளிக்கலாம். புகார் அளிக்கும் போது, ஆதாரமாக அவர்கள் அனுப்பிய செய்திகளின் ஸ்கிரீன்ஷாட்களை இணைக்க வேண்டும்.</p>",
   "நமது குழுவில் உள்ள உறுப்பினர்கள், கஷ்டப்படும் மக்களுக்கு உதவுவதற்காக நிதி உதவி கோரினால், அதற்கும் குழு நிர்வாகத்திற்கும் எந்தத் தொடர்பும் இல்லை.",
   "நமது குழுவில் உள்ள நண்பர்களின் பாதுகாப்பைக் கருத்தில் கொண்டு, போலி இணைப்புகள் அல்லது கிரிப்டோகரன்சி தொடர்பான சந்தேகத்திற்குரிய இணைப்புகளை பதிவிடக் கூடாது. விதிமுறைகளை மீறினால், ஒரு வருடத்திற்கு எந்த செய்தியையும் அல்லது கோப்புகளையும் பதிவிட முடியாதபடி நடவடிக்கை எடுக்கப்படும்.",
   "குழுவின் உறுப்பினர்கள் தாங்கள் பதிவிடும் தகவல்களின் உண்மைத் தன்மையையும் தரத்தையும் உறுதி செய்து கொள்ள வேண்டும். அவை தொடர்பாக ஏற்படும் சட்டப் பிரச்சினைகளுக்கு குழு நிர்வாகம் பொறுப்பேற்காது.",
@@ -913,7 +918,7 @@ const RULES_EN = [
   "If a member reposts content that has already been shared in the group, it will be treated as a copyright violation. The duplicate post will be removed, and the member will be prohibited from posting for one month.",
   "Advertising is not permitted in this group. Any advertisements posted will be removed, and the member will be prohibited from posting any files in the group for one year.",
   "If anyone posts content against our party, against our group, or insults any religion, please report it by tagging @owner or @admin.",
-  "<h4>Notice for Women Members:</h4><p>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p>",
+  "<h3>Notice for Women Members:</h3><p>If any member harasses you through private messages, you may file a complaint with the Women's Administrator. Screenshots of the messages must be submitted as supporting evidence.</p>",
   "If any member requests financial assistance to help people in need, such requests are made solely by that individual. The group administration bears no responsibility or involvement in such requests.",
   "For the safety of all members, posting fake links or suspicious cryptocurrency-related links is strictly prohibited. Members who violate this rule will be prohibited from posting any messages or files in the group for one year.",
   "Members are responsible for verifying the authenticity and quality of the information they post. The group administration shall not be held responsible for any legal issues arising from members' posts.",
