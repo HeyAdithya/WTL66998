@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,wght@0,100..900;1,100..900&family=Mukta+Malar:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif;
-    --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
+    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', 'Noto Sans Tamil', sans-serif;
+    --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Noto Sans Tamil', 'Plus Jakarta Sans', sans-serif;
     --blue: #1a2e7a;
     --blue-dark: #0f1c57;
     --blue-light: #2348b5;
@@ -1017,15 +1017,15 @@ async function loadRulesFromServer() {
 function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
+  document.getElementById('btn-ta').classList.toggle('active', l==='ta');
   document.getElementById('btn-en').classList.toggle('active', l==='en');
-  document.getElementById('btn-en').classList.toggle('active', l==='en');
-  document.querySelectorAll('[id$="-en"]').forEach(el => { if(!el.id.startsWith('btn-'))el.style.display=l==='en'?'':'none'; });
+  document.querySelectorAll('[id$="-ta"]').forEach(el => { if(!el.id.startsWith('btn-'))el.style.display=l==='ta'?'':'none'; });
   document.querySelectorAll('[id$="-en"]').forEach(el => { if(!el.id.startsWith('btn-'))el.style.display=l==='en'?'':'none'; });
   renderRules();
 }
 
 function renderRules() {
-  const rules = lang==='en' ? RULES_TA : RULES_EN;
+  const rules = lang==='ta' ? RULES_TA : RULES_EN;
   document.getElementById('rules-list').innerHTML = rules.map((r,i) => `
     <div class="rule-item">
       <div class="rule-num">${i+1}</div>
