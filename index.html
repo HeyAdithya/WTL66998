@@ -881,8 +881,8 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="msg">
 <strong id="sp-ta">மாறுவோம்! மாற்றுவோம்!</strong>
 <strong id="sp-en" style="display:none">Let's change! Let's bring change!</strong>
-<p id="sps-ta">மாற்றத்தின் பயணத்தில் நீங்களும் இணையுங்கள்!</p>
-<p id="sps-en" style="display:none">Join us on this journey of change!</p>
+<p id="sps-ta">வளர்ச்சியை உருவாக்குவோம்; மாற்றத்தின் பயணத்தில் நீங்களும் இணையுங்கள்!</p>
+<p id="sps-en" style="display:none">Together we build growth; Join us on this journey of change!</p>
 </div>
 </div>
 </div>
@@ -1210,7 +1210,7 @@ function showSlError() {
   ['g1','g2','g3'].forEach(g => {
     const el = $('sl-list-'+g);
     if (el && (el.querySelector('.sl-loading') || el.querySelector('.sl-error')))
-      el.innerHTML = '<div class="sl-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 9.99761C14.7324 6.66535 9.5 6.66535 5.5 9.99761"></path><path d="M2 6.9986C8.31579 1.66699 15.6842 1.66698 22 6.99849"></path><path d="M11.9933 14.9853V16.4964M11.9933 18.4673V18.4984M12.1444 12.0075C12.4933 11.9942 13.375 12.163 14.2349 13.6825L16.3884 17.3742C17.2109 18.5922 17.6154 20.7778 14.5873 20.9418L12 21.0002L9.3841 20.926C6.35606 20.7621 6.82207 18.5938 7.58302 17.3585L9.73652 13.6667C10.5964 12.1473 11.4781 11.9784 11.8271 11.9918L12.1444 12.0075Z"></path></svg><span>' + (lang==='ta' ? 'இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.' : 'Unable to load links. Please refresh.') + '</span></div>';
+      el.innerHTML = '<div class="sl-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.9999 7.99997L18.9999 4.99997M18.9999 4.99997L15.9999 1.99997M18.9999 4.99997L15.9999 7.99997M18.9999 4.99997L21.9999 1.99997" stroke-linecap="round"></path><path d="M8.99988 10.0294C10.3725 8.65685 12.5979 8.65685 13.9704 10.0294C15.343 11.402 15.343 13.6274 13.9704 15"></path><path d="M4.85277 19.1471C8.04856 22.3429 12.9126 22.8538 16.6417 20.6797C17.5284 20.1627 17.9717 19.9043 17.9988 19.3782C18.0259 18.8522 17.5276 18.4882 16.5308 17.7603C14.6828 16.4107 12.8635 14.7603 11.0515 12.9484C9.23955 11.1364 7.58915 9.31705 6.23957 7.46904C5.51167 6.47231 5.14772 5.97395 4.62166 6.00105C4.0956 6.02815 3.83713 6.47149 3.32019 7.35818C1.14611 11.0873 1.65697 15.9513 4.85277 19.1471Z" stroke-linejoin="round"></path></svg><span>' + (lang==='ta' ? 'இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.' : 'Unable to load links. Please refresh.') + '</span></div>';
   });
 }
 
@@ -1333,9 +1333,10 @@ async function apLogin() {
   const pwd = $('ap-pwd').value;
   const errEl = $('ap-pwd-err');
   const btn = document.querySelector('.ap-login-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Checking...'; }
+  const btnLabel = btn ? btn.querySelector('span') : null;
+  if (btn) { btn.disabled = true; if (btnLabel) btnLabel.textContent = 'Checking...'; }
   const result = await authSignIn(email, pwd);
-  if (btn) { btn.disabled = false; btn.textContent = 'Login'; }
+  if (btn) { btn.disabled = false; if (btnLabel) btnLabel.textContent = 'Login'; }
   if (!result.ok) {
     errEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:1em;height:1em;vertical-align:-0.125em;fill:currentColor;margin-right:4px;"><path d="M286.1 368C384.6 368 464.4 447.8 464.4 546.3C464.4 562.7 451.1 576 434.7 576L78.1 576C61.7 576 48.4 562.7 48.4 546.3C48.4 447.8 128.2 368 226.7 368L286.1 368zM562.3 172.1C571.7 162.7 586.9 162.7 596.2 172.1C605.5 181.5 605.6 196.7 596.2 206L562.3 239.9L596.2 273.8C605.6 283.2 605.6 298.4 596.2 307.7C586.8 317 571.6 317.1 562.3 307.7L528.4 273.8L494.5 307.7C485.1 317.1 469.9 317.1 460.6 307.7C451.3 298.3 451.2 283.1 460.6 273.8L494.5 239.9L460.6 206C451.2 196.6 451.2 181.4 460.6 172.1C470 162.8 485.2 162.7 494.5 172.1L528.4 206L562.3 172.1zM256.4 312C190.1 312 136.4 258.3 136.4 192C136.4 125.7 190.1 72 256.4 72C322.7 72 376.4 125.7 376.4 192C376.4 258.3 322.7 312 256.4 312z"/></svg>' + (result.error || 'Incorrect credentials. Try again.');
     errEl.style.display = 'block';
