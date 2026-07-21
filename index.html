@@ -200,7 +200,8 @@
   .sl-loading { padding:20px; text-align:center; }
   .sl-spinner { display:inline-block;width:22px;height:22px;border:2px solid #e0e8ff;border-top-color:var(--blue);border-radius:50%;animation:sl-spin .8s linear infinite; }
   @keyframes sl-spin { to { transform:rotate(360deg); } }
-  .sl-error { padding:14px;text-align:center;color:#e74c3c;font-size:0.8rem; }
+  .sl-error { padding:14px;text-align:center;color:#e74c3c;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:6px; }
+  .sl-error svg { width:16px;height:16px;flex-shrink:0; }
 
   /* ─── ADMIN PANEL OVERLAY ─── */
   .ap-overlay {
@@ -880,8 +881,8 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <div class="msg">
 <strong id="sp-ta">மாறுவோம்! மாற்றுவோம்!</strong>
 <strong id="sp-en" style="display:none">Let's change! Let's bring change!</strong>
-<p id="sps-ta">வளர்ச்சியை உருவாக்குவோம்; மாற்றத்தின் பயணத்தில் நீங்களும் இணையுங்கள்!</p>
-<p id="sps-en" style="display:none">Together we build growth; Join us on this journey of change!</p>
+<p id="sps-ta">மாற்றத்தின் பயணத்தில் நீங்களும் இணையுங்கள்!</p>
+<p id="sps-en" style="display:none">Join us on this journey of change!</p>
 </div>
 </div>
 </div>
@@ -1072,6 +1073,7 @@ function setLang(l) {
   document.querySelectorAll('[id$="-ta"]').forEach(el => { if(!el.id.startsWith('btn-'))el.style.display=l==='ta'?'':'none'; });
   document.querySelectorAll('[id$="-en"]').forEach(el => { if(!el.id.startsWith('btn-'))el.style.display=l==='en'?'':'none'; });
   renderRules();
+  if (document.querySelector('.sl-error')) showSlError();
 }
 
 function renderRules() {
@@ -1207,8 +1209,8 @@ document.addEventListener('click', function(e){
 function showSlError() {
   ['g1','g2','g3'].forEach(g => {
     const el = $('sl-list-'+g);
-    if (el && el.querySelector('.sl-loading'))
-      el.innerHTML = '<div class="sl-error">⚠️ இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.</div>';
+    if (el && (el.querySelector('.sl-loading') || el.querySelector('.sl-error')))
+      el.innerHTML = '<div class="sl-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 9.99761C14.7324 6.66535 9.5 6.66535 5.5 9.99761"></path><path d="M2 6.9986C8.31579 1.66699 15.6842 1.66698 22 6.99849"></path><path d="M11.9933 14.9853V16.4964M11.9933 18.4673V18.4984M12.1444 12.0075C12.4933 11.9942 13.375 12.163 14.2349 13.6825L16.3884 17.3742C17.2109 18.5922 17.6154 20.7778 14.5873 20.9418L12 21.0002L9.3841 20.926C6.35606 20.7621 6.82207 18.5938 7.58302 17.3585L9.73652 13.6667C10.5964 12.1473 11.4781 11.9784 11.8271 11.9918L12.1444 12.0075Z"></path></svg><span>' + (lang==='ta' ? 'இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.' : 'Unable to load links. Please refresh.') + '</span></div>';
   });
 }
 
