@@ -190,11 +190,11 @@
   .social-group-header-text { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
   .ap-gear-btn {
     background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4);
-    color:#fff; border-radius:6px; padding:3px 8px; cursor:pointer;
-    font-size:0.85rem; line-height:1; display:flex; align-items:center; justify-content:center;
+    color:#fff; border-radius:50%; width:30px; height:30px; padding:0; cursor:pointer;
+    font-size:0.85rem; line-height:1; display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
   .ap-gear-btn:hover { background:rgba(255,255,255,0.35); }
-  .ap-gear-btn svg { width:15px;height:15px;fill:#fff; }
+  .ap-gear-btn svg { width:20px;height:20px;fill:none; }
 
   /* ─── SOCIAL LOADING ─── */
   .sl-loading { padding:20px; text-align:center; }
@@ -567,6 +567,12 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <body>
 <svg style="display:none" aria-hidden="true">
 <symbol id="i-gear" viewBox="0 0 640 640"><path d="M565.2 329.9C567 320.1 568 310 568 300C568 290 567 279.9 565.2 270.1L627.4 221.4C633.2 216.7 634.8 208.3 631.3 201.8L572.4 99.8C568.8 93.2 561 90.7 554.3 93.2L481.3 122.4C466 110.6 449.2 100.7 430.9 93.4L420.2 15.7C419.1 8.5 412.9 3 405.6 3L287.6 3C280.2 3 274.1 8.5 273 15.7L262.3 93.4C244 100.7 227.2 110.7 211.9 122.4L138.9 93.2C132.2 90.6 124.4 93.2 120.8 99.8L61.9 201.8C58.2 208.3 59.9 216.7 65.8 221.4L128 270.1C126.2 279.9 125 290.1 125 300C125 309.9 126 320.1 127.8 329.9L65.6 378.6C59.8 383.3 58.2 391.7 61.7 398.2L120.6 500.2C124.2 506.8 132 509.3 138.7 506.8L211.7 477.6C227 489.4 243.8 499.3 262.1 506.6L272.8 584.3C274.1 591.5 280.2 597 287.6 597L405.6 597C412.9 597 419.1 591.5 420.2 584.3L430.9 506.6C449.2 499.3 466 489.3 481.3 477.6L554.3 506.8C561 509.4 568.8 506.8 572.4 500.2L631.3 398.2C634.8 391.7 633.2 383.3 627.4 378.6L565.2 329.9zM346.6 416C294.8 416 253.2 374.4 253.2 322.6C253.2 270.8 294.8 229.2 346.6 229.2C398.4 229.2 440 270.8 440 322.6C440 374.4 398.4 416 346.6 416z"/></symbol>
+<symbol id="i-dots-circle" viewBox="0 0 24 24">
+  <path d="M12.25 12H12M12.5 12C12.5 12.2761 12.2761 12.5 12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M17.25 12H17M17.5 12C17.5 12.2761 17.2761 12.5 17 12.5C16.7239 12.5 16.5 12.2761 16.5 12C16.5 11.7239 16.7239 11.5 17 11.5C17.2761 11.5 17.5 11.7239 17.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M7.25 12H7M7.5 12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12C6.5 11.7239 6.72386 11.5 7 11.5C7.27614 11.5 7.5 11.7239 7.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</symbol>
 <symbol id="i-chevron-back" viewBox="0 0 640 640"><path d="M447.1 96L195.3 320L447.1 544L384 544L128 320L384 96L447.1 96z"/></symbol>
 <symbol id="i-logout" viewBox="0 0 640 640"><path d="M224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160zM566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L438.6 169.3C426.1 156.8 405.8 156.8 393.3 169.3C380.8 181.8 380.8 202.1 393.3 214.6L466.7 288L256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L466.7 352L393.3 425.4C380.8 437.9 380.8 458.2 393.3 470.7C405.8 483.2 426.1 483.2 438.6 470.7L566.6 342.7z"/></symbol>
 <symbol id="i-save" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M160 144C151.2 144 144 151.2 144 160L144 480C144 488.8 151.2 496 160 496L480 496C488.8 496 496 488.8 496 480L496 237.3C496 233.1 494.3 229 491.3 226L416 150.6L416 240C416 257.7 401.7 272 384 272L224 272C206.3 272 192 257.7 192 240L192 144L160 144zM240 144L240 224L368 224L368 144L240 144zM96 160C96 124.7 124.7 96 160 96L402.7 96C419.7 96 436 102.7 448 114.7L525.3 192C537.3 204 544 220.3 544 237.3L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160zM256 384C256 348.7 284.7 320 320 320C355.3 320 384 348.7 384 384C384 419.3 355.3 448 320 448C284.7 448 256 419.3 256 384z"/></symbol>
@@ -860,7 +866,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg1-en" class="lang-en-title" style="display:none">WTL66998 Community</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g1')" title="Admin Edit">
-    <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-gear"/></svg>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
 <div class="social-list" id="sl-list-g1"><div class="sl-loading"><div class="sl-spinner"></div></div></div>
@@ -873,7 +879,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg2-en" class="lang-en-title" style="display:none">We The Leaders Official</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g2')" title="Admin Edit">
-    <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-gear"/></svg>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
 <div class="social-list" id="sl-list-g2"><div class="sl-loading"><div class="sl-spinner"></div></div></div>
@@ -886,7 +892,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg3-en" class="lang-en-title" style="display:none">Annamalai Official</span>
   </div>
   <button class="ap-gear-btn" onclick="apOpen('social','g3')" title="Admin Edit">
-    <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-gear"/></svg>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
 <div class="social-list" id="sl-list-g3"><div class="sl-loading"><div class="sl-spinner"></div></div></div>
