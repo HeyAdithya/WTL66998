@@ -3,7 +3,7 @@
 <html lang="ta">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>WTL66998 – We The Leaders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,21 +203,29 @@
   .sl-error { padding:14px;text-align:center;color:#e74c3c;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:6px; }
   .sl-error svg { width:16px;height:16px;flex-shrink:0; }
 
-  /* ─── ADMIN PANEL OVERLAY ─── */
+  /* ─── ADMIN PANEL — FULL-SCREEN PAGE ─── */
   .ap-overlay {
     display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.58); z-index:2000;
-    align-items:flex-start; justify-content:center;
-    padding:12px; overflow-y:auto;
+    background:#fff; z-index:2000;
+    width:100vw; height:100vh; height:100dvh;
+    align-items:stretch; justify-content:stretch;
+    padding:0; margin:0; overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
   }
   .ap-overlay.show { display:flex; }
   .ap-panel {
-    background:#fff; border-radius:22px; width:100%; max-width:440px;
-    margin:auto; box-shadow:0 8px 40px rgba(0,0,0,0.32);
+    background:#fff; border-radius:0; width:100%; max-width:none;
+    margin:0; box-shadow:none;
     display:flex; flex-direction:column;
-    max-height:calc(100vh - 24px); overflow:hidden;
+    height:100%; min-height:100%; max-height:none; overflow:hidden;
+    /* Respect Android / iPhone safe areas (notch, home indicator, side bezels) */
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
+    padding-left:env(safe-area-inset-left);
+    padding-right:env(safe-area-inset-right);
   }
-  .ap-drag-indicator { display:flex; justify-content:center; padding:10px 0 4px; flex-shrink:0; }
+  .ap-drag-indicator { display:none; }
   .ap-drag-indicator span { width:44px; height:5px; border-radius:3px; background:#d9deea; display:block; }
   #ap-view-login, #ap-view-list, #ap-view-edit, #ap-view-rules {
     flex-direction:column; flex:1; min-height:0;
@@ -270,23 +278,29 @@
     display:flex;align-items:center;padding:12px 14px;gap:10px;
     flex-shrink:0;
   }
-  .ap-back-btn { background:none;border:none;color:#fff;cursor:pointer;padding:4px;display:flex;align-items:center; }
-  .ap-back-btn svg { width:18px;height:18px;fill:#fff; }
+  .ap-back-btn {
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28);
+    color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .ap-back-btn:hover { background:rgba(255,255,255,0.24); }
+  .ap-back-btn svg { width:16px;height:16px;fill:#fff; position:relative; left:1px; }
   .ap-panel-header-title { flex:1;font-size:0.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
   /* ─── LIST VIEW (redesigned to match card-list layout) ─── */
   .ap-list-header-v2 {
     display:flex; align-items:center; justify-content:space-between;
-    padding:14px 16px 8px; flex-shrink:0; gap:10px;
+    padding:14px 16px; flex-shrink:0; gap:10px;
+    background-image:var(--wtl-master-bg);
   }
   .ap-icon-btn {
     width:38px; height:38px; border-radius:50%; flex-shrink:0;
-    background:#f1f3f8; border:1px solid #e6e9f2; color:#374151;
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); color:#fff;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
   }
-  .ap-icon-btn:hover { background:#e6e9f2; }
+  .ap-icon-btn:hover { background:rgba(255,255,255,0.24); }
   .ap-icon-btn svg { width:16px; height:16px; }
   .ap-list-header-v2-title {
-    flex:1; text-align:center; font-size:1.05rem; font-weight:800; color:#1a1a2e;
+    flex:1; text-align:center; font-size:1.05rem; font-weight:800; color:#fff;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   }
 
@@ -309,7 +323,7 @@
 
 
   /* Links list */
-  .ap-links-container { overflow-y:auto;flex:1; background:#f5f6fa; padding:2px 14px 16px; }
+  .ap-links-container { overflow-y:auto;flex:1; background:#f5f6fa; padding:2px 14px 16px; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
   .ap-link-row {
     display:flex;align-items:center;gap:10px;
     padding:12px 14px;margin-bottom:10px;
@@ -356,12 +370,12 @@
     display:flex; align-items:center; gap:20px;
   }
   .ap-edit-back-btn {
-    width:52px; height:52px; border-radius:16px; flex-shrink:0;
-    background:var(--blue-dark); border:none;
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28);
     color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer;
   }
-  .ap-edit-back-btn:hover { background:var(--blue); }
-  .ap-edit-back-btn svg { width:20px; height:20px; fill:none; stroke:#fff; stroke-width:56; stroke-linecap:round; stroke-linejoin:round; }
+  .ap-edit-back-btn:hover { background:rgba(255,255,255,0.24); }
+  .ap-edit-back-btn svg { width:16px; height:16px; fill:none; stroke:#fff; stroke-width:56; stroke-linecap:round; stroke-linejoin:round; }
   .ap-edit-header-text { min-width:0; }
   .ap-edit-title { font-size:0.95rem; font-weight:700; margin-bottom:3px; line-height:1.3; }
   .ap-edit-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.8); font-weight:500; }
@@ -369,6 +383,7 @@
     background:#fff; border-radius:26px 26px 0 0;
     margin-top:-22px; position:relative; z-index:2;
     padding:22px 18px 4px; overflow-y:auto; flex:1; min-height:0;
+    scroll-behavior:smooth; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
   }
   .ap-edit-section-label { font-size:0.98rem; font-weight:800; color:#141a3d; margin-bottom:3px; }
   .ap-edit-section-sub { font-size:0.76rem; color:#9aa2b8; margin-bottom:14px; }
@@ -543,7 +558,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
   #ap-view-edit .ap-edit-header { padding-top:10px; }
   /* Rules page - fixed header/footer, only rule list scrolls */
   .ap-overlay.ap-rules-mode { overflow-y:hidden; }
-  .ap-overlay.ap-rules-mode .ap-panel { max-height:100dvh; }
+  .ap-overlay.ap-rules-mode .ap-panel { max-height:100%; }
   .ap-drag-indicator.on-rules { display:none; }
   #ap-view-rules .ap-panel-header { padding-top:10px; }
 }
@@ -626,7 +641,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
       <button class="ap-icon-btn" onclick="apClose()" title="Back">
         <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><use href="#i-chevron-back"/></svg>
       </button>
-      <span class="ap-list-header-v2-title" id="ap-list-title">WTL66998 Community</span>
+      <span class="ap-list-header-v2-title" id="ap-list-title">Channel Management</span>
       <button class="ap-icon-btn" onclick="apClose()" title="Close">
         <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M183.6 137.4C174.2 128 159 128 149.7 137.4C140.4 146.8 140.3 162 149.7 171.3L298.3 320L149.6 468.7C140.2 478.1 140.2 493.3 149.6 502.6C159 511.9 174.2 512 183.5 502.6L332.2 353.9L480.8 502.5C490.2 511.9 505.4 511.9 514.7 502.5C524 493.1 524.1 477.9 514.7 468.6L366.1 320L514.7 171.4C524.1 162 524.1 146.8 514.7 137.5C505.3 128.2 490.1 128.1 480.8 137.5L332.2 286.1L183.6 137.4z"/></svg>
       </button>
@@ -772,8 +787,8 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 
   <!-- RULES EDIT VIEW -->
   <div id="ap-view-rules" style="display:none">
-    <div class="ap-panel-header" style="align-items:flex-start;">
-      <button class="ap-back-btn" onclick="apClose()" title="Close" style="margin-top:2px;">
+    <div class="ap-panel-header">
+      <button class="ap-back-btn" onclick="apClose()" title="Close">
         <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-chevron-back"/></svg>
       </button>
       <div style="flex:1;min-width:0;">
@@ -1275,6 +1290,7 @@ const AP_LINK_FIELDS = [
 async function apOpen(mode, gid) {
   AP.mode = mode || 'social';
   AP.currentGroup = gid || 'g1';
+  apLockBodyScroll();
   $('ap-overlay').classList.add('show');
   apShowView('login');
   $('ap-checking').style.display = '';
@@ -1297,8 +1313,31 @@ function apRouteAfterLogin() {
   else apShowList();
 }
 
+// Prevent the host page (and its fixed bottom nav) from scrolling / peeking
+// through while the full-screen Channel Management panel is open.
+let apScrollY = 0;
+function apLockBodyScroll() {
+  apScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  document.body.style.position = 'fixed';
+  document.body.style.top = (-apScrollY) + 'px';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+}
+function apUnlockBodyScroll() {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+  window.scrollTo(0, apScrollY);
+}
+
 function apClose() {
   $('ap-overlay').classList.remove('show');
+  apUnlockBodyScroll();
 }
 
 function apShowView(v) {
@@ -1365,7 +1404,7 @@ function apShowList() {
     const tab = $('ap-tab-'+g);
     if (tab) tab.classList.toggle('active', g===gid);
   });
-  $('ap-list-title').textContent = GROUP_META[gid];
+  $('ap-list-title').textContent = 'Channel Management';
   apRenderList();
 }
 
