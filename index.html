@@ -150,20 +150,7 @@
   .support-banner .msg strong { font-size:1rem; display:block; margin-bottom:4px; font-weight:800; }
   .support-banner .msg p { font-size:0.8rem; color:rgba(255,255,255,0.85); }
 
-  /* ─── SITE FOOTER: signature + copyright + links ─── */
-  .brand-signature { display:flex; align-items:center; justify-content:center; gap:12px; margin:22px 24px 10px; width:100%; }
-  .brand-signature .bs-line { flex:1; max-width:70px; height:1px; background:linear-gradient(to right, transparent, #c7d2fe); }
-  .brand-signature .bs-line.bs-line-r { background:linear-gradient(to left, transparent, #c7d2fe); }
-  .brand-signature .bs-label { font-size:0.72rem; color:#9ca3af; font-weight:600; }
-  .brand-signature .bs-name { font-family:'Brush Script MT','Segoe Script','Bradley Hand',cursive; font-size:1.55rem; font-weight:700; color:var(--blue-light); line-height:1; }
-  .site-footer { text-align:center; padding:2px 16px 18px; }
-  .site-footer .sf-copy { font-size:0.72rem; color:var(--muted); margin-bottom:10px; line-height:1.5; }
-  .site-footer .sf-links { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 14px; }
-  .site-footer .sf-links a { display:inline-flex; align-items:center; gap:5px; font-size:0.76rem; font-weight:700; color:var(--blue); text-decoration:none; }
-  .site-footer .sf-links a svg { width:15px; height:15px; flex-shrink:0; }
-  .site-footer .sf-sep { color:#d1d5db; font-size:0.76rem; }
-
-  /* ─── NEW DEVELOPER-PANEL FOOTER (Poppins + Great Vibes) ─── */
+  /* ─── DEVELOPER-PANEL FOOTER ─── */
   .footer {
     width:calc(100% + 48px);
     margin-left:-24px;
@@ -172,77 +159,6 @@
     padding:20px 0 0;
     text-align:center;
     background:#fff;
-  }
-  .designer-signature {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    width:100%;
-    margin:40px auto;
-  }
-  .decor-line {
-    width:90px;
-    height:2px;
-    border-radius:100px;
-    background:linear-gradient(90deg, transparent, #3B82F6, #60A5FA, #3B82F6, transparent);
-    box-shadow:0 0 8px rgba(59,130,246,.35);
-  }
-  .by-text {
-    font-family:'Inter',sans-serif;
-    font-size:18px;
-    font-weight:700;
-    color:#374151;
-    letter-spacing:.4px;
-  }
-  .signature {
-    font-family:'Allura',cursive;
-    font-size:52px;
-    font-weight:400;
-    color:#2563EB;
-    line-height:1;
-    user-select:none;
-    text-shadow:0 2px 6px rgba(37,99,235,.18);
-  }
-  .copyright {
-    margin-top:10px;
-    margin-bottom:32px;
-    font-family:Poppins,sans-serif;
-    font-size:22px;
-    font-weight:500;
-    color:#4b5563;
-  }
-  .footer-links {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:18px;
-  }
-  .footer-links a {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:#2463EA;
-    font-size:20px;
-    font-family:Poppins,sans-serif;
-    font-weight:600;
-    transition:.25s;
-  }
-  .footer-links a:hover { color:#1747B8; }
-  .footer-links i { font-size:28px; }
-  .divider { width:1px; height:34px; background:#d8dbe5; }
-
-  @media (max-width:768px) {
-    .signature { font-size:42px; }
-    .by-text { font-size:16px; }
-    .decor-line { width:55px; }
-    .copyright { font-size:15px; }
-    .footer-links { flex-direction:row; flex-wrap:nowrap; gap:8px; }
-    .divider { display:block; height:16px; }
-    .footer-links a { font-size:12px; gap:4px; white-space:nowrap; }
-    .footer-links i { font-size:14px; }
   }
 
   /* ─── BOTTOM NAV ─── */
@@ -2167,7 +2083,7 @@ loadSocialLinks();
     while (el) {
       if (el.nodeType === 1) {
         if (SKIP_TAGS[el.tagName]) return true;
-        if (el.classList && (el.classList.contains('lang-ta') || el.classList.contains('lang-en') || el.classList.contains('bs-name') || el.classList.contains('signature'))) return true;
+        if (el.classList && (el.classList.contains('lang-ta') || el.classList.contains('lang-en'))) return true;
       }
       el = el.parentElement;
     }
