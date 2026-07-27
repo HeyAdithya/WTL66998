@@ -11,70 +11,69 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
   :root {
-    --font-en: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif;
-    --font-ta: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Plus Jakarta Sans', sans-serif;
-    --blue: #1a2e7a;
-    --blue-dark: #0f1c57;
-    --blue-light: #2348b5;
-    --wtl-master-bg:
-      repeating-linear-gradient(115deg, rgba(255,255,255,.045) 0px, rgba(255,255,255,.045) 2px, transparent 2px, transparent 6.5px),
+    --font-en:-apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif;
+    --font-ta:-apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Plus Jakarta Sans', sans-serif;
+    --blue:#1a2e7a;
+    --blue-dark:#0f1c57;
+    --blue-light:#2348b5;
+    --wtl-master-bg:repeating-linear-gradient(115deg, rgba(255,255,255,.045) 0px, rgba(255,255,255,.045) 2px, transparent 2px, transparent 6.5px),
       radial-gradient(900px 500px at 80% -10%, rgba(37,99,235,.38), transparent 55%),
       linear-gradient(140deg, #0c1b3a 0%, #162d5a 55%, #1a3a6b 100%);
-    --gold: #ffffff;
-    --bg: #f0f4ff;
-    --card: #ffffff;
-    --text: #1a1a2e;
-    --muted: #6b7280;
-    --radius: 12px;
-    --shadow: 0 2px 12px rgba(26,46,122,0.10);
+    --gold:#ffffff;
+    --bg:#f0f4ff;
+    --card:#ffffff;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --radius:12px;
+    --shadow:0 2px 12px rgba(26,46,122,0.10);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-family: var(--font-en); overscroll-behavior-y: none; }
-  html:lang(ta) { font-family: var(--font-ta); }
-  html:lang(en) { font-family: var(--font-en); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { font-family:var(--font-en); overscroll-behavior-y:none; }
+  html:lang(ta) { font-family:var(--font-ta); }
+  html:lang(en) { font-family:var(--font-en); }
 
   /* ─── Per-run script fonts (auto-applied by JS on Tamil/Latin text runs) ─── */
-  .lang-ta { font-family: -apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Noto Sans Tamil', sans-serif; font-size: 1.10em; }
-  .lang-en { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif; }
+  .lang-ta { font-family:-apple-system, BlinkMacSystemFont, 'Sama Tamil', 'Mukta Malar', 'Noto Sans Tamil', sans-serif; font-size:1.10em; }
+  .lang-en { font-family:-apple-system, BlinkMacSystemFont, 'SF Pro', 'Geist', 'Inter', 'Plus Jakarta Sans', sans-serif; }
   body {
-    font-family: inherit;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 80px;
-    padding-top: 58px; /* push content below fixed header */
+    font-family:inherit;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:80px;
+    padding-top:58px; /* push content below fixed header */
   }
 
   /* ─── BANNER ─── */
   .banner-wrap {
-    position: relative;
-    width: 100%;
-    line-height: 0;
-    background: #0a1440;
+    position:relative;
+    width:100%;
+    line-height:0;
+    background:#0a1440;
   }
   .banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
+    width:100%;
+    height:auto;
+    display:block;
   }
   /* ─── FIXED HEADER ─── */
   .top-bar {
-    background-image: var(--wtl-master-bg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 16px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 300;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    background-image:var(--wtl-master-bg);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:13px 16px;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:300;
+    box-shadow:0 2px 10px rgba(0,0,0,0.35);
   }
-  .brand-left { display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; }
-  .brand-name { font-family: var(--font-en); font-size: 1.1rem; font-weight: 800; color: #fff; text-align: center; }
-  .brand-sub-top { font-family: var(--font-en); font-size: 0.58rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
-  .lang-en-title { font-family: var(--font-en); }
+  .brand-left { display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.3; }
+  .brand-name { font-family:var(--font-en); font-size:1.1rem; font-weight:800; color:#fff; text-align:center; }
+  .brand-sub-top { font-family:var(--font-en); font-size:0.58rem; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; text-align:center; }
+  .lang-en-title { font-family:var(--font-en); }
   .lang-toggle { display:flex; background:rgba(255,255,255,0.13); border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.28); }
   .lang-toggle button { background:none; border:none; color:rgba(255,255,255,0.65); padding:5px 12px; cursor:pointer; font-size:0.78rem; font-weight:600; transition:all .2s; }
   .lang-toggle button.active { background:var(--gold); color:var(--blue-dark); border-radius:20px; }
@@ -120,7 +119,7 @@
      Every row shares the exact same column widths, so nothing can drift up/down or curve. */
   .social-item {
     display:grid;
-    grid-template-columns: 40px minmax(0,1fr) 58px 88px;
+    grid-template-columns:40px minmax(0,1fr) 58px 88px;
     align-items:center;
     column-gap:10px;
     min-height:60px;
@@ -169,7 +168,7 @@
     z-index:200;
     box-shadow:0 -1px 0 #e5e7eb, 0 -4px 16px rgba(0,0,0,0.07);
     border-top:1px solid #e9eaf0;
-    height: 60px;
+    height:60px;
   }
   .nav-item {
     flex:1; display:flex; flex-direction:column;
@@ -215,7 +214,7 @@
   .sl-error { padding:14px;text-align:center;color:#e74c3c;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:6px; }
   .sl-error svg { width:16px;height:16px;flex-shrink:0; }
 
-  /* ─── ADMIN PANEL — FULL-SCREEN PAGE ─── */
+  /* ─── DEVELOPER PANEL — FULL-SCREEN PAGE ─── */
   .ap-overlay {
     display:none; position:fixed; inset:0;
     background:#fff; z-index:2000;
@@ -239,9 +238,11 @@
   }
   .ap-drag-indicator { display:none; }
   .ap-drag-indicator span { width:44px; height:5px; border-radius:3px; background:#d9deea; display:block; }
-  #ap-view-login, #ap-view-list, #ap-view-edit, #ap-view-rules {
-    flex-direction:column; flex:1; min-height:0;
-  }
+  /* Same show-one-hide-rest pattern as .page/.page.active for the main
+     pages: a shared .ap-view class with .active controlling visibility,
+     toggled from JS via classList instead of direct style.display writes. */
+  .ap-view { display:none; flex-direction:column; flex:1; min-height:0; }
+  .ap-view.active { display:flex; }
 
   /* Login */
   .ap-login-toprow { display:flex; justify-content:flex-end; padding:10px 12px 0; }
@@ -330,13 +331,19 @@
     display:flex;align-items:center;padding:12px 14px;gap:10px;
     flex-shrink:0;
   }
-  .ap-back-btn {
+  /* Shared 38px translucent glass icon-button used in every dark panel
+     header (back/close/menu). One definition (.ap-header-icon-btn) reused
+     everywhere instead of three separate copies of the same box styles;
+     .ap-back-btn / .ap-edit-back-btn stay only as hooks for their small
+     icon-specific tweaks below. */
+  .ap-header-icon-btn {
     width:38px; height:38px; border-radius:50%; flex-shrink:0;
     background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28);
     color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;
   }
-  .ap-back-btn:hover { background:rgba(255,255,255,0.24); }
-  .ap-back-btn svg { width:16px;height:16px;fill:#fff; position:relative; left:1px; }
+  .ap-header-icon-btn:hover { background:rgba(255,255,255,0.24); }
+  .ap-header-icon-btn svg { width:16px; height:16px; }
+  .ap-back-btn svg { fill:#fff; position:relative; left:1px; }
   .ap-panel-header-title { flex:1;font-size:0.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
   /* ─── LIST VIEW (redesigned to match card-list layout) ─── */
   .ap-list-header-v2 {
@@ -344,13 +351,6 @@
     padding:14px 16px; flex-shrink:0; gap:10px;
     background-image:var(--wtl-master-bg);
   }
-  .ap-icon-btn {
-    width:38px; height:38px; border-radius:50%; flex-shrink:0;
-    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28); color:#fff;
-    display:flex; align-items:center; justify-content:center; cursor:pointer;
-  }
-  .ap-icon-btn:hover { background:rgba(255,255,255,0.24); }
-  .ap-icon-btn svg { width:16px; height:16px; }
   .ap-list-header-v2-title {
     flex:1; text-align:center; font-size:1.05rem; font-weight:800; color:#fff;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
@@ -393,14 +393,18 @@
   .ap-link-info { flex:1;min-width:0; }
   .ap-link-name { font-size:0.9rem;font-weight:700;color:#1a1a2e;margin-bottom:1px; }
   .ap-link-sub { font-size:0.74rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  /* Shared "blue outline, tint on hover" style reused by every neutral/edit
+     action button (row edit button, SVG-editor pill buttons). One place
+     controls the color + hover behavior instead of repeating it per button. */
+  .ap-outline-blue { border-color:#c7d2fe; color:var(--blue); }
+  .ap-outline-blue:hover { background:#f0f4ff; }
   .ap-row-edit-btn,.ap-row-del-btn {
     display:flex; align-items:center; justify-content:center;
     background:#fff;cursor:pointer;
     width:36px; height:36px; border-radius:50%; flex-shrink:0;
   }
   .ap-row-edit-btn svg,.ap-row-del-btn svg { width:15px;height:15px; }
-  .ap-row-edit-btn { border:1.5px solid #c7d2fe; color:var(--blue); }
-  .ap-row-edit-btn:hover { background:#f0f4ff; }
+  .ap-row-edit-btn { border-width:1.5px; border-style:solid; }
   .ap-row-del-btn { border:1.5px solid #fecaca; color:#dc2626; }
   .ap-row-del-btn:hover { background:#fef2f2; }
 
@@ -421,13 +425,7 @@
     color:#fff; padding:26px 24px 30px;
     display:flex; align-items:center; gap:20px;
   }
-  .ap-edit-back-btn {
-    width:38px; height:38px; border-radius:50%; flex-shrink:0;
-    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.28);
-    color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer;
-  }
-  .ap-edit-back-btn:hover { background:rgba(255,255,255,0.24); }
-  .ap-edit-back-btn svg { width:16px; height:16px; fill:none; stroke:#fff; stroke-width:56; stroke-linecap:round; stroke-linejoin:round; }
+  .ap-edit-back-btn svg { fill:none; stroke:#fff; stroke-width:56; stroke-linecap:round; stroke-linejoin:round; }
   .ap-edit-header-text { min-width:0; }
   .ap-edit-title { font-size:0.95rem; font-weight:700; margin-bottom:3px; line-height:1.3; }
   .ap-edit-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.8); font-weight:500; }
@@ -445,13 +443,11 @@
   .ap-pill-btn {
     display:flex; align-items:center; gap:6px; justify-content:center;
     border-radius:999px; padding:11px 16px; font-size:0.82rem; font-weight:700;
-    cursor:pointer; border:1.5px solid; white-space:nowrap;
+    cursor:pointer; border-width:1.5px; border-style:solid; white-space:nowrap;
   }
   .ap-pill-btn svg { width:16px; height:16px; flex-shrink:0; }
-  .ap-pill-btn-primary-outline { background:#fff; border-color:#c7d2fe; color:var(--blue); }
-  .ap-pill-btn-primary-outline:hover { background:#f0f4ff; }
-  .ap-pill-icon-only { width:40px; height:40px; padding:0; border-radius:50%; background:#fff; border-color:#c7d2fe; color:var(--blue); flex-shrink:0; }
-  .ap-pill-icon-only:hover { background:#f0f4ff; }
+  .ap-pill-btn-primary-outline { background:#fff; }
+  .ap-pill-icon-only { width:40px; height:40px; padding:0; border-radius:50%; background:#fff; flex-shrink:0; }
   .ap-icon-hint { display:flex; align-items:center; gap:6px; font-size:0.72rem; color:#9aa2b8; }
   .ap-icon-hint svg { width:13px; height:13px; flex-shrink:0; }
   .ap-icon-preview-card {
@@ -604,7 +600,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 }
 
 /* ─── MOBILE: drag-handle removal + Rules page fixed header/footer ─── */
-@media (max-width: 600px) {
+@media (max-width:600px) {
   /* remove drag handle above Edit Social Link header, header uses freed space */
   .ap-drag-indicator.on-dark { display:none; }
   #ap-view-edit .ap-edit-header { padding-top:10px; }
@@ -617,21 +613,194 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 </style>
 </head>
 <body>
+<!-- ══════════════════════════════════════════════════════════════
+     SVG ICON LIBRARY
+     Every SVG icon used anywhere in this project is defined ONCE
+     below as a symbol. This block is hidden (display:none) and
+     never renders on its own — it only holds definitions.
+
+     Usage anywhere in the HTML, e.g. for icon "save":
+       svg class="icon" containing: use href="#i-save"
+
+     Adding a new icon for future development:
+       1. Add one new symbol id="i-newname" viewBox="..." with its
+          path/circle markup below.
+       2. Reference it anywhere with: use href="#i-newname"
+     Never paste raw path/circle icon markup directly into a
+     component again — it belongs here, once, and only here.
+     ══════════════════════════════════════════════════════════════ -->
 <svg style="display:none" aria-hidden="true">
-<symbol id="i-gear" viewBox="0 0 640 640"><path d="M565.2 329.9C567 320.1 568 310 568 300C568 290 567 279.9 565.2 270.1L627.4 221.4C633.2 216.7 634.8 208.3 631.3 201.8L572.4 99.8C568.8 93.2 561 90.7 554.3 93.2L481.3 122.4C466 110.6 449.2 100.7 430.9 93.4L420.2 15.7C419.1 8.5 412.9 3 405.6 3L287.6 3C280.2 3 274.1 8.5 273 15.7L262.3 93.4C244 100.7 227.2 110.7 211.9 122.4L138.9 93.2C132.2 90.6 124.4 93.2 120.8 99.8L61.9 201.8C58.2 208.3 59.9 216.7 65.8 221.4L128 270.1C126.2 279.9 125 290.1 125 300C125 309.9 126 320.1 127.8 329.9L65.6 378.6C59.8 383.3 58.2 391.7 61.7 398.2L120.6 500.2C124.2 506.8 132 509.3 138.7 506.8L211.7 477.6C227 489.4 243.8 499.3 262.1 506.6L272.8 584.3C274.1 591.5 280.2 597 287.6 597L405.6 597C412.9 597 419.1 591.5 420.2 584.3L430.9 506.6C449.2 499.3 466 489.3 481.3 477.6L554.3 506.8C561 509.4 568.8 506.8 572.4 500.2L631.3 398.2C634.8 391.7 633.2 383.3 627.4 378.6L565.2 329.9zM346.6 416C294.8 416 253.2 374.4 253.2 322.6C253.2 270.8 294.8 229.2 346.6 229.2C398.4 229.2 440 270.8 440 322.6C440 374.4 398.4 416 346.6 416z"/></symbol>
-<symbol id="i-dots-circle" viewBox="0 0 24 24">
-  <path d="M12.25 12H12M12.5 12C12.5 12.2761 12.2761 12.5 12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M17.25 12H17M17.5 12C17.5 12.2761 17.2761 12.5 17 12.5C16.7239 12.5 16.5 12.2761 16.5 12C16.5 11.7239 16.7239 11.5 17 11.5C17.2761 11.5 17.5 11.7239 17.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M7.25 12H7M7.5 12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12C6.5 11.7239 6.72386 11.5 7 11.5C7.27614 11.5 7.5 11.7239 7.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-  <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</symbol>
-<symbol id="i-chevron-back" viewBox="0 0 640 640"><path d="M447.1 96L195.3 320L447.1 544L384 544L128 320L384 96L447.1 96z"/></symbol>
-<symbol id="i-logout" viewBox="0 0 640 640"><path d="M224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160zM566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L438.6 169.3C426.1 156.8 405.8 156.8 393.3 169.3C380.8 181.8 380.8 202.1 393.3 214.6L466.7 288L256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L466.7 352L393.3 425.4C380.8 437.9 380.8 458.2 393.3 470.7C405.8 483.2 426.1 483.2 438.6 470.7L566.6 342.7z"/></symbol>
-<symbol id="i-save" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M160 144C151.2 144 144 151.2 144 160L144 480C144 488.8 151.2 496 160 496L480 496C488.8 496 496 488.8 496 480L496 237.3C496 233.1 494.3 229 491.3 226L416 150.6L416 240C416 257.7 401.7 272 384 272L224 272C206.3 272 192 257.7 192 240L192 144L160 144zM240 144L240 224L368 224L368 144L240 144zM96 160C96 124.7 124.7 96 160 96L402.7 96C419.7 96 436 102.7 448 114.7L525.3 192C537.3 204 544 220.3 544 237.3L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160zM256 384C256 348.7 284.7 320 320 320C355.3 320 384 348.7 384 384C384 419.3 355.3 448 320 448C284.7 448 256 419.3 256 384z"/></symbol>
-<symbol id="i-info-circle" viewBox="0 0 640 640"><path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM320 288C337.7 288 352 302.3 352 320L352 432C352 449.7 337.7 464 320 464C302.3 464 288 449.7 288 432L288 320C288 302.3 302.3 288 320 288zM272 208C272 181.5 293.5 160 320 160C346.5 160 368 181.5 368 208C368 234.5 346.5 256 320 256C293.5 256 272 234.5 272 208z"/></symbol>
-<symbol id="i-edit-pencil" viewBox="0 0 640 640"><path d="M535.6 85.7C513.7 63.8 478.3 63.8 456.4 85.7L432 110.1L529.9 208L554.3 183.6C576.2 161.7 576.2 126.3 554.3 104.4L535.6 85.7zM236.4 305.7C230.3 311.8 225.6 319.3 222.9 327.6L193.3 416.4C190.4 425 192.7 434.5 199.1 441C205.5 447.5 215 449.7 223.7 446.8L312.5 417.2C320.7 414.5 328.2 409.8 334.4 403.7L496 241.9L398.1 144L236.4 305.7zM160 128C107 128 64 171 64 224L64 480C64 533 107 576 160 576L416 576C469 576 512 533 512 480L512 384C512 366.3 497.7 352 480 352C462.3 352 448 366.3 448 384L448 480C448 497.7 433.7 512 416 512L160 512C142.3 512 128 497.7 128 480L128 224C128 206.3 142.3 192 160 192L256 192C273.7 192 288 177.7 288 160C288 142.3 273.7 128 256 128L160 128z"/></symbol>
-<symbol id="i-delete-trash" viewBox="0 0 640 640"><path d="M262.2 48C248.9 48 236.9 56.3 232.2 68.8L216 112L120 112C106.7 112 96 122.7 96 136C96 149.3 106.7 160 120 160L520 160C533.3 160 544 149.3 544 136C544 122.7 533.3 112 520 112L424 112L407.8 68.8C403.1 56.3 391.2 48 377.8 48L262.2 48zM128 208L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 208L464 208L464 512C464 520.8 456.8 528 448 528L192 528C183.2 528 176 520.8 176 512L176 208L128 208zM288 280C288 266.7 277.3 256 264 256C250.7 256 240 266.7 240 280L240 456C240 469.3 250.7 480 264 480C277.3 480 288 469.3 288 456L288 280zM400 280C400 266.7 389.3 256 376 256C362.7 256 352 266.7 352 280L352 456C352 469.3 362.7 480 376 480C389.3 480 400 469.3 400 456L400 280z"/></symbol>
+
+  <!-- Home -->
+  <symbol id="i-home" viewBox="0 0 640 640">
+    <path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" fill="currentColor"></path>
+  </symbol>
+
+  <!-- Social Media -->
+  <symbol id="i-people" viewBox="0 0 640 640">
+    <path d="M320 80C377.4 80 424 126.6 424 184C424 241.4 377.4 288 320 288C262.6 288 216 241.4 216 184C216 126.6 262.6 80 320 80zM96 152C135.8 152 168 184.2 168 224C168 263.8 135.8 296 96 296C56.2 296 24 263.8 24 224C24 184.2 56.2 152 96 152zM0 480C0 409.3 57.3 352 128 352C140.8 352 153.2 353.9 164.9 357.4C132 394.2 112 442.8 112 496L112 512C112 523.4 114.4 534.2 118.7 544L32 544C14.3 544 0 529.7 0 512L0 480zM521.3 544C525.6 534.2 528 523.4 528 512L528 496C528 442.8 508 394.2 475.1 357.4C486.8 353.9 499.2 352 512 352C582.7 352 640 409.3 640 480L640 512C640 529.7 625.7 544 608 544L521.3 544zM472 224C472 184.2 504.2 152 544 152C583.8 152 616 184.2 616 224C616 263.8 583.8 296 544 296C504.2 296 472 263.8 472 224zM160 496C160 407.6 231.6 336 320 336C408.4 336 480 407.6 480 496L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 496z" fill="currentColor"></path>
+  </symbol>
+
+  <!-- WTL Logo -->
+  <symbol id="i-wtl-logo" viewBox="0 0 1010.000000 705.000000"> <g transform="translate(0.000000,705.000000) scale(0.100000,-0.100000)" stroke="none"> <path d="M3446 6918 c-417 -473 -632 -1071 -613 -1708 13 -418 105 -780 304 -1200 147 -308 303 -547 720 -1101 535 -711 900 -1407 1152 -2194 67 -211 131 -442 131 -474 0 -55 18 -7 54 142 186 779 462 1417 903 2089 109 167 162 241 393 558 199 272 291 405 393 571 321 522 487 1080 487 1634 0 299 -37 535 -127 805 -49 150 -159 385 -247 530 -131 215 -345 479 -307 377 11 -28 45 -241 63 -392 8 -67 13 -227 13 -410 0 -330 -13 -464 -75 -779 -118 -601 -407 -1212 -864 -1830 -143 -194 -334 -415 -633 -735 l-78 -83 -136 143 c-536 568 -833 974 -1108 1519 -268 529 -395 991 -432 1575 -19 306 12 737 70 988 5 20 5 37 1 37 -5 0 -34 -28 -64 -62z M4906 5754 c-163 -36 -302 -111 -425 -228 -163 -157 -238 -319 -248 -536 -17 -367 205 -688 563 -816 553 -198 1154 203 1154 770 0 164 -38 292 -126 429 -113 174 -308 312 -519 368 -108 28 -304 35 -399 13z M2661 3809 c-87 -438 -95 -1006 -20 -1429 43 -245 114 -485 203 -690 25 -58 46 -106 46 -107 0 -1 -60 -34 -132 -74 -249 -137 -549 -267 -826 -358 -435 -143 -1032 -247 -1617 -281 -225 -13 -265 -18 -245 -30 34 -19 295 -102 420 -134 358 -91 666 -137 1060 -158 239 -12 529 -2 910 32 574 52 904 42 1290 -42 387 -83 901 -303 1123 -479 20 -17 37 -27 37 -23 0 19 -69 239 -115 364 -153 420 -333 772 -598 1170 -114 170 -193 277 -496 675 -462 604 -613 819 -781 1112 -71 126 -181 351 -220 453 -21 56 -27 56 -39 -1z M7465 3743 c-149 -368 -388 -755 -800 -1293 -364 -475 -512 -675 -617 -830 -305 -451 -517 -886 -652 -1340 -35 -118 -65 -234 -62 -238 2 -1 54 31 115 72 328 220 770 386 1206 455 319 50 584 52 1100 8 390 -34 600 -41 845 -28 354 20 621 60 965 145 159 40 422 122 464 146 19 10 -24 16 -224 30 -624 44 -1227 171 -1750 368 -186 70 -406 172 -632 294 l-91 49 35 76 c86 187 153 420 197 683 39 232 49 369 49 640 -1 268 -18 482 -58 721 -14 81 -25 149 -25 153 0 3 -4 6 -9 6 -4 0 -30 -53 -56 -117z M1675 2674 c-225 -35 -415 -201 -470 -409 -18 -73 -19 -193 -1 -260 51 -194 208 -349 403 -400 76 -20 225 -19 294 1 184 55 336 200 390 373 25 82 28 214 6 289 -54 181 -206 333 -386 386 -57 17 -185 27 -236 20z M8350 2670 c-269 -42 -470 -273 -470 -538 0 -101 16 -166 64 -256 68 -131 197 -232 346 -271 64 -17 214 -19 280 -4 88 20 191 80 265 154 82 82 118 144 145 251 25 97 25 141 0 238 -26 102 -62 166 -136 246 -131 138 -319 207 -494 180z"/></g> </symbol>
+
+  <!-- Back -->
+  <symbol id="i-back" viewBox="0 0 640 640">
+    <path d="M420 128L232 320L420 512"/>
+  </symbol>
+
+
+  <!-- Save -->
+  <symbol id="i-save" viewBox="0 0 640 640">
+    <path d="M160 144C151.2 144 144 151.2 144 160L144 480C144 488.8 151.2 496 160 496L480 496C488.8 496 496 488.8 496 480L496 237.3C496 233.1 494.3 229 491.3 226L416 150.6L416 240C416 257.7 401.7 272 384 272L224 272C206.3 272 192 257.7 192 240L192 144L160 144zM240 144L240 224L368 224L368 144L240 144zM96 160C96 124.7 124.7 96 160 96L402.7 96C419.7 96 436 102.7 448 114.7L525.3 192C537.3 204 544 220.3 544 237.3L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160zM256 384C256 348.7 284.7 320 320 320C355.3 320 384 348.7 384 384C384 419.3 355.3 448 320 448C284.7 448 256 419.3 256 384z"/>
+  </symbol>
+
+  <!-- Edit -->
+  <symbol id="i-edit-pencil" viewBox="0 0 640 640">
+    <path d="M535.6 85.7C513.7 63.8 478.3 63.8 456.4 85.7L432 110.1L529.9 208L554.3 183.6C576.2 161.7 576.2 126.3 554.3 104.4L535.6 85.7zM236.4 305.7C230.3 311.8 225.6 319.3 222.9 327.6L193.3 416.4C190.4 425 192.7 434.5 199.1 441C205.5 447.5 215 449.7 223.7 446.8L312.5 417.2C320.7 414.5 328.2 409.8 334.4 403.7L496 241.9L398.1 144L236.4 305.7zM160 128C107 128 64 171 64 224L64 480C64 533 107 576 160 576L416 576C469 576 512 533 512 480L512 384C512 366.3 497.7 352 480 352C462.3 352 448 366.3 448 384L448 480C448 497.7 433.7 512 416 512L160 512C142.3 512 128 497.7 128 480L128 224C128 206.3 142.3 192 160 192L256 192C273.7 192 288 177.7 288 160C288 142.3 273.7 128 256 128L160 128z"/>
+  </symbol>
+
+  <!-- Delete -->
+  <symbol id="i-delete-trash" viewBox="0 0 640 640">
+    <path d="M262.2 48C248.9 48 236.9 56.3 232.2 68.8L216 112L120 112C106.7 112 96 122.7 96 136C96 149.3 106.7 160 120 160L520 160C533.3 160 544 149.3 544 136C544 122.7 533.3 112 520 112L424 112L407.8 68.8C403.1 56.3 391.2 48 377.8 48L262.2 48zM128 208L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 208L464 208L464 512C464 520.8 456.8 528 448 528L192 528C183.2 528 176 520.8 176 512L176 208L128 208zM288 280C288 266.7 277.3 256 264 256C250.7 256 240 266.7 240 280L240 456C240 469.3 250.7 480 264 480C277.3 480 288 469.3 288 456L288 280zM400 280C400 266.7 389.3 256 376 256C362.7 256 352 266.7 352 280L352 456C352 469.3 362.7 480 376 480C389.3 480 400 469.3 400 456L400 280z"/>
+  </symbol>
+
+  <!-- Logout -->
+  <symbol id="i-logout" viewBox="0 0 640 640">
+    <path d="M224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160zM566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L438.6 169.3C426.1 156.8 405.8 156.8 393.3 169.3C380.8 181.8 380.8 202.1 393.3 214.6L466.7 288L256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L466.7 352L393.3 425.4C380.8 437.9 380.8 458.2 393.3 470.7C405.8 483.2 426.1 483.2 438.6 470.7L566.6 342.7z"/>
+  </symbol>
+
+  <!-- Reset -->
+  <symbol id="i-refresh" viewBox="0 0 640 640">
+    <path d="M129.9 292.5C143.2 199.5 223.3 128 320 128C373 128 421 149.5 455.8 184.2C456 184.4 456.2 184.6 456.4 184.8L464 192L416.1 192C398.4 192 384.1 206.3 384.1 224C384.1 241.7 398.4 256 416.1 256L544.1 256C561.8 256 576.1 241.7 576.1 224L576.1 96C576.1 78.3 561.8 64 544.1 64C526.4 64 512.1 78.3 512.1 96L512.1 149.4L500.8 138.7C454.5 92.6 390.5 64 320 64C191 64 84.3 159.4 66.6 283.5C64.1 301 76.2 317.2 93.7 319.7C111.2 322.2 127.4 310 129.9 292.6zM573.4 356.5C575.9 339 563.7 322.8 546.3 320.3C528.9 317.8 512.6 330 510.1 347.4C496.8 440.4 416.7 511.9 320 511.9C267 511.9 219 490.4 184.2 455.7C184 455.5 183.8 455.3 183.6 455.1L176 447.9L223.9 447.9C241.6 447.9 255.9 433.6 255.9 415.9C255.9 398.2 241.6 383.9 223.9 383.9L96 384C87.5 384 79.3 387.4 73.3 393.5C67.3 399.6 63.9 407.7 64 416.3L65 543.3C65.1 561 79.6 575.2 97.3 575C115 574.8 129.2 560.4 129 542.7L128.6 491.2L139.3 501.3C185.6 547.4 249.5 576 320 576C449 576 555.7 480.6 573.4 356.5z"/>
+  </symbol>
+
+  <!-- Undo -->
+  <symbol id="i-undo" viewBox="0 0 640 640">
+    <path d="M232 208L128 312L232 416"/>
+    <path d="M128 312L392 312C458 312 512 366 512 432"/>
+  </symbol>
+
+  <!-- Redo -->
+  <symbol id="i-redo" viewBox="0 0 640 640">
+    <path d="M408 208L512 312L408 416"/>
+    <path d="M512 312L248 312C182 312 128 366 128 432"/>
+  </symbol>
+
+  <!-- Add -->
+  <symbol id="i-add" viewBox="0 0 24 24">
+    <path d="M14.3942 3.00083L14.1481 2.79115C12.9103 1.73628 11.0897 1.73628 9.85189 2.79115L9.60584 3.00083C8.96518 3.54679 8.16862 3.87674 7.32956 3.9437L7.00731 3.96941C5.38613 4.09878 4.09878 5.38613 3.96941 7.00731L3.9437 7.32956C3.87674 8.16862 3.54679 8.96518 3.00083 9.60584L2.79115 9.85189C1.73628 11.0897 1.73628 12.9103 2.79115 14.1481L3.00083 14.3942C3.54679 15.0348 3.87674 15.8314 3.9437 16.6704L3.96941 16.9927C4.09878 18.6139 5.38613 19.9012 7.00731 20.0306L7.32956 20.0563C8.16862 20.1233 8.96518 20.4532 9.60584 20.9992L9.85188 21.2089C11.0897 22.2637 12.9103 22.2637 14.1481 21.2089L14.3942 20.9992C15.0348 20.4532 15.8314 20.1233 16.6704 20.0563L16.9927 20.0306C18.6139 19.9012 19.9012 18.6139 20.0306 16.9927L20.0563 16.6704C20.1233 15.8314 20.4532 15.0348 20.9992 14.3942L21.2089 14.1481C22.2637 12.9103 22.2637 11.0897 21.2089 9.85188L20.9992 9.60584C20.4532 8.96518 20.1233 8.16862 20.0563 7.32956L20.0306 7.00731C19.9012 5.38613 18.6139 4.09878 16.9927 3.96941L16.6704 3.9437C15.8314 3.87674 15.0348 3.54679 14.3942 3.00083Z"></path>
+    <path d="M8 12H16M12.005 8.005L12.005 16.005"></path>
+  </symbol>
+
+  <!-- Upload -->
+  <symbol id="i-upload" viewBox="0 0 24 24">
+    <path d="M2.99994 17C2.99994 17.93 2.99994 18.395 3.10216 18.7765C3.37956 19.8117 4.18821 20.6204 5.22348 20.8978C5.60498 21 6.06997 21 6.99994 21L16.9999 21C17.9299 21 18.3949 21 18.7764 20.8978C19.8117 20.6204 20.6203 19.8117 20.8977 18.7765C20.9999 18.395 20.9999 17.93 20.9999 17"></path>
+    <path d="M16.5 7.49993C16.5 7.49993 13.1858 2.99997 12 2.99996C10.8141 2.99995 7.50002 7.49996 7.50002 7.49996M12 3.99996V16"></path>
+  </symbol>
+
+  <!-- Check -->
+  <symbol id="i-check" viewBox="0 0 640 640">
+    <path d="M566.6 145.4C577.1 156 577.1 173.2 566.6 183.7L246.6 503.7C236 514.3 218.8 514.3 208.3 503.7L73.7 369.1C63.1 358.5 63.1 341.3 73.7 330.8C84.3 320.3 101.5 320.2 112 330.8L227.4 446.2L528.2 145.4C538.8 134.8 556 134.8 566.5 145.4z"/>
+  </symbol>
+
+  <!-- Close -->
+  <symbol id="i-close" viewBox="0 0 640 640">
+    <path d="M183.6 137.4C174.2 128 159 128 149.7 137.4C140.4 146.8 140.3 162 149.7 171.3L298.3 320L149.6 468.7C140.2 478.1 140.2 493.3 149.6 502.6C159 511.9 174.2 512 183.5 502.6L332.2 353.9L480.8 502.5C490.2 511.9 505.4 511.9 514.7 502.5C524 493.1 524.1 477.9 514.7 468.6L366.1 320L514.7 171.4C524.1 162 524.1 146.8 514.7 137.5C505.3 128.2 490.1 128.1 480.8 137.5L332.2 286.1L183.6 137.4z"/>
+  </symbol>
+
+
+  <!-- Lock -->
+  <symbol id="i-lock" viewBox="0 0 24 24">
+    <path d="M18.7088 3.49534C16.8165 2.55382 14.5009 2 12 2C9.4991 2 7.1835 2.55382 5.29116 3.49534C4.36318 3.95706 3.89919 4.18792 3.4496 4.91378C3 5.63965 3 6.34248 3 7.74814V11.2371C3 16.9205 7.54236 20.0804 10.173 21.4338C10.9067 21.8113 11.2735 22 12 22C12.7265 22 13.0933 21.8113 13.8269 21.4338C16.4576 20.0804 21 16.9205 21 11.2371L21 7.74814C21 6.34249 21 5.63966 20.5504 4.91378C20.1008 4.18791 19.6368 3.95706 18.7088 3.49534Z"></path>
+    <path d="M10 10V8.5C10 7.39543 10.8954 6.5 12 6.5C13.1046 6.5 14 7.39543 14 8.5V10"></path>
+    <path d="M14 10H10C9.17157 10 8.5 10.6716 8.5 11.5V13C8.5 13.8284 9.17157 14.5 10 14.5H14C14.8284 14.5 15.5 13.8284 15.5 13V11.5C15.5 10.6716 14.8284 10 14 10Z"></path>
+  </symbol>
+
+  <!-- Email -->
+  <symbol id="i-email" viewBox="0 0 640 640">
+    <path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/>
+  </symbol>
+
+  <!-- Password -->
+  <symbol id="i-password-key" viewBox="0 0 640 640">
+    <path d="M400 416C497.2 416 576 337.2 576 240C576 142.8 497.2 64 400 64C302.8 64 224 142.8 224 240C224 258.7 226.9 276.8 232.3 293.7L71 455C66.5 459.5 64 465.6 64 472L64 552C64 565.3 74.7 576 88 576L168 576C181.3 576 192 565.3 192 552L192 512L232 512C245.3 512 256 501.3 256 488L256 448L296 448C302.4 448 308.5 445.5 313 441L346.3 407.7C363.2 413.1 381.3 416 400 416zM440 160C462.1 160 480 177.9 480 200C480 222.1 462.1 240 440 240C417.9 240 400 222.1 400 200C400 177.9 417.9 160 440 160z"/>
+  </symbol>
+
+  <!-- Show Password -->
+  <symbol id="i-eye-show" viewBox="0 0 640 640">
+    <path d="M320 144C254.8 144 201.2 173.6 160.1 211.7C121.6 247.5 95 290 81.4 320C95 350 121.6 392.5 160.1 428.3C201.2 466.4 254.8 496 320 496C385.2 496 438.8 466.4 479.9 428.3C518.4 392.5 545 350 558.6 320C545 290 518.4 247.5 479.9 211.7C438.8 173.6 385.2 144 320 144zM127.4 176.6C174.5 132.8 239.2 96 320 96C400.8 96 465.5 132.8 512.6 176.6C559.4 220.1 590.7 272 605.6 307.7C608.9 315.6 608.9 324.4 605.6 332.3C590.7 368 559.4 420 512.6 463.4C465.5 507.1 400.8 544 320 544C239.2 544 174.5 507.2 127.4 463.4C80.6 419.9 49.3 368 34.4 332.3C31.1 324.4 31.1 315.6 34.4 307.7C49.3 272 80.6 220 127.4 176.6zM320 400C364.2 400 400 364.2 400 320C400 290.4 383.9 264.5 360 250.7C358.6 310.4 310.4 358.6 250.7 360C264.5 383.9 290.4 400 320 400zM240.4 311.6C242.9 311.9 245.4 312 248 312C283.3 312 312 283.3 312 248C312 245.4 311.8 242.9 311.6 240.4C274.2 244.3 244.4 274.1 240.5 311.5zM286 196.6C296.8 193.6 308.2 192.1 319.9 192.1C328.7 192.1 337.4 193 345.7 194.7C346 194.8 346.2 194.8 346.5 194.9C404.4 207.1 447.9 258.6 447.9 320.1C447.9 390.8 390.6 448.1 319.9 448.1C258.3 448.1 206.9 404.6 194.7 346.7C192.9 338.1 191.9 329.2 191.9 320.1C191.9 309.1 193.3 298.3 195.9 288.1C196.1 287.4 196.2 286.8 196.4 286.2C208.3 242.8 242.5 208.6 285.9 196.7z"/>
+  </symbol>
+
+  <!-- Hide Password -->
+  <symbol id="i-eye-hide" viewBox="0 0 640 640">
+    <path d="M73 39.1C63.6 29.7 48.4 29.7 39.1 39.1C29.8 48.5 29.7 63.7 39 73.1L567 601.1C576.4 610.5 591.6 610.5 600.9 601.1C610.2 591.7 610.3 576.5 600.9 567.2L504.5 470.8C507.2 468.4 509.9 466 512.5 463.6C559.3 420.1 590.6 368.2 605.5 332.5C608.8 324.6 608.8 315.8 605.5 307.9C590.6 272.2 559.3 220.2 512.5 176.8C465.4 133.1 400.7 96.2 319.9 96.2C263.1 96.2 214.3 114.4 173.9 140.4L73 39.1zM208.9 175.1C241 156.2 278.1 144 320 144C385.2 144 438.8 173.6 479.9 211.7C518.4 247.4 545 290 558.5 320C544.9 350 518.3 392.5 479.9 428.3C476.8 431.1 473.7 433.9 470.5 436.7L425.8 392C439.8 371.5 448 346.7 448 320C448 249.3 390.7 192 320 192C293.3 192 268.5 200.2 248 214.2L208.9 175.1zM390.9 357.1L282.9 249.1C294 243.3 306.6 240 320 240C364.2 240 400 275.8 400 320C400 333.4 396.7 346 390.9 357.1zM135.4 237.2L101.4 203.2C68.8 240 46.4 279 34.5 307.7C31.2 315.6 31.2 324.4 34.5 332.3C49.4 368 80.7 420 127.5 463.4C174.6 507.1 239.3 544 320.1 544C357.4 544 391.3 536.1 421.6 523.4L384.2 486C364.2 492.4 342.8 496 320 496C254.8 496 201.2 466.4 160.1 428.3C121.6 392.6 95 350 81.5 320C91.9 296.9 110.1 266.4 135.5 237.2z"/>
+  </symbol>
+
+  <!-- Login -->
+  <symbol id="i-login-arrow" viewBox="0 0 24 24">
+    <path d="M18 10.9971C17.6078 10.1968 16.5481 9.02153 14.3703 9.07154C14.3703 9.07154 12.6431 8.99652 10.6906 8.99652C8.73815 8.99652 7.82408 9.04224 6.25999 9.07154C5.25872 9.04653 3.35629 9.2716 2.48017 11.3472C1.90444 13.0976 1.87941 16.7736 2.22986 18.6241C2.30495 19.5744 2.80559 20.8998 4.35757 21.6C5.30878 22.1001 6.83573 21.9 7.98719 22.0001M5.98464 8.1963C5.93458 5.82065 5.83445 3.94514 8.58796 2.39472C9.51414 2.01962 10.8909 1.69453 12.5931 2.49475C14.3703 3.57004 14.5917 4.70802 14.7458 4.99543C15.1713 6.12074 14.9461 7.72117 14.9961 8.37135" stroke-linecap="round"></path>
+    <path d="M15.5 19.7351C15.5 20.9792 14.4911 21.9656 13.2552 21.9656C12.0194 21.9656 11 20.9792 11 19.7351C11 18.4911 12.0194 17.4915 13.2552 17.4915C14.4911 17.4915 15.5 18.4911 15.5 19.7351Z"></path>
+    <path d="M22 15.8482L20.3731 14.3089C19.6 13.5692 18.95 14.2149 18.6264 14.4906L17.2156 15.8482L15.225 17.7909M17.2156 15.8482L18.825 17.3936" stroke-linecap="round"></path>
+  </symbol>
+
+  <!-- Fingerprint -->
+  <symbol id="i-fingerprint" viewBox="0 0 24 24">
+    <path d="M18 12C18 8.68628 15.3137 6 12 6C8.68628 6 6 8.68628 6 12C6 15.3136 7 17.5 8.99985 20"></path>
+    <path d="M15 21C9.5 17.5 9 13.6568 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12C15 13.6569 16.3431 15 18 15C19.6569 15 21 13.6569 21 12C21 7.02942 16.9706 3 12 3C7.02942 3 3 7.02942 3 12C3 12.6874 3.07707 13.3568 3.22303 14"></path>
+    <path d="M12 12C12.5 17 17.5 19 17.5 19"></path>
+  </symbol>
+
+  <!-- Error -->
+  <symbol id="i-login-error" viewBox="0 0 640 640">
+    <path d="M286.1 368C384.6 368 464.4 447.8 464.4 546.3C464.4 562.7 451.1 576 434.7 576L78.1 576C61.7 576 48.4 562.7 48.4 546.3C48.4 447.8 128.2 368 226.7 368L286.1 368zM562.3 172.1C571.7 162.7 586.9 162.7 596.2 172.1C605.5 181.5 605.6 196.7 596.2 206L562.3 239.9L596.2 273.8C605.6 283.2 605.6 298.4 596.2 307.7C586.8 317 571.6 317.1 562.3 307.7L528.4 273.8L494.5 307.7C485.1 317.1 469.9 317.1 460.6 307.7C451.3 298.3 451.2 283.1 460.6 273.8L494.5 239.9L460.6 206C451.2 196.6 451.2 181.4 460.6 172.1C470 162.8 485.2 162.7 494.5 172.1L528.4 206L562.3 172.1zM256.4 312C190.1 312 136.4 258.3 136.4 192C136.4 125.7 190.1 72 256.4 72C322.7 72 376.4 125.7 376.4 192C376.4 258.3 322.7 312 256.4 312z"/>
+  </symbol>
+
+
+  <!-- Info -->
+  <symbol id="i-info-circle" viewBox="0 0 640 640">
+    <path d="M320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM320 288C337.7 288 352 302.3 352 320L352 432C352 449.7 337.7 464 320 464C302.3 464 288 449.7 288 432L288 320C288 302.3 302.3 288 320 288zM272 208C272 181.5 293.5 160 320 160C346.5 160 368 181.5 368 208C368 234.5 346.5 256 320 256C293.5 256 272 234.5 272 208z"/>
+  </symbol>
+
+  <!-- No Connection -->
+  <symbol id="i-error-signal" viewBox="0 0 24 24">
+    <path d="M21.9999 7.99997L18.9999 4.99997M18.9999 4.99997L15.9999 1.99997M18.9999 4.99997L15.9999 7.99997M18.9999 4.99997L21.9999 1.99997" stroke-linecap="round"></path>
+    <path d="M8.99988 10.0294C10.3725 8.65685 12.5979 8.65685 13.9704 10.0294C15.343 11.402 15.343 13.6274 13.9704 15"></path>
+    <path d="M4.85277 19.1471C8.04856 22.3429 12.9126 22.8538 16.6417 20.6797C17.5284 20.1627 17.9717 19.9043 17.9988 19.3782C18.0259 18.8522 17.5276 18.4882 16.5308 17.7603C14.6828 16.4107 12.8635 14.7603 11.0515 12.9484C9.23955 11.1364 7.58915 9.31705 6.23957 7.46904C5.51167 6.47231 5.14772 5.97395 4.62166 6.00105C4.0956 6.02815 3.83713 6.47149 3.32019 7.35818C1.14611 11.0873 1.65697 15.9513 4.85277 19.1471Z" stroke-linejoin="round"></path>
+  </symbol>
+
+  <!-- Settings -->
+  <symbol id="i-dots-circle" viewBox="0 0 24 24">
+    <path d="M12.25 12H12M12.5 12C12.5 12.2761 12.2761 12.5 12 12.5C11.7239 12.5 11.5 12.2761 11.5 12C11.5 11.7239 11.7239 11.5 12 11.5C12.2761 11.5 12.5 11.7239 12.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M17.25 12H17M17.5 12C17.5 12.2761 17.2761 12.5 17 12.5C16.7239 12.5 16.5 12.2761 16.5 12C16.5 11.7239 16.7239 11.5 17 11.5C17.2761 11.5 17.5 11.7239 17.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M7.25 12H7M7.5 12C7.5 12.2761 7.27614 12.5 7 12.5C6.72386 12.5 6.5 12.2761 6.5 12C6.5 11.7239 6.72386 11.5 7 11.5C7.27614 11.5 7.5 11.7239 7.5 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  </symbol>
+
+
+  <!-- Guidelines -->
+  <symbol id="i-guidelines" viewBox="0 0 640 640">
+    <path d="M320 216C368.6 216 408 176.6 408 128C408 79.4 368.6 40 320 40C271.4 40 232 79.4 232 128C232 176.6 271.4 216 320 216zM320 514.7L320 365.4C336.3 358.6 352.9 351.7 369.7 344.7C408.7 328.5 450.5 320.1 492.8 320.1L512 320.1L512 480.1L492.8 480.1C433.7 480.1 375.1 491.8 320.5 514.6L320 514.8zM320 296L294.9 285.5C248.1 266 197.9 256 147.2 256L112 256C85.5 256 64 277.5 64 304L64 496C64 522.5 85.5 544 112 544L147.2 544C197.9 544 248.1 554 294.9 573.5L307.7 578.8C315.6 582.1 324.4 582.1 332.3 578.8L345.1 573.5C391.9 554 442.1 544 492.8 544L528 544C554.5 544 576 522.5 576 496L576 304C576 277.5 554.5 256 528 256L492.8 256C442.1 256 391.9 266 345.1 285.5L320 296z"/>
+  </symbol>
+
+  <!-- Drag Handle -->
+  <symbol id="i-drag-dots" viewBox="0 0 16 24">
+    <circle cx="4" cy="4" r="2"/>
+    <circle cx="12" cy="4" r="2"/>
+    <circle cx="4" cy="12" r="2"/>
+    <circle cx="12" cy="12" r="2"/>
+    <circle cx="4" cy="20" r="2"/>
+    <circle cx="12" cy="20" r="2"/>
+  </symbol>
+
+  <!-- Views -->
+  <symbol id="i-eye-views" viewBox="0 0 24 24">
+    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </symbol>
+
 </svg>
+<!-- ══════════ END SVG ICON LIBRARY ══════════ -->
 
 <!-- ══════════ FIXED HEADER ══════════ -->
 <div class="top-bar">
@@ -650,12 +819,12 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 
 </div>
 <script>
-(function(){
-  var banner = document.getElementById('hero-banner');
-  var img = document.getElementById('hero-banner-img');
+(function () {
+  const banner = document.getElementById('hero-banner');
+  const img = document.getElementById('hero-banner-img');
   if (!banner) return;
 
-  var block = function(e){ e.preventDefault(); e.stopPropagation(); return false; };
+  const block = (e) => { e.preventDefault(); e.stopPropagation(); return false; };
 
   // Block right-click / context menu on the whole banner area
   banner.addEventListener('contextmenu', block);
@@ -670,14 +839,14 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 
   // Extra safety: if a selection ever lands inside the banner, clear it and
   // block copy so the image can't be copied via keyboard shortcuts.
-  document.addEventListener('copy', function(e){
-    var sel = window.getSelection ? window.getSelection() : null;
+  document.addEventListener('copy', (e) => {
+    const sel = window.getSelection ? window.getSelection() : null;
     if (sel && sel.anchorNode && banner.contains(sel.anchorNode)) {
       e.preventDefault();
     }
   });
-  banner.addEventListener('mouseup', function(){
-    var sel = window.getSelection ? window.getSelection() : null;
+  banner.addEventListener('mouseup', () => {
+    const sel = window.getSelection ? window.getSelection() : null;
     if (sel) sel.removeAllRanges();
   });
 })();
@@ -688,17 +857,13 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
   <div class="ap-drag-indicator"><span></span></div>
 
   <!-- LOGIN VIEW -->
-  <div id="ap-view-login">
+  <div id="ap-view-login" class="ap-view">
     <div class="ap-login-toprow">
-      <button class="ap-close-x" onclick="apClose()"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <button class="ap-close-x" onclick="apClose()"><svg viewBox="0 0 640 640" fill="currentColor"><use href="#i-close"/></svg></button>
     </div>
     <div class="ap-login-body">
       <div class="ap-lock-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18.7088 3.49534C16.8165 2.55382 14.5009 2 12 2C9.4991 2 7.1835 2.55382 5.29116 3.49534C4.36318 3.95706 3.89919 4.18792 3.4496 4.91378C3 5.63965 3 6.34248 3 7.74814V11.2371C3 16.9205 7.54236 20.0804 10.173 21.4338C10.9067 21.8113 11.2735 22 12 22C12.7265 22 13.0933 21.8113 13.8269 21.4338C16.4576 20.0804 21 16.9205 21 11.2371L21 7.74814C21 6.34249 21 5.63966 20.5504 4.91378C20.1008 4.18791 19.6368 3.95706 18.7088 3.49534Z"></path>
-    <path d="M10 10V8.5C10 7.39543 10.8954 6.5 12 6.5C13.1046 6.5 14 7.39543 14 8.5V10"></path>
-    <path d="M14 10H10C9.17157 10 8.5 10.6716 8.5 11.5V13C8.5 13.8284 9.17157 14.5 10 14.5H14C14.8284 14.5 15.5 13.8284 15.5 13V11.5C15.5 10.6716 14.8284 10 14 10Z"></path>
-  </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-lock"/></svg>
       </div>
       <!-- Checking session state -->
       <div id="ap-checking" class="ap-checking-row">
@@ -709,26 +874,22 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
       <div id="ap-login-form" class="ap-login-form" style="display:none">
         <p class="ap-login-form-title">Developer Access</p>
         <div class="ap-input-icon-wrap">
-          <svg fill="currentColor" viewBox="0 0 640 640"><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 640 640"><use href="#i-email"/></svg>
           <input type="email" id="ap-email" class="ap-pill-input" placeholder="Email" autocomplete="email" onkeydown="if(event.key==='Enter')$('ap-pwd').focus()"/>
         </div>
         <div class="ap-input-icon-wrap">
-          <svg fill="currentColor" viewBox="0 0 640 640"><path d="M400 416C497.2 416 576 337.2 576 240C576 142.8 497.2 64 400 64C302.8 64 224 142.8 224 240C224 258.7 226.9 276.8 232.3 293.7L71 455C66.5 459.5 64 465.6 64 472L64 552C64 565.3 74.7 576 88 576L168 576C181.3 576 192 565.3 192 552L192 512L232 512C245.3 512 256 501.3 256 488L256 448L296 448C302.4 448 308.5 445.5 313 441L346.3 407.7C363.2 413.1 381.3 416 400 416zM440 160C462.1 160 480 177.9 480 200C480 222.1 462.1 240 440 240C417.9 240 400 222.1 400 200C400 177.9 417.9 160 440 160z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 640 640"><use href="#i-password-key"/></svg>
           <input type="password" id="ap-pwd" class="ap-pill-input ap-pwd-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')apLogin()"/>
           <button type="button" class="ap-pwd-toggle-btn" onclick="apTogglePwd()" title="Show/Hide password">
-            <svg id="ap-pwd-eye-show" style="width:17px;height:17px;" fill="currentColor" viewBox="0 0 640 640"><path d="M320 144C254.8 144 201.2 173.6 160.1 211.7C121.6 247.5 95 290 81.4 320C95 350 121.6 392.5 160.1 428.3C201.2 466.4 254.8 496 320 496C385.2 496 438.8 466.4 479.9 428.3C518.4 392.5 545 350 558.6 320C545 290 518.4 247.5 479.9 211.7C438.8 173.6 385.2 144 320 144zM127.4 176.6C174.5 132.8 239.2 96 320 96C400.8 96 465.5 132.8 512.6 176.6C559.4 220.1 590.7 272 605.6 307.7C608.9 315.6 608.9 324.4 605.6 332.3C590.7 368 559.4 420 512.6 463.4C465.5 507.1 400.8 544 320 544C239.2 544 174.5 507.2 127.4 463.4C80.6 419.9 49.3 368 34.4 332.3C31.1 324.4 31.1 315.6 34.4 307.7C49.3 272 80.6 220 127.4 176.6zM320 400C364.2 400 400 364.2 400 320C400 290.4 383.9 264.5 360 250.7C358.6 310.4 310.4 358.6 250.7 360C264.5 383.9 290.4 400 320 400zM240.4 311.6C242.9 311.9 245.4 312 248 312C283.3 312 312 283.3 312 248C312 245.4 311.8 242.9 311.6 240.4C274.2 244.3 244.4 274.1 240.5 311.5zM286 196.6C296.8 193.6 308.2 192.1 319.9 192.1C328.7 192.1 337.4 193 345.7 194.7C346 194.8 346.2 194.8 346.5 194.9C404.4 207.1 447.9 258.6 447.9 320.1C447.9 390.8 390.6 448.1 319.9 448.1C258.3 448.1 206.9 404.6 194.7 346.7C192.9 338.1 191.9 329.2 191.9 320.1C191.9 309.1 193.3 298.3 195.9 288.1C196.1 287.4 196.2 286.8 196.4 286.2C208.3 242.8 242.5 208.6 285.9 196.7z"/></svg>
-            <svg id="ap-pwd-eye-hide" style="width:17px;height:17px;display:none;" fill="currentColor" viewBox="0 0 640 640"><path d="M73 39.1C63.6 29.7 48.4 29.7 39.1 39.1C29.8 48.5 29.7 63.7 39 73.1L567 601.1C576.4 610.5 591.6 610.5 600.9 601.1C610.2 591.7 610.3 576.5 600.9 567.2L504.5 470.8C507.2 468.4 509.9 466 512.5 463.6C559.3 420.1 590.6 368.2 605.5 332.5C608.8 324.6 608.8 315.8 605.5 307.9C590.6 272.2 559.3 220.2 512.5 176.8C465.4 133.1 400.7 96.2 319.9 96.2C263.1 96.2 214.3 114.4 173.9 140.4L73 39.1zM208.9 175.1C241 156.2 278.1 144 320 144C385.2 144 438.8 173.6 479.9 211.7C518.4 247.4 545 290 558.5 320C544.9 350 518.3 392.5 479.9 428.3C476.8 431.1 473.7 433.9 470.5 436.7L425.8 392C439.8 371.5 448 346.7 448 320C448 249.3 390.7 192 320 192C293.3 192 268.5 200.2 248 214.2L208.9 175.1zM390.9 357.1L282.9 249.1C294 243.3 306.6 240 320 240C364.2 240 400 275.8 400 320C400 333.4 396.7 346 390.9 357.1zM135.4 237.2L101.4 203.2C68.8 240 46.4 279 34.5 307.7C31.2 315.6 31.2 324.4 34.5 332.3C49.4 368 80.7 420 127.5 463.4C174.6 507.1 239.3 544 320.1 544C357.4 544 391.3 536.1 421.6 523.4L384.2 486C364.2 492.4 342.8 496 320 496C254.8 496 201.2 466.4 160.1 428.3C121.6 392.6 95 350 81.5 320C91.9 296.9 110.1 266.4 135.5 237.2z"/></svg>
+            <svg id="ap-pwd-eye-show" style="width:17px;height:17px;" fill="currentColor" viewBox="0 0 640 640"><use href="#i-eye-show"/></svg>
+            <svg id="ap-pwd-eye-hide" style="width:17px;height:17px;display:none;" fill="currentColor" viewBox="0 0 640 640"><use href="#i-eye-hide"/></svg>
           </button>
         </div>
         <div class="ap-pwd-err" id="ap-pwd-err"></div>
-        <button class="ap-login-btn" onclick="apLogin()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10.9971C17.6078 10.1968 16.5481 9.02153 14.3703 9.07154C14.3703 9.07154 12.6431 8.99652 10.6906 8.99652C8.73815 8.99652 7.82408 9.04224 6.25999 9.07154C5.25872 9.04653 3.35629 9.2716 2.48017 11.3472C1.90444 13.0976 1.87941 16.7736 2.22986 18.6241C2.30495 19.5744 2.80559 20.8998 4.35757 21.6C5.30878 22.1001 6.83573 21.9 7.98719 22.0001M5.98464 8.1963C5.93458 5.82065 5.83445 3.94514 8.58796 2.39472C9.51414 2.01962 10.8909 1.69453 12.5931 2.49475C14.3703 3.57004 14.5917 4.70802 14.7458 4.99543C15.1713 6.12074 14.9461 7.72117 14.9961 8.37135" stroke-linecap="round"></path><path d="M15.5 19.7351C15.5 20.9792 14.4911 21.9656 13.2552 21.9656C12.0194 21.9656 11 20.9792 11 19.7351C11 18.4911 12.0194 17.4915 13.2552 17.4915C14.4911 17.4915 15.5 18.4911 15.5 19.7351Z"></path><path d="M22 15.8482L20.3731 14.3089C19.6 13.5692 18.95 14.2149 18.6264 14.4906L17.2156 15.8482L15.225 17.7909M17.2156 15.8482L18.825 17.3936" stroke-linecap="round"></path></svg><span>Login</span></button>
+        <button class="ap-login-btn" onclick="apLogin()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-login-arrow"/></svg><span>Login</span></button>
         <div class="ap-or-divider"><span class="ap-or-line"></span><span class="ap-or-text">or</span><span class="ap-or-line"></span></div>
         <button type="button" class="ap-login-btn ap-fingerprint-btn" onclick="apFingerprintLogin()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 12C18 8.68628 15.3137 6 12 6C8.68628 6 6 8.68628 6 12C6 15.3136 7 17.5 8.99985 20"></path>
-    <path d="M15 21C9.5 17.5 9 13.6568 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12C15 13.6569 16.3431 15 18 15C19.6569 15 21 13.6569 21 12C21 7.02942 16.9706 3 12 3C7.02942 3 3 7.02942 3 12C3 12.6874 3.07707 13.3568 3.22303 14"></path>
-    <path d="M12 12C12.5 17 17.5 19 17.5 19"></path>
-</svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-fingerprint"/></svg>
           <span>Login with Fingerprint</span>
         </button>
         <!-- ══════════ FOOTER (Poppins + Great Vibes + Font Awesome) ══════════ -->
@@ -740,14 +901,14 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
   </div>
 
   <!-- LIST VIEW -->
-  <div id="ap-view-list" style="display:none">
+  <div id="ap-view-list" class="ap-view">
     <div class="ap-list-header-v2">
-      <button class="ap-icon-btn" onclick="apClose()" title="Back">
-        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><use href="#i-chevron-back"/></svg>
+      <button class="ap-header-icon-btn" onclick="apClose()" title="Back">
+        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg>
       </button>
       <span class="ap-list-header-v2-title" id="ap-list-title">Channel Management</span>
-      <button class="ap-icon-btn" onclick="apClose()" title="Close">
-        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M183.6 137.4C174.2 128 159 128 149.7 137.4C140.4 146.8 140.3 162 149.7 171.3L298.3 320L149.6 468.7C140.2 478.1 140.2 493.3 149.6 502.6C159 511.9 174.2 512 183.5 502.6L332.2 353.9L480.8 502.5C490.2 511.9 505.4 511.9 514.7 502.5C524 493.1 524.1 477.9 514.7 468.6L366.1 320L514.7 171.4C524.1 162 524.1 146.8 514.7 137.5C505.3 128.2 490.1 128.1 480.8 137.5L332.2 286.1L183.6 137.4z"/></svg>
+      <button class="ap-header-icon-btn" onclick="apClose()" title="Close">
+        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><use href="#i-close"/></svg>
       </button>
     </div>
     <div class="ap-group-tabs-v2">
@@ -758,10 +919,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <div class="ap-links-container" id="ap-links-container"></div>
     <div class="ap-actions-row">
       <button class="ap-rules-footer-btn ap-rfb-add" onclick="apShowEdit(null)">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M14.3942 3.00083L14.1481 2.79115C12.9103 1.73628 11.0897 1.73628 9.85189 2.79115L9.60584 3.00083C8.96518 3.54679 8.16862 3.87674 7.32956 3.9437L7.00731 3.96941C5.38613 4.09878 4.09878 5.38613 3.96941 7.00731L3.9437 7.32956C3.87674 8.16862 3.54679 8.96518 3.00083 9.60584L2.79115 9.85189C1.73628 11.0897 1.73628 12.9103 2.79115 14.1481L3.00083 14.3942C3.54679 15.0348 3.87674 15.8314 3.9437 16.6704L3.96941 16.9927C4.09878 18.6139 5.38613 19.9012 7.00731 20.0306L7.32956 20.0563C8.16862 20.1233 8.96518 20.4532 9.60584 20.9992L9.85188 21.2089C11.0897 22.2637 12.9103 22.2637 14.1481 21.2089L14.3942 20.9992C15.0348 20.4532 15.8314 20.1233 16.6704 20.0563L16.9927 20.0306C18.6139 19.9012 19.9012 18.6139 20.0306 16.9927L20.0563 16.6704C20.1233 15.8314 20.4532 15.0348 20.9992 14.3942L21.2089 14.1481C22.2637 12.9103 22.2637 11.0897 21.2089 9.85188L20.9992 9.60584C20.4532 8.96518 20.1233 8.16862 20.0563 7.32956L20.0306 7.00731C19.9012 5.38613 18.6139 4.09878 16.9927 3.96941L16.6704 3.9437C15.8314 3.87674 15.0348 3.54679 14.3942 3.00083Z"></path>
-    <path d="M8 12H16M12.005 8.005L12.005 16.005"></path>
-  </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-add"/></svg>
         Add Channel
       </button>
       <button class="ap-rules-footer-btn ap-rfb-logout" onclick="apLogout()" title="Sign Out">
@@ -771,10 +929,10 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     </div>
   </div>
   <!-- EDIT VIEW -->
-  <div id="ap-view-edit" style="display:none">
+  <div id="ap-view-edit" class="ap-view">
     <div class="ap-edit-header">
-      <button class="ap-edit-back-btn" onclick="apShowList()" title="Back">
-        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M420 128L232 320L420 512"/></svg>
+      <button class="ap-edit-back-btn ap-header-icon-btn" onclick="apShowList()" title="Back">
+        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-back"/></svg>
       </button>
       <div class="ap-edit-header-text">
         <div class="ap-edit-title" id="ap-edit-title-text">Edit Social Link</div>
@@ -787,15 +945,12 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
           <div class="ap-edit-section-label">Platform Icon</div>
           <div class="ap-edit-section-sub">Upload SVG icon (Recommended)</div>
           <div class="ap-icon-btns-row">
-            <button class="ap-pill-btn ap-pill-btn-primary-outline" onclick="apToggleSvgEditor()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2.99994 17C2.99994 17.93 2.99994 18.395 3.10216 18.7765C3.37956 19.8117 4.18821 20.6204 5.22348 20.8978C5.60498 21 6.06997 21 6.99994 21L16.9999 21C17.9299 21 18.3949 21 18.7764 20.8978C19.8117 20.6204 20.6203 19.8117 20.8977 18.7765C20.9999 18.395 20.9999 17.93 20.9999 17"></path>
-                <path d="M16.5 7.49993C16.5 7.49993 13.1858 2.99997 12 2.99996C10.8141 2.99995 7.50002 7.49996 7.50002 7.49996M12 3.99996V16"></path>
-              </svg>
+            <button class="ap-pill-btn ap-pill-btn-primary-outline ap-outline-blue" onclick="apToggleSvgEditor()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-upload"/></svg>
               Change Icon
             </button>
-            <button class="ap-pill-btn ap-pill-icon-only" onclick="$('ap-f-svg').value='';apUpdateIconPreview()" title="Reset">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M129.9 292.5C143.2 199.5 223.3 128 320 128C373 128 421 149.5 455.8 184.2C456 184.4 456.2 184.6 456.4 184.8L464 192L416.1 192C398.4 192 384.1 206.3 384.1 224C384.1 241.7 398.4 256 416.1 256L544.1 256C561.8 256 576.1 241.7 576.1 224L576.1 96C576.1 78.3 561.8 64 544.1 64C526.4 64 512.1 78.3 512.1 96L512.1 149.4L500.8 138.7C454.5 92.6 390.5 64 320 64C191 64 84.3 159.4 66.6 283.5C64.1 301 76.2 317.2 93.7 319.7C111.2 322.2 127.4 310 129.9 292.6zM573.4 356.5C575.9 339 563.7 322.8 546.3 320.3C528.9 317.8 512.6 330 510.1 347.4C496.8 440.4 416.7 511.9 320 511.9C267 511.9 219 490.4 184.2 455.7C184 455.5 183.8 455.3 183.6 455.1L176 447.9L223.9 447.9C241.6 447.9 255.9 433.6 255.9 415.9C255.9 398.2 241.6 383.9 223.9 383.9L96 384C87.5 384 79.3 387.4 73.3 393.5C67.3 399.6 63.9 407.7 64 416.3L65 543.3C65.1 561 79.6 575.2 97.3 575C115 574.8 129.2 560.4 129 542.7L128.6 491.2L139.3 501.3C185.6 547.4 249.5 576 320 576C449 576 555.7 480.6 573.4 356.5z"/></svg>
+            <button class="ap-pill-btn ap-pill-icon-only ap-outline-blue" onclick="$('ap-f-svg').value='';apUpdateIconPreview()" title="Reset">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><use href="#i-refresh"/></svg>
             </button>
           </div>
           <div class="ap-icon-hint">
@@ -812,7 +967,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
             <svg style="width:28px;height:28px;fill:#fff" viewBox="0 0 640 640"></svg>
           </div>
           <div class="ap-icon-check-badge">
-            <svg viewBox="0 0 640 640" fill="#fff"><path d="M566.6 145.4C577.1 156 577.1 173.2 566.6 183.7L246.6 503.7C236 514.3 218.8 514.3 208.3 503.7L73.7 369.1C63.1 358.5 63.1 341.3 73.7 330.8C84.3 320.3 101.5 320.2 112 330.8L227.4 446.2L528.2 145.4C538.8 134.8 556 134.8 566.5 145.4z"/></svg>
+            <svg viewBox="0 0 640 640" fill="#fff"><use href="#i-check"/></svg>
           </div>
           <div class="ap-icon-size-badge" id="ap-icon-size-badge">22px</div>
         </div>
@@ -877,10 +1032,10 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
         <span>Delete</span>
       </button>
       <button class="ap-edit-fbtn ap-edit-fbtn-icon" id="ap-edit-undo-btn" onclick="apUndo()" title="Undo">
-        <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"><path d="M232 208L128 312L232 416"/><path d="M128 312L392 312C458 312 512 366 512 432"/></svg>
+        <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"><use href="#i-undo"/></svg>
       </button>
       <button class="ap-edit-fbtn ap-edit-fbtn-icon" id="ap-edit-redo-btn" onclick="apRedo()" title="Redo">
-        <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"><path d="M408 208L512 312L408 416"/><path d="M512 312L248 312C182 312 128 366 128 432"/></svg>
+        <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"><use href="#i-redo"/></svg>
       </button>
       <button class="ap-edit-fbtn ap-edit-fbtn-save" id="ap-save-btn" onclick="apSaveLink()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><use href="#i-save"/></svg>
@@ -890,10 +1045,10 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
   </div>
 
   <!-- RULES EDIT VIEW -->
-  <div id="ap-view-rules" style="display:none">
+  <div id="ap-view-rules" class="ap-view">
     <div class="ap-panel-header">
-      <button class="ap-back-btn" onclick="apClose()" title="Close">
-        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-chevron-back"/></svg>
+      <button class="ap-back-btn ap-header-icon-btn" onclick="apClose()" title="Close">
+        <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" style="fill:none!important" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg>
       </button>
       <div style="flex:1;min-width:0;">
         <div class="ap-panel-header-title" id="ap-rules-title" style="white-space:normal;">Guidelines</div>
@@ -906,7 +1061,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <!-- Unified action bar (Add / Logout / Save) below all the rules -->
     <div class="ap-rules-footer-bar">
       <button class="ap-rules-footer-btn ap-rfb-add" onclick="apAddRuleRow()">
-        <svg viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="42" width="16" height="16"><circle cx="320" cy="320" r="248"/><path d="M320 208L320 432M208 320L432 320" stroke-linecap="round"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="currentColor" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-add"/></svg>
         <span id="ap-rules-add-label">சேர்க்க</span>
       </button>
       <button class="ap-rules-footer-btn ap-rfb-logout" onclick="apLogout()" title="Sign Out">
@@ -932,7 +1087,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 </div>
 <div class="section-card" id="rules-card">
 <div class="section-header">
-<span style="display:inline-flex;align-items:center;gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20" fill="white" style="flex-shrink:0;"><path d="M320 216C368.6 216 408 176.6 408 128C408 79.4 368.6 40 320 40C271.4 40 232 79.4 232 128C232 176.6 271.4 216 320 216zM320 514.7L320 365.4C336.3 358.6 352.9 351.7 369.7 344.7C408.7 328.5 450.5 320.1 492.8 320.1L512 320.1L512 480.1L492.8 480.1C433.7 480.1 375.1 491.8 320.5 514.6L320 514.8zM320 296L294.9 285.5C248.1 266 197.9 256 147.2 256L112 256C85.5 256 64 277.5 64 304L64 496C64 522.5 85.5 544 112 544L147.2 544C197.9 544 248.1 554 294.9 573.5L307.7 578.8C315.6 582.1 324.4 582.1 332.3 578.8L345.1 573.5C391.9 554 442.1 544 492.8 544L528 544C554.5 544 576 522.5 576 496L576 304C576 277.5 554.5 256 528 256L492.8 256C442.1 256 391.9 266 345.1 285.5L320 296z"/></svg><span id="rt-ta">குழு விதிமுறைகள்</span><span id="rt-en" style="display:none">Group Guidelines</span></span>
+<span style="display:inline-flex;align-items:center;gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20" fill="white" style="flex-shrink:0;"><use href="#i-guidelines"/></svg><span id="rt-ta">குழு விதிமுறைகள்</span><span id="rt-en" style="display:none">Group Guidelines</span></span>
 <button class="edit-btn" onclick="apOpen('rules')"><svg fill="currentColor" height="14" style="flex-shrink:0;" viewbox="0 0 640 640" width="14" xmlns="http://www.w3.org/2000/svg"><use href="#i-edit-pencil"/></svg> <span id="eb-ta">திருத்து</span><span id="eb-en" style="display:none">Edit</span></button>
 </div>
 <div class="rules-list" id="rules-list"></div>
@@ -963,7 +1118,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg1-ta">WTL66998 Community</span>
     <span id="sg1-en" class="lang-en-title" style="display:none">WTL66998 Community</span>
   </div>
-  <button class="ap-gear-btn" onclick="apOpen('social','g1')" title="Admin Edit">
+  <button class="ap-gear-btn" onclick="apOpen('social','g1')" title="Developer Edit">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
@@ -976,7 +1131,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg2-ta">We The Leaders Official</span>
     <span id="sg2-en" class="lang-en-title" style="display:none">We The Leaders Official</span>
   </div>
-  <button class="ap-gear-btn" onclick="apOpen('social','g2')" title="Admin Edit">
+  <button class="ap-gear-btn" onclick="apOpen('social','g2')" title="Developer Edit">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
@@ -989,7 +1144,7 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <span id="sg3-ta">Annamalai Official</span>
     <span id="sg3-en" class="lang-en-title" style="display:none">Annamalai Official</span>
   </div>
-  <button class="ap-gear-btn" onclick="apOpen('social','g3')" title="Admin Edit">
+  <button class="ap-gear-btn" onclick="apOpen('social','g3')" title="Developer Edit">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-dots-circle"/></svg>
   </button>
 </div>
@@ -1008,44 +1163,15 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
 <!-- ══════════ BOTTOM NAV ══════════ -->
 <nav class="bottom-nav">
 <button class="nav-item active" id="nav-home" onclick="showPage('home')">
-<svg viewbox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" fill="currentColor"></path></svg>
+<svg viewbox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-home"/></svg>
 <span id="nh-ta">முகப்பு</span><span id="nh-en" style="display:none">Home</span>
 </button>
 <a class="nav-item" href="https://app.wetheleader.org/?ref=WTL-26-66998">
-<svg xmlns="http://www.w3.org/2000/svg" class="nav-logo-icon" viewBox="0 0 1010.000000 705.000000" preserveAspectRatio="xMidYMid meet" fill="currentColor"><g transform="translate(0.000000,705.000000) scale(0.100000,-0.100000)" stroke="none"><path d="M3446 6918 c-417 -473 -632 -1071 -613 -1708 13 -418 105 -780 304
--1200 147 -308 303 -547 720 -1101 535 -711 900 -1407 1152 -2194 67 -211 131
--442 131 -474 0 -55 18 -7 54 142 186 779 462 1417 903 2089 109 167 162 241
-393 558 199 272 291 405 393 571 321 522 487 1080 487 1634 0 299 -37 535
--127 805 -49 150 -159 385 -247 530 -131 215 -345 479 -307 377 11 -28 45
--241 63 -392 8 -67 13 -227 13 -410 0 -330 -13 -464 -75 -779 -118 -601 -407
--1212 -864 -1830 -143 -194 -334 -415 -633 -735 l-78 -83 -136 143 c-536 568
--833 974 -1108 1519 -268 529 -395 991 -432 1575 -19 306 12 737 70 988 5 20
-5 37 1 37 -5 0 -34 -28 -64 -62z M4906 5754 c-163 -36 -302 -111 -425 -228
--163 -157 -238 -319 -248 -536 -17 -367 205 -688 563 -816 553 -198 1154 203
-1154 770 0 164 -38 292 -126 429 -113 174 -308 312 -519 368 -108 28 -304 35
--399 13z M2661 3809 c-87 -438 -95 -1006 -20 -1429 43 -245 114 -485 203 -690
-25 -58 46 -106 46 -107 0 -1 -60 -34 -132 -74 -249 -137 -549 -267 -826 -358
--435 -143 -1032 -247 -1617 -281 -225 -13 -265 -18 -245 -30 34 -19 295 -102
-420 -134 358 -91 666 -137 1060 -158 239 -12 529 -2 910 32 574 52 904 42
-1290 -42 387 -83 901 -303 1123 -479 20 -17 37 -27 37 -23 0 19 -69 239 -115
-364 -153 420 -333 772 -598 1170 -114 170 -193 277 -496 675 -462 604 -613
-819 -781 1112 -71 126 -181 351 -220 453 -21 56 -27 56 -39 -1z M7465 3743
-c-149 -368 -388 -755 -800 -1293 -364 -475 -512 -675 -617 -830 -305 -451
--517 -886 -652 -1340 -35 -118 -65 -234 -62 -238 2 -1 54 31 115 72 328 220
-770 386 1206 455 319 50 584 52 1100 8 390 -34 600 -41 845 -28 354 20 621 60
-965 145 159 40 422 122 464 146 19 10 -24 16 -224 30 -624 44 -1227 171 -1750
-368 -186 70 -406 172 -632 294 l-91 49 35 76 c86 187 153 420 197 683 39 232
-49 369 49 640 -1 268 -18 482 -58 721 -14 81 -25 149 -25 153 0 3 -4 6 -9 6
--4 0 -30 -53 -56 -117z M1675 2674 c-225 -35 -415 -201 -470 -409 -18 -73 -19
--193 -1 -260 51 -194 208 -349 403 -400 76 -20 225 -19 294 1 184 55 336 200
-390 373 25 82 28 214 6 289 -54 181 -206 333 -386 386 -57 17 -185 27 -236 20z
-M8350 2670 c-269 -42 -470 -273 -470 -538 0 -101 16 -166 64 -256 68 -131 197
--232 346 -271 64 -17 214 -19 280 -4 88 20 191 80 265 154 82 82 118 144 145
-251 25 97 25 141 0 238 -26 102 -62 166 -136 246 -131 138 -319 207 -494 180z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="nav-logo-icon" viewBox="0 0 1010.000000 705.000000" preserveAspectRatio="xMidYMid meet" fill="currentColor"><use href="#i-wtl-logo"/></svg>
 <span id="nj-ta">WTL இணைவர்</span><span id="nj-en" style="display:none">Join WTL</span>
 </a>
 <button class="nav-item" id="nav-social" onclick="showPage('social')">
-<svg viewbox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M320 80C377.4 80 424 126.6 424 184C424 241.4 377.4 288 320 288C262.6 288 216 241.4 216 184C216 126.6 262.6 80 320 80zM96 152C135.8 152 168 184.2 168 224C168 263.8 135.8 296 96 296C56.2 296 24 263.8 24 224C24 184.2 56.2 152 96 152zM0 480C0 409.3 57.3 352 128 352C140.8 352 153.2 353.9 164.9 357.4C132 394.2 112 442.8 112 496L112 512C112 523.4 114.4 534.2 118.7 544L32 544C14.3 544 0 529.7 0 512L0 480zM521.3 544C525.6 534.2 528 523.4 528 512L528 496C528 442.8 508 394.2 475.1 357.4C486.8 353.9 499.2 352 512 352C582.7 352 640 409.3 640 480L640 512C640 529.7 625.7 544 608 544L521.3 544zM472 224C472 184.2 504.2 152 544 152C583.8 152 616 184.2 616 224C616 263.8 583.8 296 544 296C504.2 296 472 263.8 472 224zM160 496C160 407.6 231.6 336 320 336C408.4 336 480 407.6 480 496L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 496z" fill="currentColor"></path></svg>
+<svg viewbox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><use href="#i-people"/></svg>
 <span id="ns-ta">சமூக ஊடகம்</span><span id="ns-en" style="display:none">Social Media</span>
 </button>
 </nav>
@@ -1092,6 +1218,12 @@ let lang = 'ta';
 // SHARED HELPERS & CONFIG
 // ═══════════════════════════════════════════════
 const $ = (id) => document.getElementById(id);
+// Single reusable "show/hide an inline error message" helper, used by every
+// form error (login, fingerprint, save-link) instead of each call site
+// repeating `el.innerHTML = msg; el.style.display = 'block';` on its own.
+function showErr(el, msg) { el.innerHTML = msg; el.style.display = 'block'; }
+function showErrText(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+function hideErr(el) { el.style.display = 'none'; }
 const TIMEOUTS = { short: 8000, standard: 9000, save: 10000, upsert: 12000 };
 
 const SUPABASE_URL = 'https://mvsdohcpjkigjtcsftlo.supabase.co';
@@ -1320,7 +1452,7 @@ function recordClick(linkId) {
 }
 
 // Delegated click listener so newly rendered/re-rendered social items are always covered.
-document.addEventListener('click', function(e){
+document.addEventListener('click', (e) => {
   const item = e.target.closest('.social-item');
   if (item && item.dataset.linkId) recordClick(item.dataset.linkId);
 });
@@ -1329,7 +1461,7 @@ function showSlError() {
   ['g1','g2','g3'].forEach(g => {
     const el = $('sl-list-'+g);
     if (el && (el.querySelector('.sl-loading') || el.querySelector('.sl-error')))
-      el.innerHTML = '<div class="sl-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.9999 7.99997L18.9999 4.99997M18.9999 4.99997L15.9999 1.99997M18.9999 4.99997L15.9999 7.99997M18.9999 4.99997L21.9999 1.99997" stroke-linecap="round"></path><path d="M8.99988 10.0294C10.3725 8.65685 12.5979 8.65685 13.9704 10.0294C15.343 11.402 15.343 13.6274 13.9704 15"></path><path d="M4.85277 19.1471C8.04856 22.3429 12.9126 22.8538 16.6417 20.6797C17.5284 20.1627 17.9717 19.9043 17.9988 19.3782C18.0259 18.8522 17.5276 18.4882 16.5308 17.7603C14.6828 16.4107 12.8635 14.7603 11.0515 12.9484C9.23955 11.1364 7.58915 9.31705 6.23957 7.46904C5.51167 6.47231 5.14772 5.97395 4.62166 6.00105C4.0956 6.02815 3.83713 6.47149 3.32019 7.35818C1.14611 11.0873 1.65697 15.9513 4.85277 19.1471Z" stroke-linejoin="round"></path></svg><span>' + (lang==='ta' ? 'இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.' : 'Unable to load links. Please refresh.') + '</span></div>';
+      el.innerHTML = '<div class="sl-error"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#i-error-signal"/></svg><span>' + (lang==='ta' ? 'இணைப்புகளை ஏற்ற முடியவில்லை. Refresh செய்யவும்.' : 'Unable to load links. Please refresh.') + '</span></div>';
   });
 }
 
@@ -1353,7 +1485,7 @@ function renderSocialLinks() {
         </div>
         <span class="social-center" title="Link Clicks">
           <span class="social-click-count">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#i-eye-views"/></svg>
             ${formatClicks(CLICK_COUNTS[l.id])}
           </span>
         </span>
@@ -1363,7 +1495,7 @@ function renderSocialLinks() {
 }
 
 // ═══════════════════════════════════════════════
-// ADMIN PANEL
+// DEVELOPER PANEL
 // ═══════════════════════════════════════════════
 const AP = { mode:'social', currentGroup:'g1', editingLink:null, editingIdx:null, dragSrcIdx:null, saving:false, history:null, histIdx:-1 };
 
@@ -1445,8 +1577,8 @@ function apClose() {
 }
 
 function apShowView(v) {
-  ['login','list','edit','rules'].forEach(n => {
-    $('ap-view-'+n).style.display = (n===v) ? 'flex' : 'none';
+  document.querySelectorAll('.ap-view').forEach(el => {
+    el.classList.toggle('active', el.id === 'ap-view-' + v);
   });
   const drag = document.querySelector('.ap-drag-indicator');
   if (drag) {
@@ -1481,20 +1613,19 @@ async function apLogin() {
   const result = await authSignIn(email, pwd);
   if (btn) { btn.disabled = false; if (btnLabel) btnLabel.textContent = 'Login'; }
   if (!result.ok) {
-    errEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:1em;height:1em;vertical-align:-0.125em;fill:currentColor;margin-right:4px;"><path d="M286.1 368C384.6 368 464.4 447.8 464.4 546.3C464.4 562.7 451.1 576 434.7 576L78.1 576C61.7 576 48.4 562.7 48.4 546.3C48.4 447.8 128.2 368 226.7 368L286.1 368zM562.3 172.1C571.7 162.7 586.9 162.7 596.2 172.1C605.5 181.5 605.6 196.7 596.2 206L562.3 239.9L596.2 273.8C605.6 283.2 605.6 298.4 596.2 307.7C586.8 317 571.6 317.1 562.3 307.7L528.4 273.8L494.5 307.7C485.1 317.1 469.9 317.1 460.6 307.7C451.3 298.3 451.2 283.1 460.6 273.8L494.5 239.9L460.6 206C451.2 196.6 451.2 181.4 460.6 172.1C470 162.8 485.2 162.7 494.5 172.1L528.4 206L562.3 172.1zM256.4 312C190.1 312 136.4 258.3 136.4 192C136.4 125.7 190.1 72 256.4 72C322.7 72 376.4 125.7 376.4 192C376.4 258.3 322.7 312 256.4 312z"/></svg>' + (result.error || 'Incorrect credentials. Try again.');
-    errEl.style.display = 'block';
+    showErr(errEl, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:1em;height:1em;vertical-align:-0.125em;fill:currentColor;margin-right:4px;"><use href="#i-login-error"/></svg>' + (result.error || 'Incorrect credentials. Try again.'));
     $('ap-pwd').value = '';
     $('ap-pwd').focus();
     return;
   }
-  errEl.style.display = 'none';
+  hideErr(errEl);
   apOfferFingerprintSetup(email, pwd);
 }
 
 // ═══════════════════════════════════════════════
 // FINGERPRINT / PASSKEY VAULT
 // A platform passkey (WebAuthn) gates a locally
-// encrypted copy of the admin password, stored only
+// encrypted copy of the developer password, stored only
 // on this device. Fingerprint success -> decrypt ->
 // real Supabase sign-in -> full session as normal.
 // ═══════════════════════════════════════════════
@@ -1597,32 +1728,28 @@ async function apFingerprintLogin() {
   const errEl = $('ap-pwd-err');
   const email = $('ap-email').value.trim();
   if (!email) {
-    errEl.innerHTML = 'Please register your Gmail ID above.';
-    errEl.style.display = 'block';
+    showErr(errEl, 'Please register your Gmail ID above.');
     $('ap-email').focus();
     return;
   }
   if (!window.PublicKeyCredential) {
-    errEl.innerHTML = 'This device does not support fingerprint or passkey.';
-    errEl.style.display = 'block';
+    showErr(errEl, 'This device does not support fingerprint or passkey.');
     return;
   }
   const raw = localStorage.getItem(AP_VAULT_LS_KEY);
   let vault = null;
   try { vault = raw ? JSON.parse(raw) : null; } catch (e) { vault = null; }
   if (!vault || vault.email !== email) {
-    errEl.innerHTML = 'Fingerprint/Passkey registration has not been completed yet. Please log in using your password.';
-    errEl.style.display = 'block';
+    showErr(errEl, 'Fingerprint/Passkey registration has not been completed yet. Please log in using your password.');
     return;
   }
   try {
     const available = await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
     if (!available) {
-      errEl.innerHTML = 'This device does not have a fingerprint sensor.';
-      errEl.style.display = 'block';
+      showErr(errEl, 'This device does not have a fingerprint sensor.');
       return;
     }
-    errEl.style.display = 'none';
+    hideErr(errEl);
     await navigator.credentials.get({
       publicKey: {
         challenge: crypto.getRandomValues(new Uint8Array(32)),
@@ -1641,14 +1768,12 @@ async function apFingerprintLogin() {
     const password = new TextDecoder().decode(plain);
     const result = await authSignIn(email, password);
     if (!result.ok) {
-      errEl.innerHTML = 'The session has expired. Please log in again using your password.';
-      errEl.style.display = 'block';
+      showErr(errEl, 'The session has expired. Please log in again using your password.');
       return;
     }
     apRouteAfterLogin();
   } catch (e) {
-    errEl.innerHTML = 'Fingerprint verification failed. Please log in using your password.';
-    errEl.style.display = 'block';
+    showErr(errEl, 'Fingerprint verification failed. Please log in using your password.');
   }
 }
 
@@ -1686,7 +1811,7 @@ function apRenderList() {
          ondragstart="apDragStart(event,${idx})" ondragover="apDragOver(event,${idx})"
          ondrop="apDrop(event,${idx})" ondragend="apDragEnd(event)">
       <div class="ap-drag-handle" title="Drag to reorder">
-        <svg viewBox="0 0 16 24" fill="currentColor"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="4" cy="20" r="2"/><circle cx="12" cy="20" r="2"/></svg>
+        <svg viewBox="0 0 16 24" fill="currentColor"><use href="#i-drag-dots"/></svg>
       </div>
       <div class="ap-link-icon" style="background:${escH(l.icon_color)}">
         <svg style="width:20px;height:20px;fill:#fff" viewBox="0 0 640 640">${l.icon_svg}</svg>
@@ -1695,7 +1820,7 @@ function apRenderList() {
         <div class="ap-link-name">${escH(l.title)}</div>
         <div class="ap-link-sub">${escH(l.subtitle ? l.subtitle + ' Members' : '')}</div>
       </div>
-      <button class="ap-row-edit-btn" onclick="apShowEdit(${idx})" title="Edit">
+      <button class="ap-row-edit-btn ap-outline-blue" onclick="apShowEdit(${idx})" title="Edit">
   <svg xmlns="http://www.w3.org/2000/svg"
        viewBox="0 0 640 640"
        fill="currentColor">
@@ -1784,7 +1909,7 @@ async function apSaveRules() {
   const btn = $('ap-rules-save-btn');
   const labelEl = $('ap-rules-save-label');
   const errEl = $('ap-rules-err');
-  errEl.style.display = 'none';
+  hideErr(errEl);
   if (btn) { btn.disabled = true; }
   if (labelEl) { labelEl.textContent = lang==='ta'?'சேமிக்கிறது...':'Saving...'; }
   try {
@@ -1799,12 +1924,10 @@ async function apSaveRules() {
       apClose();
       alert(lang==='ta'?'✓ விதிமுறைகள் சேமிக்கப்பட்டன!':'✓ Guidelines saved!');
     } else {
-      errEl.textContent = '✘ ' + (lang==='ta'?'சேமிக்க முடியவில்லை.':'Could not save.');
-      errEl.style.display = 'block';
+      showErrText(errEl, '✘ ' + (lang==='ta'?'சேமிக்க முடியவில்லை.':'Could not save.'));
     }
   } catch(e) {
-    errEl.textContent = '✘ ' + (lang==='ta'?'இணைய பிழை.':'Network error.');
-    errEl.style.display = 'block';
+    showErrText(errEl, '✘ ' + (lang==='ta'?'இணைய பிழை.':'Network error.'));
   } finally {
     if (btn) { btn.disabled = false; }
     if (labelEl) { labelEl.textContent = 'Save'; }
@@ -1999,10 +2122,10 @@ async function apSaveLink() {
   l.icon_size = parseInt($('ap-f-icon-size').value, 10) || 22;
   const errEl = $('ap-f-save-err');
   if (!l.url || !/^https?:\/\//i.test(l.url)) {
-    errEl.textContent='✘ Valid URL தேவை (https:// தொடங்க வேண்டும்).'; errEl.style.display='block'; return;
+    showErrText(errEl, '✘ Valid URL தேவை (https:// தொடங்க வேண்டும்).'); return;
   }
-  if (!l.title) { errEl.textContent='✘ Platform பெயர் கொடுக்கவும்.'; errEl.style.display='block'; return; }
-  errEl.style.display = 'none';
+  if (!l.title) { showErrText(errEl, '✘ Platform பெயர் கொடுக்கவும்.'); return; }
+  hideErr(errEl);
   AP.saving = true;
   const btn = $('ap-save-btn');
   if (btn) { btn.disabled=true; btn.textContent='சேமிக்கிறது...'; }
@@ -2013,12 +2136,10 @@ async function apSaveLink() {
       renderSocialLinks();
       apShowList();
     } else {
-      errEl.textContent = '✘ ' + (data.error||'Save failed');
-      errEl.style.display = 'block';
+      showErrText(errEl, '✘ ' + (data.error||'Save failed'));
     }
   } catch(e) {
-    errEl.textContent = '✘ Network error. மீண்டும் முயற்சிக்கவும்.';
-    errEl.style.display = 'block';
+    showErrText(errEl, '✘ Network error. மீண்டும் முயற்சிக்கவும்.');
   } finally {
     AP.saving = false;
     if (btn) { btn.disabled=false; btn.textContent='Save'; }
@@ -2048,24 +2169,24 @@ loadSocialLinks();
 // piece in its correct font — no manual spans needed.
 // Runs once on load, then keeps watching via
 // MutationObserver so dynamically injected content
-// (rules, social links, admin panel, etc.) is covered.
+// (rules, social links, developer panel, etc.) is covered.
 // ═══════════════════════════════════════════════
 (function () {
-  var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, INPUT: 1, NOSCRIPT: 1, SELECT: 1 };
+  const SKIP_TAGS = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, INPUT: 1, NOSCRIPT: 1, SELECT: 1 };
 
   function isTamilChar(ch) {
-    var code = ch.codePointAt(0);
+    const code = ch.codePointAt(0);
     return code >= 0x0B80 && code <= 0x0BFF;
   }
 
   function splitSegments(text) {
-    var segments = [];
-    var current = '';
-    var currentTamil = null;
-    for (var i = 0; i < text.length; i++) {
-      var ch = text[i];
+    const segments = [];
+    let current = '';
+    let currentTamil = null;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
       if (/\s/.test(ch)) { current += ch; continue; } // whitespace stays with current run
-      var chTamil = isTamilChar(ch);
+      const chTamil = isTamilChar(ch);
       if (currentTamil === null || chTamil === currentTamil) {
         current += ch;
         currentTamil = chTamil;
@@ -2091,20 +2212,20 @@ loadSocialLinks();
   }
 
   function wrapTextNode(textNode) {
-    var text = textNode.nodeValue;
+    const text = textNode.nodeValue;
     if (!text || !/\S/.test(text)) return;
-    var segments = splitSegments(text);
+    const segments = splitSegments(text);
     if (segments.length < 2) {
       // single-script run: still tag it so the right font stack is forced
-      var only = document.createElement('span');
+      const only = document.createElement('span');
       only.className = segments[0] && segments[0].tamil ? 'lang-ta' : 'lang-en';
       only.textContent = text;
       textNode.parentNode.replaceChild(only, textNode);
       return;
     }
-    var frag = document.createDocumentFragment();
-    segments.forEach(function (seg) {
-      var span = document.createElement('span');
+    const frag = document.createDocumentFragment();
+    segments.forEach((seg) => {
+      const span = document.createElement('span');
       span.className = seg.tamil ? 'lang-ta' : 'lang-en';
       span.textContent = seg.text;
       frag.appendChild(span);
@@ -2120,15 +2241,15 @@ loadSocialLinks();
     if (root.nodeType !== 1) return;
     if (alreadyWrapped(root)) return;
 
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (node) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
         if (!node.nodeValue || !/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
         if (alreadyWrapped(node.parentElement)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
-    var nodes = [];
-    var n;
+    const nodes = [];
+    let n;
     while ((n = walker.nextNode())) nodes.push(n);
     nodes.forEach(wrapTextNode);
   }
@@ -2136,10 +2257,10 @@ loadSocialLinks();
   // Initial pass over whatever is already in the DOM
   walkAndSplit(document.body);
 
-  // Watch for anything rendered later (rules, social links, admin panel, etc.)
-  var observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (m) {
-      m.addedNodes.forEach(function (node) { walkAndSplit(node); });
+  // Watch for anything rendered later (rules, social links, developer panel, etc.)
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((m) => {
+      m.addedNodes.forEach((node) => walkAndSplit(node));
       if (m.type === 'characterData') walkAndSplit(m.target);
     });
   });
