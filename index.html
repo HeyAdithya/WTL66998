@@ -1392,16 +1392,44 @@ function renderRules() {
 }
 
 // ═══════════════════════════════════════════════
-// TEXT-TO-SPEECH (Sarvam AI, voice: Shreya) — added
+// TEXT-TO-SPEECH (Sarvam AI, voice: Shreya) — fixed
 // One button per rule. Only one rule plays at a time.
 // API key stays server-side inside /api/tts (Vercel function).
+//
+// ROOT CAUSE OF THE ORIGINAL BUG:
+// The old code did `await this.getAudioUrl(idx)` (a network fetch)
+// BEFORE creating the Audio element and calling .play(). That await
+// breaks the browser's "user gesture" chain that started with the
+// click. Safari/iOS (and some Chrome/Android builds) then reject the
+// later `audio.play()` call with a NotAllowedError, because from the
+// browser's point of view play() is no longer being invoked as a
+// direct result of user input. The code caught that rejection in the
+// try/catch and silently reset the button — matching the exact
+// symptom reported: button flips to "playing", the request fires,
+// then it immediately flips back with no sound.
+//
+// FIX: create the <audio> element and call .play() SYNCHRONOUSLY
+// inside the click handler (before any await), using a tiny silent
+// clip so it is blessed as "started by user gesture". Once the real
+// audio is fetched, we swap `audio.src` on that SAME element and
+// call .play() again — swapping the source of an element that is
+// already inside an active/blessed playback session is allowed by
+// every major browser's autoplay policy, so the real audio plays
+// even though it arrived asynchronously.
 // ═══════════════════════════════════════════════
+
+// 1x1 sample silent WAV, used purely to "unlock" audio playback
+// synchronously inside the click handler.
+const TTS_SILENT_WAV =
+  'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+
 const TTS = {
   audio: null,
   activeIdx: -1,
   cache: {}, // "idx:lang" -> object URL, so replay/resume never re-fetches
 
   reset() {
+    console.log('[TTS] reset() called — stopping any active playback');
     this.stop();
   },
 
@@ -1411,10 +1439,14 @@ const TTS = {
     return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
   },
 
-  setBtnState(idx, state) {
+  setBtnState(idx, state, reason) {
     const btn = $('rule-tts-' + idx);
     const iconUse = $('rule-tts-icon-' + idx);
-    if (!btn || !iconUse) return;
+    console.log(`[TTS] Button ${idx} -> state "${state}"${reason ? ' (' + reason + ')' : ''}`);
+    if (!btn || !iconUse) {
+      console.warn(`[TTS] setBtnState: could not find button/icon for idx ${idx}`);
+      return;
+    }
     btn.dataset.state = state;
     if (state === 'playing') iconUse.setAttribute('href', '#i-tts-pause');
     else if (state === 'paused') iconUse.setAttribute('href', '#i-tts-play');
@@ -1425,76 +1457,205 @@ const TTS = {
     document.querySelectorAll('.rule-item.tts-active').forEach(el => el.classList.remove('tts-active'));
   },
 
-  stop() {
-    if (this.audio) { this.audio.pause(); this.audio.onended = null; }
-    if (this.activeIdx !== -1) this.setBtnState(this.activeIdx, 'idle');
+  // Never resets the button silently — always logs why.
+  stop(reason) {
+    if (reason) console.log('[TTS] stop() — ' + reason);
+    if (this.audio) {
+      try { this.audio.pause(); } catch (e) { console.error('[TTS] Error pausing audio:', e); }
+      this.audio.onended = null;
+      this.audio.onerror = null;
+      this.audio.oncanplaythrough = null;
+    }
+    if (this.activeIdx !== -1) this.setBtnState(this.activeIdx, 'idle', reason || 'stop() with no reason given');
     this.clearHighlight();
     this.activeIdx = -1;
     this.audio = null;
   },
 
-  async onButtonClick(idx) {
+  onButtonClick(idx) {
+    console.log(`[TTS] Button Clicked (rule #${idx})`);
     const btn = $('rule-tts-' + idx);
     const state = btn ? btn.dataset.state : 'idle';
+    console.log(`[TTS] Current button state before click handling: "${state}", activeIdx=${this.activeIdx}`);
 
     // Same rule already loaded: toggle pause/resume
     if (this.activeIdx === idx && this.audio) {
-      if (state === 'playing') { this.audio.pause(); this.setBtnState(idx, 'paused'); return; }
-      if (state === 'paused') { this.audio.play(); this.setBtnState(idx, 'playing'); return; }
+      if (state === 'playing') {
+        console.log('[TTS] Pausing currently playing audio for rule #' + idx);
+        this.audio.pause();
+        this.setBtnState(idx, 'paused', 'user paused');
+        return;
+      }
+      if (state === 'paused') {
+        console.log('[TTS] Resuming paused audio for rule #' + idx);
+        this.audio.play().catch(err => {
+          console.error('[TTS] Error resuming playback:', err);
+          this.stop('resume failed: ' + err.message);
+        });
+        this.setBtnState(idx, 'playing', 'user resumed');
+        return;
+      }
     }
 
-    // Different rule (or completed / idle): stop whatever is playing, start this one
-    this.stop();
+    // Different rule (or completed / idle): stop whatever is playing, start this one.
+    this.stop(this.activeIdx !== -1 ? 'switching to rule #' + idx : undefined);
     this.activeIdx = idx;
-    $('rule-item-' + idx).classList.add('tts-active');
-    this.setBtnState(idx, 'playing'); // optimistic while fetching
+    const item = $('rule-item-' + idx);
+    if (item) item.classList.add('tts-active');
 
+    // ── CRITICAL FIX ──────────────────────────────────────────────
+    // Create the Audio element and call .play() *synchronously*,
+    // right here inside the click handler, so the browser attributes
+    // playback to the user's gesture. We start it on a silent clip;
+    // once the real audio is ready we swap the src on this same
+    // element (see _loadAndPlay below).
+    const audio = new Audio(TTS_SILENT_WAV);
+    this.audio = audio;
+    this.setBtnState(idx, 'playing', 'optimistic, unlocking playback'); // optimistic while fetching
+
+    const unlockPromise = audio.play();
+    if (unlockPromise && typeof unlockPromise.catch === 'function') {
+      unlockPromise.catch(err => {
+        // Some browsers throw here for the silent clip too (e.g. if the
+        // user hasn't interacted with the page in the way the browser
+        // expects). We log it clearly but keep going — the real play()
+        // call below gets its own error handling and will report if it
+        // truly fails.
+        console.warn('[TTS] Silent unlock clip failed to play (this alone is not fatal):', err);
+      });
+    }
+
+    this._loadAndPlay(idx, audio);
+  },
+
+  async _loadAndPlay(idx, audio) {
+    console.log(`[TTS] Sending Request for rule #${idx} (lang=${lang})`);
+    let url;
     try {
-      const url = await this.getAudioUrl(idx);
-      const audio = new Audio(url);
-      this.audio = audio;
-      audio.onended = () => {
-        this.setBtnState(idx, 'idle'); // "Completed" -> back to speaker icon
-        this.clearHighlight();
-        this.activeIdx = -1;
-      };
-      audio.onerror = () => {
-        this.setBtnState(idx, 'idle');
-        this.clearHighlight();
-        this.activeIdx = -1;
-      };
-      await audio.play();
-      this.setBtnState(idx, 'playing');
+      url = await this.getAudioUrl(idx);
+      console.log(`[TTS] Audio Generated for rule #${idx}:`, url);
     } catch (e) {
-      this.setBtnState(idx, 'idle');
+      console.error('[TTS] Error — failed to fetch/prepare audio:', e);
+      this.stop('fetch/prepare failed: ' + e.message);
+      return;
+    }
+
+    // If the user clicked something else while we were fetching, abandon this result.
+    if (this.activeIdx !== idx || this.audio !== audio) {
+      console.log(`[TTS] Rule #${idx} request finished but user moved on — discarding result`);
+      return;
+    }
+
+    audio.onended = () => {
+      console.log(`[TTS] Playback Completed for rule #${idx}`);
+      this.setBtnState(idx, 'idle', 'playback completed');
       this.clearHighlight();
       this.activeIdx = -1;
+      this.audio = null;
+    };
+    audio.onerror = (ev) => {
+      const mediaError = audio.error;
+      console.error(`[TTS] Error — <audio> element error for rule #${idx}:`, mediaError, ev);
+      this.stop('audio element error: ' + (mediaError ? mediaError.code : 'unknown'));
+    };
+
+    try {
+      // Same element that was already blessed by the user gesture —
+      // swapping its source and playing again is allowed even though
+      // we are now inside an async continuation.
+      audio.src = url;
+      audio.load();
+      console.log(`[TTS] API Response Received, attempting playback for rule #${idx}`);
+      await audio.play();
+      console.log(`[TTS] Audio Playing for rule #${idx}`);
+      this.setBtnState(idx, 'playing', 'real audio playing');
+    } catch (e) {
+      console.error('[TTS] Error — audio.play() rejected:', e.name, e.message, e);
+      this.stop('play() rejected: ' + e.name + ' — ' + e.message);
     }
   },
 
   async getAudioUrl(idx) {
     const key = idx + ':' + lang;
-    if (this.cache[key]) return this.cache[key];
+    if (this.cache[key]) {
+      console.log(`[TTS] Using cached audio for rule #${idx} (${lang})`);
+      return this.cache[key];
+    }
     const rules = lang === 'ta' ? RULES_TA : RULES_EN;
     const text = this.stripHtml(rules[idx]);
-    const res = await fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, lang })
-    });
-    if (!res.ok) throw new Error('TTS request failed');
-    const data = await res.json();
-    const blob = this.b64ToBlob(data.audio, data.mime || 'audio/wav');
+
+    let res;
+    try {
+      res = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, lang })
+      });
+    } catch (networkErr) {
+      // fetch() itself throws on network failure / CORS / DNS issues.
+      console.error('[TTS] Error — network request to /api/tts threw:', networkErr);
+      throw new Error('Network error contacting /api/tts: ' + networkErr.message);
+    }
+
+    console.log(`[TTS] API Response Received — HTTP ${res.status} for rule #${idx}`);
+
+    if (!res.ok) {
+      let detail = '';
+      try { detail = await res.text(); } catch (_) {}
+      console.error(`[TTS] Error — /api/tts returned ${res.status}. Body:`, detail);
+      throw new Error(`TTS request failed (HTTP ${res.status}): ${detail || 'no body'}`);
+    }
+
+    let data;
+    try {
+      data = await res.json();
+    } catch (parseErr) {
+      console.error('[TTS] Error — response was not valid JSON:', parseErr);
+      throw new Error('TTS response was not valid JSON');
+    }
+
+    if (data && data.error) {
+      console.error('[TTS] Error — API returned an error payload:', data.error, data.detail || '');
+      throw new Error('TTS API error: ' + data.error + (data.detail ? ' — ' + data.detail : ''));
+    }
+
+    // Adaptive parsing: accept a few possible shapes in case the
+    // Sarvam API response format differs from what we expect.
+    const audioB64 =
+      data.audio ||
+      (Array.isArray(data.audios) ? data.audios[0] : null) ||
+      data.audio_base64 ||
+      (data.output && data.output.audio) ||
+      null;
+
+    if (!audioB64) {
+      console.error('[TTS] Error — no audio field found in response payload:', data);
+      throw new Error('TTS response contained no audio data');
+    }
+
+    const mime = data.mime || data.mime_type || 'audio/wav';
+    const blob = this.b64ToBlob(audioB64, mime);
+    if (!blob || blob.size === 0) {
+      console.error('[TTS] Error — decoded audio blob is empty');
+      throw new Error('Decoded audio blob was empty');
+    }
+
     const url = URL.createObjectURL(blob);
     this.cache[key] = url;
+    console.log(`[TTS] Cached audio URL for rule #${idx} (${lang}):`, url, 'size:', blob.size, 'bytes');
     return url;
   },
 
   b64ToBlob(b64, mime) {
-    const bytes = atob(b64);
-    const arr = new Uint8Array(bytes.length);
-    for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
-    return new Blob([arr], { type: mime });
+    try {
+      const bytes = atob(b64);
+      const arr = new Uint8Array(bytes.length);
+      for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+      return new Blob([arr], { type: mime });
+    } catch (e) {
+      console.error('[TTS] Error — failed to decode base64 audio:', e);
+      return null;
+    }
   }
 };
 
