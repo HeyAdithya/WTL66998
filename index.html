@@ -118,6 +118,14 @@
   .rule-text { font-size:15px; font-weight:500; line-height:1.65; color:var(--text); flex:1; }
   .rule-item { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #eef0f8; align-items:flex-start; }
 
+  /* ─── TTS (added) ─── */
+  .rule-tts-btn { background:#eef0f8; color:var(--blue); width:23px; height:23px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; cursor:pointer; padding:0; transition:background .15s; }
+  .rule-tts-btn svg { width:13px; height:13px; }
+  .rule-tts-btn:active { background:#dfe3f5; }
+  .rule-tts-btn[data-state="playing"] { background:var(--blue); color:#fff; }
+  .rule-tts-btn[data-state="paused"] { background:var(--gold); color:#fff; }
+  .rule-item.tts-active { box-shadow:0 0 0 2px rgba(29,63,158,0.25); border-radius:10px; background:rgba(29,63,158,0.04); }
+
   .quote-box { margin:0 14px 14px; background-image:var(--wtl-master-bg); color:#fff; border-radius:var(--radius); padding:14px; text-align:center; }
   .quote-box .quote-text { font-size:0.83rem; font-style:italic; line-height:1.6; margin-bottom:5px; }
   .quote-box .quote-author { font-size:0.76rem; color:var(--gold); font-weight:600; }
@@ -817,6 +825,21 @@ box-shadow:inset 0 0 18px rgba(134,216,169,.35),0 4px 14px rgba(30,132,73,.12);
     <circle cx="12" cy="12" r="3"/>
   </symbol>
 
+  <!-- TTS: Volume (initial / completed state) -->
+  <symbol id="i-tts-volume" viewBox="0 0 48 48">
+    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"d="M32.017 16.708c1.768 1.326 3.241 4.714 2.946 8.397c-.294 2.799-1.767 5.156-2.946 6.04M5.5 17.74v12.816h8.544l11.049 8.839V8.605L14.044 17.74zm31.673-6.777c3.094 2.357 5.598 8.397 5.303 15.026c-.442 5.009-2.946 9.133-5.303 10.901"/>
+  </symbol>
+
+  <!-- TTS: Circle Pause (playing state -> tap to pause) -->
+  <symbol id="i-tts-pause" viewBox="0 0 512 512">
+    <path fill="currentColor" fill-rule="evenodd" d="M256 42.667c117.821 0 213.334 95.513 213.334 213.333c0 117.821-95.513 213.334-213.334 213.334c-117.82 0-213.333-95.513-213.333-213.334C42.667 138.18 138.18 42.667 256 42.667m0 42.667c-94.256 0-170.666 76.41-170.666 170.666c0 94.257 76.41 170.667 170.666 170.667c94.257 0 170.667-76.41 170.667-170.667c0-94.256-76.41-170.666-170.667-170.666m-21.333 85.333v170.667H192V170.667zm85.333 0v170.667h-42.666V170.667z"/>
+  </symbol>
+
+  <!-- TTS: Circle Play (paused state -> tap to resume) -->
+  <symbol id="i-tts-play" viewBox="0 0 512 512">
+    <path fill="currentColor" fill-rule="evenodd" d="M256 42.667c117.821 0 213.334 95.513 213.334 213.333c0 117.821-95.513 213.334-213.334 213.334c-117.82 0-213.333-95.513-213.333-213.334C42.667 138.18 138.18 42.667 256 42.667m0 42.667c-94.256 0-170.666 76.41-170.666 170.666c0 94.257 76.41 170.667 170.666 170.667c94.257 0 170.667-76.41 170.667-170.667c0-94.256-76.41-170.666-170.667-170.666m-64 85.333L362.667 256L192 341.334z"/>
+  </symbol>
+
 </svg>
 <!-- ══════════ END SVG ICON LIBRARY ══════════ -->
 
@@ -1357,11 +1380,122 @@ function setLang(l) {
 function renderRules() {
   const rules = lang==='ta' ? RULES_TA : RULES_EN;
   $('rules-list').innerHTML = rules.map((r,i) => `
-    <div class="rule-item">
+    <div class="rule-item" id="rule-item-${i}" data-idx="${i}">
       <div class="rule-num">${i+1}</div>
+      <button type="button" class="rule-tts-btn" id="rule-tts-${i}" data-state="idle" aria-label="Read rule ${i+1} aloud" onclick="TTS.onButtonClick(${i})">
+        <svg viewBox="0 0 16 16"><use id="rule-tts-icon-${i}" href="#i-tts-volume"/></svg>
+      </button>
       <div class="rule-text">${r}</div>
     </div>`).join('');
+  TTS.reset();
 }
+
+// ═══════════════════════════════════════════════
+// TEXT-TO-SPEECH (Sarvam AI, voice: Shreya) — added
+// One button per rule. Only one rule plays at a time.
+// API key stays server-side inside /api/tts (Vercel function).
+// ═══════════════════════════════════════════════
+const TTS = {
+  audio: null,
+  activeIdx: -1,
+  cache: {}, // "idx:lang" -> object URL, so replay/resume never re-fetches
+
+  reset() {
+    this.stop();
+  },
+
+  stripHtml(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+  },
+
+  setBtnState(idx, state) {
+    const btn = $('rule-tts-' + idx);
+    const iconUse = $('rule-tts-icon-' + idx);
+    if (!btn || !iconUse) return;
+    btn.dataset.state = state;
+    if (state === 'playing') iconUse.setAttribute('href', '#i-tts-pause');
+    else if (state === 'paused') iconUse.setAttribute('href', '#i-tts-play');
+    else iconUse.setAttribute('href', '#i-tts-volume'); // idle / completed
+  },
+
+  clearHighlight() {
+    document.querySelectorAll('.rule-item.tts-active').forEach(el => el.classList.remove('tts-active'));
+  },
+
+  stop() {
+    if (this.audio) { this.audio.pause(); this.audio.onended = null; }
+    if (this.activeIdx !== -1) this.setBtnState(this.activeIdx, 'idle');
+    this.clearHighlight();
+    this.activeIdx = -1;
+    this.audio = null;
+  },
+
+  async onButtonClick(idx) {
+    const btn = $('rule-tts-' + idx);
+    const state = btn ? btn.dataset.state : 'idle';
+
+    // Same rule already loaded: toggle pause/resume
+    if (this.activeIdx === idx && this.audio) {
+      if (state === 'playing') { this.audio.pause(); this.setBtnState(idx, 'paused'); return; }
+      if (state === 'paused') { this.audio.play(); this.setBtnState(idx, 'playing'); return; }
+    }
+
+    // Different rule (or completed / idle): stop whatever is playing, start this one
+    this.stop();
+    this.activeIdx = idx;
+    $('rule-item-' + idx).classList.add('tts-active');
+    this.setBtnState(idx, 'playing'); // optimistic while fetching
+
+    try {
+      const url = await this.getAudioUrl(idx);
+      const audio = new Audio(url);
+      this.audio = audio;
+      audio.onended = () => {
+        this.setBtnState(idx, 'idle'); // "Completed" -> back to speaker icon
+        this.clearHighlight();
+        this.activeIdx = -1;
+      };
+      audio.onerror = () => {
+        this.setBtnState(idx, 'idle');
+        this.clearHighlight();
+        this.activeIdx = -1;
+      };
+      await audio.play();
+      this.setBtnState(idx, 'playing');
+    } catch (e) {
+      this.setBtnState(idx, 'idle');
+      this.clearHighlight();
+      this.activeIdx = -1;
+    }
+  },
+
+  async getAudioUrl(idx) {
+    const key = idx + ':' + lang;
+    if (this.cache[key]) return this.cache[key];
+    const rules = lang === 'ta' ? RULES_TA : RULES_EN;
+    const text = this.stripHtml(rules[idx]);
+    const res = await fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, lang })
+    });
+    if (!res.ok) throw new Error('TTS request failed');
+    const data = await res.json();
+    const blob = this.b64ToBlob(data.audio, data.mime || 'audio/wav');
+    const url = URL.createObjectURL(blob);
+    this.cache[key] = url;
+    return url;
+  },
+
+  b64ToBlob(b64, mime) {
+    const bytes = atob(b64);
+    const arr = new Uint8Array(bytes.length);
+    for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+    return new Blob([arr], { type: mime });
+  }
+};
 
 function showPage(p, push) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
